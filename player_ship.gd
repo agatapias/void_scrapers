@@ -5,7 +5,6 @@ var torque = 10000
 
 func _integrate_forces(state):
 	if Input.is_action_pressed("ui_up"):
-		print("up pressed")
 		state.apply_force(thrust.rotated(rotation))
 	#else:
 		#state.apply_force(Vector2())
