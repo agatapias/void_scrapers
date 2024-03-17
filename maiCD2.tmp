@@ -1,11 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfwng4x4r7tyb"]
+[gd_scene load_steps=5 format=3 uid="uid://cfwng4x4r7tyb"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://player_ship.tscn" id="1_s1wep"]
 [ext_resource type="Texture2D" uid="uid://ch2aelaesyulb" path="res://assets/sprites/Asteroida.png" id="2_2ifds"]
 [ext_resource type="Texture2D" uid="uid://fp8b086rkxd8" path="res://assets/background/Space Background.png" id="3_86apd"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uyaiw"]
-bounce = 0.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8wet4"]
 radius = 16.0312
@@ -13,10 +10,16 @@ radius = 16.0312
 [node name="Main" type="Node"]
 
 [node name="Spaceship" parent="." instance=ExtResource("1_s1wep")]
-physics_material_override = SubResource("PhysicsMaterial_uyaiw")
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Spaceship"]
+
+[node name="HealthBar" type="ProgressBar" parent="Spaceship"]
+offset_left = -572.0
+offset_top = -385.0
+offset_right = -536.0
+offset_bottom = -358.0
+step = 1.0
 
 [node name="Asteroid" type="RigidBody2D" parent="."]
 position = Vector2(253, -194)
@@ -56,11 +59,3 @@ motion_mirroring = Vector2(1, 0)
 [node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/ParallaxLayer"]
 scale = Vector2(2, 2)
 texture = ExtResource("3_86apd")
-metadata/_edit_lock_ = true
-
-[node name="UILayer" type="CanvasLayer" parent="."]
-
-[node name="HealthBar" type="ProgressBar" parent="UILayer"]
-offset_right = 63.0
-offset_bottom = 27.0
-step = 1.0
