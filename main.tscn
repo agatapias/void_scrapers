@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfwng4x4r7tyb"]
+[gd_scene load_steps=6 format=3 uid="uid://dxbb1xjpse0p7"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://player_ship.tscn" id="1_s1wep"]
 [ext_resource type="Texture2D" uid="uid://ch2aelaesyulb" path="res://assets/sprites/Asteroida.png" id="2_2ifds"]

@@ -3,11 +3,12 @@ extends RigidBody2D
 const MAX_HEALTH = 100
 const MIN_HEALTH = 0
 
-@export var thrust = Vector2(0, -50)
-var torque = 200
+@export var thrust = Vector2(0, -1)
+var torque = 500
 var _health
 
 func _ready():
+	print("ready called")
 	contact_monitor = true
 	max_contacts_reported = 10000
 	connect("body_entered", _on_body_entered)
@@ -29,6 +30,9 @@ func _integrate_forces(state):
 	if Input.is_action_pressed("ui_left"):
 		rotation_direction -= 1
 	state.apply_torque(rotation_direction * torque)
+	
+	if linear_velocity.length() > 50:
+		state.linear_velocity = state.linear_velocity.limit_length(200)
 
 func _on_body_entered(body):
 	print(body)
