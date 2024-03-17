@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfwng4x4r7tyb"]
+
+[ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://player_ship.tscn" id="1_s1wep"]
+[ext_resource type="Texture2D" uid="uid://ch2aelaesyulb" path="res://assets/sprites/Asteroida.png" id="2_2ifds"]
+[ext_resource type="Texture2D" uid="uid://fp8b086rkxd8" path="res://assets/background/Space Background.png" id="3_86apd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8wet4"]
+radius = 16.0312
+
+[node name="Main" type="Node"]
+
+[node name="Spaceship" parent="." instance=ExtResource("1_s1wep")]
+thrust = null
+metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="Spaceship"]
+
+[node name="HealthBar" type="ProgressBar" parent="Spaceship"]
+offset_left = -572.0
+offset_top = -385.0
+offset_right = -536.0
+offset_bottom = -358.0
+step = 1.0
+
+[node name="Asteroid" type="RigidBody2D" parent="."]
+position = Vector2(253, -194)
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid"]
+position = Vector2(0.5, -0.5)
+texture = ExtResource("2_2ifds")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_8wet4")
+
+[node name="Asteroid2" type="RigidBody2D" parent="."]
+position = Vector2(108, -251)
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2"]
+position = Vector2(0.5, -0.5)
+texture = ExtResource("2_2ifds")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_8wet4")
+
+[node name="SpaceBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="SpaceBackground"]
+motion_scale = Vector2(0.01, 0.01)
+motion_offset = Vector2(500, 500)
+motion_mirroring = Vector2(1, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/ParallaxLayer"]
+scale = Vector2(2, 2)
+texture = ExtResource("3_86apd")

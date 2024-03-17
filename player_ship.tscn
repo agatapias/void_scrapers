@@ -31,8 +31,12 @@ animations = [{
 radius = 15.0
 
 [node name="RigidBody2D" type="RigidBody2D"]
+<<<<<<< HEAD
 mass = 0.5
 gravity_scale = 0.2
+=======
+gravity_scale = 0.0
+>>>>>>> 8082a9b79a84d67c22b22a8730401527804ffacc
 can_sleep = false
 script = ExtResource("1_co6cj")
 thrust = Vector2(0, -500)

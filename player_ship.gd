@@ -1,11 +1,20 @@
 extends RigidBody2D
 
+const MAX_HEALTH = 100
+const MIN_HEALTH = 0
+
 @export var thrust = Vector2(0, -50)
 var torque = 200
+var _health
+
+func _ready():
+	contact_monitor = true
+	max_contacts_reported = 10000
+	connect("body_entered", _on_body_entered)
+	set_health(MAX_HEALTH)
 
 func _integrate_forces(state):
 	if Input.is_action_pressed("ui_up"):
-		print("up pressed")
 		state.apply_force(thrust.rotated(rotation))
 		$AnimatedSprite2D.play()
 		$AnimatedSprite2D.animation = "go"
@@ -21,4 +30,18 @@ func _integrate_forces(state):
 		rotation_direction -= 1
 	state.apply_torque(rotation_direction * torque)
 
+func _on_body_entered(body):
+	print(body)
+	print("a")
+	get_damage(10)
+	
+func set_health(health):
+	_health = clamp(health, MIN_HEALTH, MAX_HEALTH)
+	var health_bar = get_node("/root/Main/UILayer/HealthBar")
+	health_bar.value = _health
 
+func get_damage(damage):
+	set_health(_health - damage)
+	
+func restore_health(health_points):
+	set_health(_health + health_points)
