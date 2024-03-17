@@ -1,13 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfwng4x4r7tyb"]
+[gd_scene load_steps=7 format=3 uid="uid://dxbb1xjpse0p7"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://player_ship.tscn" id="1_s1wep"]
 [ext_resource type="Texture2D" uid="uid://ch2aelaesyulb" path="res://assets/sprites/Asteroida.png" id="2_2ifds"]
-[ext_resource type="AudioStream" uid="uid://bi0oyq0et1bxc" path="res://assets/sound_effects/thrusters_loopwav-14699.mp3" id="2_tdgx3"]
+[ext_resource type="AudioStream" uid="uid://bi0oyq0et1bxc" path="res://assets/sound_effects/thrusters_loopwav-14699.mp3" id="2_pcxrh"]
 [ext_resource type="Texture2D" uid="uid://fp8b086rkxd8" path="res://assets/background/Space Background.png" id="3_86apd"]
-[ext_resource type="Script" path="res://EngineSoundEffect.gd" id="3_m5vrr"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uyaiw"]
-bounce = 0.5
+bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8wet4"]
 radius = 16.0312
@@ -21,8 +20,7 @@ metadata/_edit_group_ = true
 [node name="Camera2D" type="Camera2D" parent="Spaceship"]
 
 [node name="EngineSoundEffect" type="AudioStreamPlayer2D" parent="Spaceship"]
-stream = ExtResource("2_tdgx3")
-script = ExtResource("3_m5vrr")
+stream = ExtResource("2_pcxrh")
 
 [node name="Asteroid" type="RigidBody2D" parent="."]
 position = Vector2(253, -194)
