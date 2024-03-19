@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxbb1xjpse0p7"]
+[gd_scene load_steps=9 format=3 uid="uid://dxbb1xjpse0p7"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://player_ship.tscn" id="1_s1wep"]
 [ext_resource type="PackedScene" uid="uid://bmmhib0afegw2" path="res://asteroid.tscn" id="2_i6m1y"]
@@ -9,6 +9,8 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uyaiw"]
 bounce = 1.0
+
+[sub_resource type="Theme" id="Theme_mejk4"]
 
 [node name="Main" type="Node"]
 
@@ -33,8 +35,11 @@ metadata/_edit_lock_ = true
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="HealthBar" type="ProgressBar" parent="UILayer"]
-offset_right = 63.0
-offset_bottom = 27.0
+offset_left = 922.0
+offset_top = 731.0
+offset_right = 1135.0
+offset_bottom = 758.0
+theme = SubResource("Theme_mejk4")
 step = 1.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

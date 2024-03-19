@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s4nd8ma6uhla"
-path="res://.godot/imported/ship-idle.png-7389f26b9f7acf04e741f8b2538c02f8.ctex"
+uid="uid://d0skjxrr0idxv"
+path="res://.godot/imported/des6.png-e99a53c258bd13fa31027a217352a3f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ship-idle.png"
-dest_files=["res://.godot/imported/ship-idle.png-7389f26b9f7acf04e741f8b2538c02f8.ctex"]
+source_file="res://assets/sprites/enemies/scout/destruction/des6.png"
+dest_files=["res://.godot/imported/des6.png-e99a53c258bd13fa31027a217352a3f4.ctex"]
 
 [params]
 

@@ -14,7 +14,6 @@ var _frames_since_last_increment = 0
 @onready var leftGunMarker = $LeftGunMarker
 
 func _ready():
-	print("ready called")
 	contact_monitor = true
 	max_contacts_reported = 10000
 	connect("body_entered", _on_body_entered)
@@ -57,6 +56,7 @@ func _integrate_forces(state):
 		shoot()
 
 func _on_body_entered(body):
+	print("_on_body_entered called")
 	get_damage(10)
 	
 func set_health(health):
