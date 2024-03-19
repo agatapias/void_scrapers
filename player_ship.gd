@@ -2,13 +2,18 @@ extends RigidBody2D
 
 const MAX_HEALTH = 100
 const MIN_HEALTH = 0
+const MAX_SPEED = 200
 
+@export var Bullet : PackedScene
 @export var thrust = Vector2(0, -1)
 var torque = 500
 var _health
 
+var shootLeft = false
+@onready var leftGunPos: Marker2D = $LeftGunPos
+@onready var rightGunPos: Marker2D = $RightGunPos
+
 func _ready():
-	print("ready called")
 	contact_monitor = true
 	max_contacts_reported = 10000
 	connect("body_entered", _on_body_entered)
@@ -31,8 +36,17 @@ func _integrate_forces(state):
 		rotation_direction -= 1
 	state.apply_torque(rotation_direction * torque)
 	
-	if linear_velocity.length() > 50:
-		state.linear_velocity = state.linear_velocity.limit_length(200)
+	state.linear_velocity = state.linear_velocity.limit_length(MAX_SPEED)
+	
+	if Input.is_action_just_pressed("shoot"):
+		print("shooting")
+		shoot()
+		$WeaponAnimatedSprite2D.play()
+		$WeaponAnimatedSprite2D.animation = "shooting"
+	else:
+		$WeaponAnimatedSprite2D.stop()
+		$WeaponAnimatedSprite2D.animation = "default"
+		
 
 func _on_body_entered(body):
 	print(body)
@@ -49,3 +63,10 @@ func get_damage(damage):
 	
 func restore_health(health_points):
 	set_health(_health + health_points)
+
+func shoot():
+	print("shoot!")
+	var bullet = Bullet.instantiate()
+	owner.add_child(bullet)
+	bullet.transform = leftGunPos.global_transform
+	#b.transform = $Muzzle.global_transform

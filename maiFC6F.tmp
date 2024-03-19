@@ -1,22 +1,81 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxbb1xjpse0p7"]
+[gd_scene load_steps=15 format=3 uid="uid://dxbb1xjpse0p7"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://player_ship.tscn" id="1_s1wep"]
+[ext_resource type="Script" path="res://Bullet.gd" id="1_wvp5p"]
 [ext_resource type="Texture2D" uid="uid://ch2aelaesyulb" path="res://assets/sprites/Asteroida.png" id="2_2ifds"]
-[ext_resource type="PackedScene" uid="uid://bxq631gatwrdl" path="res://bullet.tscn" id="2_6pxxv"]
+[ext_resource type="Texture2D" uid="uid://1def2vij1y1b" path="res://assets/sprites/weapon/gun1.png" id="2_dcp5e"]
+[ext_resource type="Texture2D" uid="uid://0wlqvwgwfwxf" path="res://assets/sprites/bullet/bullet1.png" id="2_q8qwk"]
+[ext_resource type="Texture2D" uid="uid://usc4sbqtym10" path="res://assets/sprites/weapon/gun2.png" id="3_1w0ri"]
 [ext_resource type="Texture2D" uid="uid://fp8b086rkxd8" path="res://assets/background/Space Background.png" id="3_86apd"]
+[ext_resource type="Texture2D" uid="uid://bveu7auh6i2yj" path="res://assets/sprites/weapon/gun3.png" id="4_erwan"]
+[ext_resource type="Texture2D" uid="uid://rlnenhm5hmkm" path="res://assets/sprites/weapon/gun4.png" id="5_y7kus"]
+[ext_resource type="Texture2D" uid="uid://bqk7ss3y87oga" path="res://assets/sprites/weapon/gun5.png" id="6_v6rag"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xsvpb"]
+size = Vector2(2, 11)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uyaiw"]
 bounce = 0.5
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_blp61"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dcp5e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dcp5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1w0ri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_erwan")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_y7kus")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_v6rag")
+}],
+"loop": true,
+"name": &"shooting",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8wet4"]
 radius = 16.0312
 
 [node name="Main" type="Node"]
 
-[node name="Spaceship" parent="." instance=ExtResource("1_s1wep")]
-physics_material_override = SubResource("PhysicsMaterial_uyaiw")
-Bullet = ExtResource("2_6pxxv")
+[node name="Bullet" type="Area2D" parent="."]
+script = ExtResource("1_wvp5p")
 metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Bullet"]
+texture = ExtResource("2_q8qwk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_xsvpb")
+
+[node name="Spaceship" parent="." instance=ExtResource("1_s1wep")]
+visible = false
+physics_material_override = SubResource("PhysicsMaterial_uyaiw")
+metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="Spaceship"]
+
+[node name="WeaponAnimatedSprite2D" type="AnimatedSprite2D" parent="Spaceship"]
+position = Vector2(0, -4)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_blp61")
+animation = &"shooting"
 
 [node name="Asteroid" type="RigidBody2D" parent="."]
 position = Vector2(253, -194)
@@ -64,4 +123,3 @@ metadata/_edit_lock_ = true
 offset_right = 63.0
 offset_bottom = 27.0
 step = 1.0
-metadata/_edit_use_anchors_ = true
