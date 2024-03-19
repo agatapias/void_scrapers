@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmegfpt41jy06"
-path="res://.godot/imported/ship.png-232cf3806b465084ad9b06c70afe8991.ctex"
+uid="uid://dsmqc5wwt6l5o"
+path="res://.godot/imported/des7.png-5867bba78288bb57d3dfcdc3bb726a85.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ship.png"
-dest_files=["res://.godot/imported/ship.png-232cf3806b465084ad9b06c70afe8991.ctex"]
+source_file="res://assets/sprites/enemies/scout/destruction/des7.png"
+dest_files=["res://.godot/imported/des7.png-5867bba78288bb57d3dfcdc3bb726a85.ctex"]
 
 [params]
 

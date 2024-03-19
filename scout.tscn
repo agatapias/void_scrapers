@@ -1,10 +1,105 @@
-[gd_scene load_steps=4 format=3 uid="uid://ditewrvguru42"]
+[gd_scene load_steps=21 format=3 uid="uid://c5sx8syk8thbt"]
 
 [ext_resource type="Script" path="res://Scout.gd" id="1_w0lks"]
 [ext_resource type="Texture2D" uid="uid://cdr163wh6effn" path="res://assets/sprites/enemies/scout/Nautolan Ship - Scout - Base.png" id="2_anj6m"]
+[ext_resource type="Texture2D" uid="uid://cqtff2e0lgvpy" path="res://assets/sprites/enemies/scout/destruction/des1.png" id="3_u62hu"]
+[ext_resource type="Texture2D" uid="uid://davvjrf6flrwi" path="res://assets/sprites/enemies/scout/destruction/des2.png" id="4_dxk40"]
+[ext_resource type="Texture2D" uid="uid://u53jp54gn6jq" path="res://assets/sprites/enemies/scout/destruction/des3.png" id="5_o4kr7"]
+[ext_resource type="Texture2D" uid="uid://cul7wbs08cmmc" path="res://assets/sprites/enemies/scout/destruction/des4.png" id="6_q5l7f"]
+[ext_resource type="Texture2D" uid="uid://g4idy1s3ytba" path="res://assets/sprites/enemies/scout/destruction/des5.png" id="7_trbya"]
+[ext_resource type="Texture2D" uid="uid://d0skjxrr0idxv" path="res://assets/sprites/enemies/scout/destruction/des6.png" id="8_ellb5"]
+[ext_resource type="Texture2D" uid="uid://dsmqc5wwt6l5o" path="res://assets/sprites/enemies/scout/destruction/des7.png" id="9_cpxys"]
+[ext_resource type="Texture2D" uid="uid://ccrgt6csj62q6" path="res://assets/sprites/enemies/scout/destruction/des8.png" id="10_wkne2"]
+[ext_resource type="Texture2D" uid="uid://erna66k366ta" path="res://assets/sprites/enemies/scout/1.png" id="11_t0kyt"]
+[ext_resource type="Texture2D" uid="uid://dav4hlo5k8t2a" path="res://assets/sprites/enemies/scout/2.png" id="12_e8go2"]
+[ext_resource type="Texture2D" uid="uid://rbdqvinjcrte" path="res://assets/sprites/enemies/scout/3.png" id="13_dsj2i"]
+[ext_resource type="Texture2D" uid="uid://bi6831dh4q4iu" path="res://assets/sprites/enemies/scout/4.png" id="14_rh8mh"]
+[ext_resource type="Texture2D" uid="uid://cjlt6faaithtu" path="res://assets/sprites/enemies/scout/5.png" id="15_8v2su"]
+[ext_resource type="Texture2D" uid="uid://b11mbojvlrtkr" path="res://assets/sprites/enemies/scout/6.png" id="16_giwhi"]
+[ext_resource type="Texture2D" uid="uid://co2vdqbifj6hc" path="res://assets/sprites/enemies/scout/7.png" id="17_ui0hl"]
+[ext_resource type="Texture2D" uid="uid://dge0ebu0wf0n5" path="res://assets/sprites/enemies/scout/8.png" id="18_u7epi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ypial"]
 radius = 13.0384
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_afg4u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_u62hu")
+}],
+"loop": true,
+"name": &"damaged1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dxk40")
+}],
+"loop": true,
+"name": &"damaged2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_anj6m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_o4kr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_q5l7f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_trbya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ellb5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_cpxys")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_wkne2")
+}],
+"loop": true,
+"name": &"destruction",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_t0kyt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_e8go2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_dsj2i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_rh8mh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_8v2su")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_giwhi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ui0hl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_u7epi")
+}],
+"loop": true,
+"name": &"go",
+"speed": 5.0
+}]
 
 [node name="Scout" type="RigidBody2D" groups=["Scout"]]
 position = Vector2(-89, -25)
@@ -18,3 +113,9 @@ texture = ExtResource("2_anj6m")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_ypial")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_afg4u")
+animation = &"go"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

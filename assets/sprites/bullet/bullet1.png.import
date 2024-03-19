@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s4nd8ma6uhla"
-path="res://.godot/imported/ship-idle.png-7389f26b9f7acf04e741f8b2538c02f8.ctex"
+uid="uid://0wlqvwgwfwxf"
+path="res://.godot/imported/bullet1.png-e7678ae5a7cae1aaff3ce269f255f73a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ship-idle.png"
-dest_files=["res://.godot/imported/ship-idle.png-7389f26b9f7acf04e741f8b2538c02f8.ctex"]
+source_file="res://assets/sprites/bullet/bullet1.png"
+dest_files=["res://.godot/imported/bullet1.png-e7678ae5a7cae1aaff3ce269f255f73a.ctex"]
 
 [params]
 

@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1fi0qspec801"]
+[gd_scene load_steps=9 format=3 uid="uid://c1fi0qspec801"]
 
 [ext_resource type="Script" path="res://player_ship.gd" id="1_co6cj"]
-[ext_resource type="PackedScene" uid="uid://v8rkx8a4n5et" path="res://bullet.tscn" id="2_0llbk"]
-[ext_resource type="Texture2D" uid="uid://s4nd8ma6uhla" path="res://assets/sprites/ship/ship-idle.png" id="3_uyw8m"]
-[ext_resource type="Texture2D" uid="uid://diq3tsk7cf5jj" path="res://assets/sprites/ship/ship-small-fire.png" id="4_fwwna"]
-[ext_resource type="Texture2D" uid="uid://vbprl7sodqjh" path="res://assets/sprites/ship/ship-medium-fire.png" id="5_3e1ye"]
+[ext_resource type="Texture2D" uid="uid://s4nd8ma6uhla" path="res://ship-idle.png" id="2_irb5b"]
+[ext_resource type="Texture2D" uid="uid://diq3tsk7cf5jj" path="res://ship-small-fire.png" id="3_4ixnh"]
+[ext_resource type="Texture2D" uid="uid://vbprl7sodqjh" path="res://ship-medium-fire.png" id="4_i1kvx"]
 [ext_resource type="AudioStream" uid="uid://bi0oyq0et1bxc" path="res://assets/sound_effects/thrusters_loopwav-14699.mp3" id="5_7lotv"]
 [ext_resource type="Script" path="res://EngineSoundEffect.gd" id="6_pkvdw"]
 
@@ -12,7 +11,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_uyw8m")
+"texture": ExtResource("2_irb5b")
 }],
 "loop": true,
 "name": &"default",
@@ -20,10 +19,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_fwwna")
+"texture": ExtResource("3_4ixnh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_3e1ye")
+"texture": ExtResource("4_i1kvx")
 }],
 "loop": true,
 "name": &"go",
@@ -38,7 +37,6 @@ mass = 0.5
 gravity_scale = 0.0
 can_sleep = false
 script = ExtResource("1_co6cj")
-projectile = ExtResource("2_0llbk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
@@ -54,5 +52,3 @@ zoom = Vector2(2, 2)
 [node name="EngineSoundEffect" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_7lotv")
 script = ExtResource("6_pkvdw")
-
-[node name="LeftGunMarker" type="Marker2D" parent="."]

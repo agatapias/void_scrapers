@@ -6,11 +6,14 @@ const INCREMENT_INTERVAL = 10
 
 var thrust_vector = Vector2(0, -200)
 var torque = 200
-var _health
+var _health = 0
 var _frames_since_last_increment = 0
 
+@export var projectile: PackedScene
+
+@onready var leftGunMarker = $LeftGunMarker
+
 func _ready():
-	print("ready called")
 	contact_monitor = true
 	max_contacts_reported = 10000
 	connect("body_entered", _on_body_entered)
@@ -48,8 +51,12 @@ func _integrate_forces(state):
 	
 	if linear_velocity.length() > 50:
 		state.linear_velocity = state.linear_velocity.limit_length(200)
+		
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
 
 func _on_body_entered(body):
+	print("_on_body_entered called")
 	get_damage(10)
 	
 func set_health(health):
@@ -62,3 +69,8 @@ func get_damage(damage):
 	
 func restore_health(health_points):
 	set_health(_health + health_points)
+	
+func shoot():
+	var bullet = projectile.instantiate()
+	owner.add_child(bullet)
+	bullet.transform = leftGunMarker.global_transform
