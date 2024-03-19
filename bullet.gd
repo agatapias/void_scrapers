@@ -1,11 +1,10 @@
-extends Area2D
+extends RigidBody2D
 
 var speed = 750
+@onready var spaceship: RigidBody2D = get_node("../Spaceship")
 
-func _physics_process(delta):
-	position += transform.x * speed * delta
-
-func _on_Bullet_body_entered(body):
-	if body.is_in_group("mobs"):
-		body.queue_free()
-	queue_free()
+func _ready():
+	var vector = spaceship.global_transform.origin
+	var rotation = spaceship.global_transform.get_rotation()
+	print(vector)
+	apply_impulse(vector.rotated(rotation))
