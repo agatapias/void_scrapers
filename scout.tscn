@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ditewrvguru42"]
+
+[ext_resource type="Script" path="res://Scout.gd" id="1_w0lks"]
+[ext_resource type="Texture2D" uid="uid://cdr163wh6effn" path="res://assets/sprites/enemies/scout/Nautolan Ship - Scout - Base.png" id="2_anj6m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ypial"]
+radius = 13.0384
+
+[node name="Scout" type="RigidBody2D" groups=["Scout"]]
+position = Vector2(-89, -25)
+gravity_scale = 0.0
+script = ExtResource("1_w0lks")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_anj6m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_ypial")

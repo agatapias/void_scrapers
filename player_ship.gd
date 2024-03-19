@@ -4,11 +4,10 @@ const MAX_HEALTH = 100
 const MIN_HEALTH = 0
 const INCREMENT_INTERVAL = 10
 
-var thrust_vector = Vector2(0, -100)
+var thrust_vector = Vector2(0, -200)
 var torque = 200
 var _health
 var _frames_since_last_increment = 0
-
 
 func _ready():
 	print("ready called")
