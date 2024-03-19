@@ -8,3 +8,9 @@ func _ready():
 	var vector = spaceship.global_transform.origin
 	var rotation = spaceship.global_transform.get_rotation()
 	apply_impulse(thrust_vector.rotated(rotation))
+	
+	var timer = Timer.new()
+	self.add_child(timer)
+	timer.connect("timeout", queue_free)
+	timer.set_wait_time(5)
+	timer.start()
