@@ -1,0 +1,97 @@
+[gd_scene load_steps=13 format=3 uid="uid://dxbb1xjpse0p7"]
+
+[ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://player_ship.tscn" id="1_s1wep"]
+[ext_resource type="Texture2D" uid="uid://ch2aelaesyulb" path="res://assets/sprites/Asteroida.png" id="2_2ifds"]
+[ext_resource type="AudioStream" uid="uid://bi0oyq0et1bxc" path="res://assets/sound_effects/thrusters_loopwav-14699.mp3" id="2_pcxrh"]
+[ext_resource type="Texture2D" uid="uid://fp8b086rkxd8" path="res://assets/background/Space Background.png" id="3_86apd"]
+[ext_resource type="Script" path="res://EngineSoundEffect.gd" id="3_soti1"]
+[ext_resource type="AudioStream" uid="uid://byfei1v2i88op" path="res://assets/music/slow-travel.wav" id="6_4v4ul"]
+[ext_resource type="Script" path="res://AudioStreamPlayer.gd" id="7_2py8p"]
+[ext_resource type="Texture2D" uid="uid://cdr163wh6effn" path="res://assets/sprites/enemies/scout/Nautolan Ship - Scout - Base.png" id="8_osdyt"]
+[ext_resource type="Script" path="res://Scout.gd" id="8_t3roh"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uyaiw"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8wet4"]
+radius = 16.0312
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ypial"]
+radius = 13.0384
+
+[node name="Main" type="Node"]
+
+[node name="Spaceship" parent="." instance=ExtResource("1_s1wep")]
+physics_material_override = SubResource("PhysicsMaterial_uyaiw")
+metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="Spaceship"]
+zoom = Vector2(2, 2)
+
+[node name="EngineSoundEffect" type="AudioStreamPlayer2D" parent="Spaceship"]
+stream = ExtResource("2_pcxrh")
+script = ExtResource("3_soti1")
+
+[node name="Asteroid" type="RigidBody2D" parent="."]
+position = Vector2(253, -194)
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid"]
+position = Vector2(0.5, -0.5)
+texture = ExtResource("2_2ifds")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_8wet4")
+
+[node name="Asteroid2" type="RigidBody2D" parent="."]
+position = Vector2(108, -251)
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2"]
+position = Vector2(0.5, -0.5)
+texture = ExtResource("2_2ifds")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_8wet4")
+
+[node name="SpaceBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="SpaceBackground"]
+motion_scale = Vector2(0.05, 0.05)
+motion_offset = Vector2(500, 500)
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/ParallaxLayer"]
+scale = Vector2(2, 2)
+texture = ExtResource("3_86apd")
+metadata/_edit_lock_ = true
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="UILayer"]
+offset_right = 63.0
+offset_bottom = 27.0
+step = 1.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_4v4ul")
+volume_db = -15.0
+script = ExtResource("7_2py8p")
+
+[node name="Scout" type="RigidBody2D" parent="."]
+position = Vector2(-89, -25)
+gravity_scale = 0.0
+script = ExtResource("8_t3roh")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Scout"]
+texture = ExtResource("8_osdyt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scout"]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_ypial")

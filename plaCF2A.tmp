@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://c1fi0qspec801"]
+
+[ext_resource type="Script" path="res://player_ship.gd" id="1_co6cj"]
+[ext_resource type="PackedScene" uid="uid://v8rkx8a4n5et" path="res://bullet.tscn" id="2_0llbk"]
+[ext_resource type="Texture2D" uid="uid://s4nd8ma6uhla" path="res://ship-idle.png" id="2_irb5b"]
+[ext_resource type="Texture2D" uid="uid://diq3tsk7cf5jj" path="res://ship-small-fire.png" id="3_4ixnh"]
+[ext_resource type="Texture2D" uid="uid://vbprl7sodqjh" path="res://ship-medium-fire.png" id="4_i1kvx"]
+[ext_resource type="AudioStream" uid="uid://bi0oyq0et1bxc" path="res://assets/sound_effects/thrusters_loopwav-14699.mp3" id="5_7lotv"]
+[ext_resource type="Script" path="res://EngineSoundEffect.gd" id="6_pkvdw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d12l0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_irb5b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4ixnh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i1kvx")
+}],
+"loop": true,
+"name": &"go",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eyolg"]
+radius = 15.0
+
+[node name="Spaceship" type="RigidBody2D" groups=["Spaceship"]]
+mass = 0.5
+gravity_scale = 0.0
+can_sleep = false
+script = ExtResource("1_co6cj")
+projectile = ExtResource("2_0llbk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_d12l0")
+animation = &"go"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_eyolg")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="EngineSoundEffect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7lotv")
+script = ExtResource("6_pkvdw")
+
+[node name="LeftGunMarker" type="Marker2D" parent="."]

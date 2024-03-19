@@ -2,32 +2,46 @@ extends RigidBody2D
 
 const MAX_HEALTH = 100
 const MIN_HEALTH = 0
-const MAX_SPEED = 200
+const INCREMENT_INTERVAL = 10
 
-@export var Bullet : PackedScene
-@export var thrust = Vector2(0, -1)
-var torque = 500
-var _health
+var thrust_vector = Vector2(0, -200)
+var torque = 200
+var _health = 0
+var _frames_since_last_increment = 0
 
-var shootLeft = false
-@onready var leftGunPos: Marker2D = $LeftGunPos
-@onready var rightGunPos: Marker2D = $RightGunPos
+@export var projectile: PackedScene
+
+@onready var leftGunMarker = $LeftGunMarker
 
 func _ready():
+	print("ready called")
 	contact_monitor = true
 	max_contacts_reported = 10000
 	connect("body_entered", _on_body_entered)
 	set_health(MAX_HEALTH)
 
+func _input(event):
+	if event is InputEventKey:
+		if event.keycode == KEY_UP:
+			if event.pressed and not event.is_echo():
+				$EngineSoundEffect.playing = true
+			elif not event.pressed:
+				$EngineSoundEffect.playing = false
+
+func _physics_process(delta):
+	_frames_since_last_increment += 1
+
 func _integrate_forces(state):
+	if Input.is_action_pressed("ui_up") and _frames_since_last_increment >= INCREMENT_INTERVAL:
+		state.apply_force(thrust_vector.rotated(rotation))
+		_frames_since_last_increment = 0
 	if Input.is_action_pressed("ui_up"):
-		state.apply_force(thrust.rotated(rotation))
 		$AnimatedSprite2D.play()
 		$AnimatedSprite2D.animation = "go"
 	else:
 		$AnimatedSprite2D.stop()
 		$AnimatedSprite2D.animation = "default"
-		#state.apply_force(Vector2())
+
 		
 	var rotation_direction = 0
 	if Input.is_action_pressed("ui_right"):
@@ -36,21 +50,13 @@ func _integrate_forces(state):
 		rotation_direction -= 1
 	state.apply_torque(rotation_direction * torque)
 	
-	state.linear_velocity = state.linear_velocity.limit_length(MAX_SPEED)
-	
-	if Input.is_action_just_pressed("shoot"):
-		print("shooting")
-		shoot()
-		$WeaponAnimatedSprite2D.play()
-		$WeaponAnimatedSprite2D.animation = "shooting"
-	else:
-		$WeaponAnimatedSprite2D.stop()
-		$WeaponAnimatedSprite2D.animation = "default"
+	if linear_velocity.length() > 50:
+		state.linear_velocity = state.linear_velocity.limit_length(200)
 		
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
 
 func _on_body_entered(body):
-	print(body)
-	print("a")
 	get_damage(10)
 	
 func set_health(health):
@@ -63,10 +69,8 @@ func get_damage(damage):
 	
 func restore_health(health_points):
 	set_health(_health + health_points)
-
+	
 func shoot():
-	print("shoot!")
-	var bullet = Bullet.instantiate()
+	var bullet = projectile.instantiate()
 	owner.add_child(bullet)
-	bullet.transform = leftGunPos.global_transform
-	#b.transform = $Muzzle.global_transform
+	bullet.transform = leftGunMarker.global_transform

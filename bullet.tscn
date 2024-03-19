@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxq631gatwrdl"]
+[gd_scene load_steps=4 format=3 uid="uid://v8rkx8a4n5et"]
 
 [ext_resource type="Script" path="res://bullet.gd" id="1_3alp2"]
 [ext_resource type="Texture2D" uid="uid://0wlqvwgwfwxf" path="res://assets/sprites/bullet/bullet1.png" id="1_bjr2c"]
@@ -7,7 +7,7 @@
 size = Vector2(2, 11)
 
 [node name="Bullet" type="RigidBody2D"]
-mass = 0.1
+mass = 0.03
 gravity_scale = 0.0
 script = ExtResource("1_3alp2")
 
