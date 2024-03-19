@@ -2,10 +2,13 @@ extends RigidBody2D
 
 const MAX_HEALTH = 100
 const MIN_HEALTH = 0
+const INCREMENT_INTERVAL = 10
 
-@export var thrust = Vector2(0, -1)
-var torque = 500
+var thrust_vector = Vector2(0, -100)
+var torque = 200
 var _health
+var _frames_since_last_increment = 0
+
 
 func _ready():
 	print("ready called")
@@ -22,15 +25,20 @@ func _input(event):
 			elif not event.pressed:
 				$EngineSoundEffect.playing = false
 
+func _physics_process(delta):
+	_frames_since_last_increment += 1
+
 func _integrate_forces(state):
+	if Input.is_action_pressed("ui_up") and _frames_since_last_increment >= INCREMENT_INTERVAL:
+		state.apply_force(thrust_vector.rotated(rotation))
+		_frames_since_last_increment = 0
 	if Input.is_action_pressed("ui_up"):
-		state.apply_force(thrust.rotated(rotation))
 		$AnimatedSprite2D.play()
 		$AnimatedSprite2D.animation = "go"
 	else:
 		$AnimatedSprite2D.stop()
 		$AnimatedSprite2D.animation = "default"
-		#state.apply_force(Vector2())
+
 		
 	var rotation_direction = 0
 	if Input.is_action_pressed("ui_right"):
