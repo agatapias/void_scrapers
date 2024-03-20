@@ -5,6 +5,7 @@ const MIN_HEALTH = 0
 
 var target_speed = 50.0 # Desired speed in the direction of the target vector
 var acceleration_time = 1.0 # Time to reach the target speed
+var v0
 
 var target: RigidBody2D
 
@@ -30,7 +31,13 @@ func _physics_process(delta):
 		$AnimatedSprite2D.play()
 		$AnimatedSprite2D.animation = "destruction"
 	else:
-		if linear_velocity > Vector2.ZERO:
+		var acc
+		if v0:
+			acc  = (linear_velocity  - v0) / delta
+			print("acc: ", acc)
+		v0 = linear_velocity
+		
+		if acc and acc > Vector2.ZERO:
 			if _health < 70:
 				$AnimatedSprite2D.animation = "damaged1"
 			elif _health < 50:
