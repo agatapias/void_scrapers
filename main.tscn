@@ -54,3 +54,7 @@ position = Vector2(506, -388)
 
 [node name="Asteroid2" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
 position = Vector2(209, -226)
+
+[editable path="Spaceship"]
+[editable path="Scout"]
+[editable path="Asteroid3"]
