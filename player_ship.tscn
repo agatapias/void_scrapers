@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1fi0qspec801"]
+[gd_scene load_steps=16 format=3 uid="uid://c1fi0qspec801"]
 
 [ext_resource type="Script" path="res://player_ship.gd" id="1_co6cj"]
 [ext_resource type="PackedScene" uid="uid://v8rkx8a4n5et" path="res://bullet.tscn" id="2_0llbk"]
@@ -6,7 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://diq3tsk7cf5jj" path="res://assets/sprites/ship/ship-small-fire.png" id="4_fwwna"]
 [ext_resource type="Texture2D" uid="uid://vbprl7sodqjh" path="res://assets/sprites/ship/ship-medium-fire.png" id="5_3e1ye"]
 [ext_resource type="AudioStream" uid="uid://bi0oyq0et1bxc" path="res://assets/sound_effects/thrusters_loopwav-14699.mp3" id="5_7lotv"]
+[ext_resource type="Texture2D" uid="uid://1def2vij1y1b" path="res://assets/sprites/weapon/gun1.png" id="5_mwueh"]
+[ext_resource type="Texture2D" uid="uid://usc4sbqtym10" path="res://assets/sprites/weapon/gun2.png" id="6_ls1yq"]
 [ext_resource type="Script" path="res://EngineSoundEffect.gd" id="6_pkvdw"]
+[ext_resource type="Texture2D" uid="uid://bveu7auh6i2yj" path="res://assets/sprites/weapon/gun3.png" id="7_ec1w8"]
+[ext_resource type="Texture2D" uid="uid://rlnenhm5hmkm" path="res://assets/sprites/weapon/gun4.png" id="8_r7c1p"]
+[ext_resource type="Texture2D" uid="uid://bqk7ss3y87oga" path="res://assets/sprites/weapon/gun5.png" id="9_flvck"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d12l0"]
 animations = [{
@@ -33,6 +38,34 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eyolg"]
 radius = 15.0
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_gdkjk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_mwueh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ls1yq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ec1w8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_r7c1p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_flvck")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 5.0
+}]
+
 [node name="Spaceship" type="RigidBody2D" groups=["Spaceship"]]
 mass = 0.5
 gravity_scale = 0.0
@@ -56,3 +89,9 @@ stream = ExtResource("5_7lotv")
 script = ExtResource("6_pkvdw")
 
 [node name="LeftGunMarker" type="Marker2D" parent="."]
+
+[node name="WeaponSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -4)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_gdkjk")
+animation = &"shoot"

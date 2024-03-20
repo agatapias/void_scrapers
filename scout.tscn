@@ -116,6 +116,6 @@ shape = SubResource("CircleShape2D_ypial")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_afg4u")
-animation = &"go"
+animation = &"destruction"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

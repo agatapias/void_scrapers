@@ -11,6 +11,8 @@ var target: RigidBody2D
 var _health: float = MAX_HEALTH
 
 func _ready():
+	contact_monitor = true
+	max_contacts_reported = 10000
 	connect("body_entered", _on_body_entered)
 	#body_entered.connect(_on_body_entered)
 
@@ -23,18 +25,27 @@ func _physics_process(delta):
 	else:
 		var targetVector = _target_vector()
 		apply_impulse(targetVector)
-		
-	if linear_velocity > Vector2.ZERO:
+	
+	if _health <= 0:
 		$AnimatedSprite2D.play()
-		$AnimatedSprite2D.animation = "go"
+		$AnimatedSprite2D.animation = "destruction"
 	else:
-		$AnimatedSprite2D.stop()
-		if _health < 70:
-			$AnimatedSprite2D.animation = "damaged1"
-		elif _health < 50:
-			$AnimatedSprite2D.animation = "damaged2"
+		if linear_velocity > Vector2.ZERO:
+			if _health < 70:
+				$AnimatedSprite2D.animation = "damaged1"
+			elif _health < 50:
+				$AnimatedSprite2D.animation = "damaged2"
+			else: 
+				$AnimatedSprite2D.play()
+				$AnimatedSprite2D.animation = "go"
 		else:
-			$AnimatedSprite2D.animation = "default"
+			$AnimatedSprite2D.stop()
+			if _health < 70:
+				$AnimatedSprite2D.animation = "damaged1"
+			elif _health < 50:
+				$AnimatedSprite2D.animation = "damaged2"
+			else:
+				$AnimatedSprite2D.animation = "default"
 
 func _on_body_entered(body: Node):
 	print("enemy _on_body_entered called")
@@ -42,13 +53,11 @@ func _on_body_entered(body: Node):
 	get_damage(10)
 	
 	if _health <= 0:
-		$AnimatedSprite2D.play()
-		$AnimatedSprite2D.animation = "destruction"
 		var timer = Timer.new()
 		self.add_child(timer)
 			
 		timer.connect("timeout", queue_free)
-		timer.set_wait_time(2)
+		timer.set_wait_time(0.6)
 		timer.start()
 		
 		
