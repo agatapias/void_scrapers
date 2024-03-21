@@ -24,6 +24,9 @@ func _physics_process(delta):
 	if target == null:
 		target = get_tree().get_nodes_in_group("Spaceship")[0]
 	else:
+		if position.distance_to(target.position) > 400:
+			return
+		
 		var targetVector = _target_vector()
 		apply_impulse(targetVector)
 	
@@ -34,7 +37,6 @@ func _physics_process(delta):
 		var acc
 		if v0:
 			acc  = (linear_velocity  - v0) / delta
-			print("acc: ", acc)
 		v0 = linear_velocity
 		
 		if acc and acc > Vector2.ZERO:
@@ -54,9 +56,8 @@ func _physics_process(delta):
 			else:
 				$AnimatedSprite2D.animation = "default"
 
+
 func _on_body_entered(body: Node):
-	print("enemy _on_body_entered called")
-	print(body.name)
 	get_damage(10)
 	
 	if _health <= 0:
@@ -64,7 +65,7 @@ func _on_body_entered(body: Node):
 		self.add_child(timer)
 			
 		timer.connect("timeout", queue_free)
-		timer.set_wait_time(0.6)
+		timer.set_wait_time(0.5)
 		timer.start()
 		
 		

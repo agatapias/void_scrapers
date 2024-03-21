@@ -19,7 +19,7 @@ physics_material_override = SubResource("PhysicsMaterial_uyaiw")
 metadata/_edit_group_ = true
 
 [node name="Asteroid" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
-position = Vector2(229, -159)
+position = Vector2(-290, -298)
 
 [node name="SpaceBackground" type="ParallaxBackground" parent="."]
 
@@ -51,9 +51,35 @@ script = ExtResource("7_2py8p")
 
 [node name="Asteroid3" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
 position = Vector2(506, -388)
+scale = Vector2(2, 2)
 
 [node name="Asteroid2" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
 position = Vector2(209, -226)
 
 [node name="Scout2" parent="." instance=ExtResource("8_eg7m5")]
 position = Vector2(-387, 314)
+
+[node name="Asteroid4" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(458, -318)
+
+[node name="Scout3" parent="." instance=ExtResource("8_eg7m5")]
+position = Vector2(745, -557)
+
+[node name="Asteroid5" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(-633, -376)
+scale = Vector2(2.5, 2.5)
+
+[node name="Asteroid6" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(636, 387)
+scale = Vector2(3, 3)
+
+[node name="Asteroid7" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(-290, -298)
+scale = Vector2(1.5, 1.5)
+
+[node name="Asteroid8" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(302, 115)
+scale = Vector2(1.5, 1.5)
+
+[node name="Asteroid9" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(237, 180)
