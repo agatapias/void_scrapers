@@ -54,12 +54,12 @@ position = Vector2(506, -388)
 [node name="Asteroid2" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
 position = Vector2(209, -226)
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="ScoutWrapper" type="Node2D" parent="."]
 
-[node name="Scout" parent="Node2D" instance=ExtResource("8_eg7m5")]
+[node name="Scout" parent="ScoutWrapper" instance=ExtResource("8_eg7m5")]
 position = Vector2(-99, -31)
 
-[node name="EnemyHealthBar" type="ProgressBar" parent="Node2D"]
+[node name="EnemyHealthBar" type="ProgressBar" parent="ScoutWrapper"]
 offset_left = -120.0
 offset_top = -80.0
 offset_right = -79.0
@@ -68,12 +68,12 @@ max_value = 200.0
 step = 1.0
 script = ExtResource("7_yd4hr")
 
-[node name="Node2D2" type="Node2D" parent="."]
+[node name="ScoutWrapper2" type="Node2D" parent="."]
 
-[node name="Scout" parent="Node2D2" instance=ExtResource("8_eg7m5")]
-position = Vector2(-387, 314)
+[node name="Scout" parent="ScoutWrapper2" instance=ExtResource("8_eg7m5")]
+position = Vector2(-950, 334)
 
-[node name="EnemyHealthBar" type="ProgressBar" parent="Node2D2"]
+[node name="EnemyHealthBar" type="ProgressBar" parent="ScoutWrapper2"]
 offset_left = -408.0
 offset_top = 265.0
 offset_right = -367.0
@@ -82,7 +82,34 @@ max_value = 200.0
 step = 1.0
 script = ExtResource("7_yd4hr")
 
+[node name="Asteroid4" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(229, -159)
+
+[node name="Asteroid5" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(-71, 78)
+
+[node name="Asteroid6" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(124, 87)
+
+[node name="Asteroid7" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(91, -104)
+
+[node name="Asteroid8" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(-159, -143)
+
+[node name="Asteroid9" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(-370, 1)
+
+[node name="Asteroid10" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(-182, 244)
+
+[node name="Asteroid11" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(-310, -217)
+
+[node name="Asteroid12" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(172, 211)
+
 [editable path="Spaceship"]
 [editable path="Asteroid3"]
-[editable path="Node2D/Scout"]
-[editable path="Node2D2/Scout"]
+[editable path="ScoutWrapper/Scout"]
+[editable path="ScoutWrapper2/Scout"]

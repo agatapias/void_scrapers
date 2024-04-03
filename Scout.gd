@@ -41,7 +41,7 @@ func _physics_process(delta):
 			print("acc: ", acc)
 		v0 = linear_velocity
 		
-		if acc and acc > Vector2.ZERO:
+		if acc and acc.abs() > Vector2.ZERO:
 			if _health < 70:
 				$AnimatedSprite2D.animation = "damaged1"
 			elif _health < 50:
