@@ -10,6 +10,7 @@ var _health = 0
 var _frames_since_last_increment = 0
 
 @export var projectile: PackedScene
+@export var inventory: Inventory
 
 @onready var leftGunMarker = $LeftGunMarker
 
@@ -74,3 +75,11 @@ func shoot():
 	var bullet = projectile.instantiate()
 	owner.add_child(bullet)
 	bullet.transform = leftGunMarker.global_transform
+	
+# Collects an item and adds it to inventory
+func collect(item):
+	inventory.insert(item)
+
+
+func collect_coin(item):
+	inventory.addCoins(item)
