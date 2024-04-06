@@ -9,5 +9,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if get_parent() != null and get_parent().get_node("Scout") != null:
-		position = get_parent().get_node("Scout").position + translation_vector
+	if get_parent() != null and get_parent().get_node("Enemy") != null:
+		position = get_parent().get_node("Enemy").position + translation_vector

@@ -1,0 +1,115 @@
+[gd_scene load_steps=10 format=3 uid="uid://dxbb1xjpse0p7"]
+
+[ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://player_ship.tscn" id="1_s1wep"]
+[ext_resource type="PackedScene" uid="uid://bmmhib0afegw2" path="res://asteroid.tscn" id="2_i6m1y"]
+[ext_resource type="Texture2D" uid="uid://fp8b086rkxd8" path="res://assets/background/Space Background.png" id="3_86apd"]
+[ext_resource type="AudioStream" uid="uid://byfei1v2i88op" path="res://assets/music/slow-travel.wav" id="6_4v4ul"]
+[ext_resource type="Script" path="res://AudioStreamPlayer.gd" id="7_2py8p"]
+[ext_resource type="Script" path="res://EnemyHealthBar.gd" id="7_yd4hr"]
+[ext_resource type="PackedScene" uid="uid://c5sx8syk8thbt" path="res://scout.tscn" id="8_eg7m5"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uyaiw"]
+bounce = 1.0
+
+[sub_resource type="Theme" id="Theme_mejk4"]
+
+[node name="Main" type="Node"]
+
+[node name="Spaceship" parent="." instance=ExtResource("1_s1wep")]
+physics_material_override = SubResource("PhysicsMaterial_uyaiw")
+metadata/_edit_group_ = true
+
+[node name="Asteroid" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(229, -159)
+
+[node name="SpaceBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="SpaceBackground"]
+motion_scale = Vector2(0.05, 0.05)
+motion_offset = Vector2(500, 500)
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/ParallaxLayer"]
+scale = Vector2(2, 2)
+texture = ExtResource("3_86apd")
+metadata/_edit_lock_ = true
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="UILayer"]
+offset_left = 922.0
+offset_top = 731.0
+offset_right = 1135.0
+offset_bottom = 758.0
+theme = SubResource("Theme_mejk4")
+step = 1.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_4v4ul")
+volume_db = -15.0
+script = ExtResource("7_2py8p")
+
+[node name="Asteroid3" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(506, -388)
+
+[node name="Asteroid2" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(209, -226)
+
+[node name="ScoutWrapper" type="Node2D" parent="."]
+
+[node name="Scout" parent="ScoutWrapper" instance=ExtResource("8_eg7m5")]
+position = Vector2(-99, -31)
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="ScoutWrapper"]
+offset_left = -120.0
+offset_top = -80.0
+offset_right = -79.0
+offset_bottom = -53.0
+max_value = 200.0
+step = 1.0
+script = ExtResource("7_yd4hr")
+
+[node name="ScoutWrapper2" type="Node2D" parent="."]
+
+[node name="Scout" parent="ScoutWrapper2" instance=ExtResource("8_eg7m5")]
+position = Vector2(-1664, 330)
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="ScoutWrapper2"]
+offset_left = -408.0
+offset_top = 265.0
+offset_right = -367.0
+offset_bottom = 292.0
+max_value = 200.0
+step = 1.0
+script = ExtResource("7_yd4hr")
+
+[node name="Asteroid4" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(229, -159)
+
+[node name="Asteroid5" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(-71, 78)
+
+[node name="Asteroid6" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(124, 87)
+
+[node name="Asteroid7" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(91, -104)
+
+[node name="Asteroid8" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(-159, -143)
+
+[node name="Asteroid9" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(-370, 1)
+
+[node name="Asteroid10" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(-182, 244)
+
+[node name="Asteroid11" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(-310, -217)
+
+[node name="Asteroid12" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(172, 211)
+
+[editable path="Spaceship"]
+[editable path="Asteroid3"]
+[editable path="ScoutWrapper/Scout"]
+[editable path="ScoutWrapper2/Scout"]

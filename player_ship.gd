@@ -56,7 +56,6 @@ func _integrate_forces(state):
 		shoot()
 
 func _on_body_entered(body):
-	print("_on_body_entered called")
 	get_damage(10)
 	
 func set_health(health):
