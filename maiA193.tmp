@@ -1,18 +1,24 @@
-[gd_scene load_steps=32 format=3 uid="uid://dxbb1xjpse0p7"]
+[gd_scene load_steps=28 format=3 uid="uid://dxbb1xjpse0p7"]
 
-[ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://scene/player_ship.tscn" id="1_s1wep"]
-[ext_resource type="PackedScene" uid="uid://bmmhib0afegw2" path="res://scene/asteroid.tscn" id="2_i6m1y"]
+[ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://player_ship.tscn" id="1_s1wep"]
+[ext_resource type="PackedScene" uid="uid://bmmhib0afegw2" path="res://asteroid.tscn" id="2_i6m1y"]
 [ext_resource type="Texture2D" uid="uid://fp8b086rkxd8" path="res://assets/background/Space Background.png" id="3_86apd"]
 [ext_resource type="AudioStream" uid="uid://byfei1v2i88op" path="res://assets/music/slow-travel.wav" id="6_4v4ul"]
-[ext_resource type="Script" path="res://script/AudioStreamPlayer.gd" id="7_2py8p"]
-[ext_resource type="PackedScene" uid="uid://dlalcgyycgn7f" path="res://inventory/inventory_ui.tscn" id="7_nnx5n"]
-[ext_resource type="Script" path="res://script/EnemyHealthBar.gd" id="7_yd4hr"]
-[ext_resource type="Script" path="res://script/Fighter.gd" id="8_5goye"]
-[ext_resource type="PackedScene" uid="uid://c5sx8syk8thbt" path="res://scene/scout.tscn" id="8_eg7m5"]
-[ext_resource type="PackedScene" uid="uid://d1ay3xkpqv1eg" path="res://scene/fish_item.tscn" id="8_m73i2"]
-[ext_resource type="PackedScene" uid="uid://daeriaav5p78v" path="res://scene/coin_item.tscn" id="9_4aeqo"]
+[ext_resource type="Script" path="res://AudioStreamPlayer.gd" id="7_2py8p"]
+[ext_resource type="Script" path="res://EnemyHealthBar.gd" id="7_yd4hr"]
+[ext_resource type="Script" path="res://Fighter.gd" id="8_5goye"]
+[ext_resource type="PackedScene" uid="uid://c5sx8syk8thbt" path="res://scout.tscn" id="8_eg7m5"]
 [ext_resource type="Texture2D" uid="uid://odm3s1085tpb" path="res://assets/sprites/enemies/fighter/fighter_base.png" id="9_nxyhl"]
-[ext_resource type="Texture2D" uid="uid://dqd6cik3bw6t5" path="res://assets/sprites/enemies/fighter/engines.png" id="10_uxwjc"]
+[ext_resource type="Texture2D" uid="uid://kyxg2mgeiqj" path="res://assets/sprites/enemies/fighter/fighter1.png" id="10_4agmf"]
+[ext_resource type="Texture2D" uid="uid://3obplwcyke87" path="res://assets/sprites/enemies/fighter/fighter2.png" id="11_2alfi"]
+[ext_resource type="Texture2D" uid="uid://1lwxfatoex0i" path="res://assets/sprites/enemies/fighter/fighter3.png" id="12_7f2gf"]
+[ext_resource type="Texture2D" uid="uid://bbfbun1gtfuj" path="res://assets/sprites/enemies/fighter/fighter4.png" id="13_r5ewv"]
+[ext_resource type="Texture2D" uid="uid://c3tj2b04oo74b" path="res://assets/sprites/enemies/fighter/fighter5.png" id="14_oafv0"]
+[ext_resource type="Texture2D" uid="uid://b2rxdnuswkjgx" path="res://assets/sprites/enemies/fighter/fighter6.png" id="15_xbqv6"]
+[ext_resource type="Texture2D" uid="uid://cmmw8ahtuysig" path="res://assets/sprites/enemies/fighter/fighter7.png" id="16_d4bmg"]
+[ext_resource type="Texture2D" uid="uid://bvn2fputnshj5" path="res://assets/sprites/enemies/fighter/fighter8.png" id="17_dbfex"]
+[ext_resource type="Texture2D" uid="uid://hyjoe0eki6xq" path="res://assets/sprites/enemies/fighter/fighter9.png" id="18_xq76m"]
+[ext_resource type="Texture2D" uid="uid://cl2mvoyuh4thh" path="res://assets/sprites/enemies/fighter/fighter10.png" id="19_asghx"]
 [ext_resource type="Texture2D" uid="uid://c0uje4lrjei3w" path="res://assets/sprites/planets/planet1.png" id="20_752u3"]
 [ext_resource type="Texture2D" uid="uid://bltfgoo4dk0ng" path="res://assets/sprites/asteroid2.png" id="21_eixka"]
 
@@ -21,91 +27,54 @@ bounce = 1.0
 
 [sub_resource type="Theme" id="Theme_mejk4"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rolip"]
-radius = 11.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xh80u"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hga2u"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_74gwe"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_td3ki"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e2sl8"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(256, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k0i7e"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(320, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8uv6r"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(384, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hun31"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(448, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sfotk"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(512, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tnmy6"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(576, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_o1r7x"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_7f8op"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xh80u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hga2u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_74gwe")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_td3ki")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e2sl8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k0i7e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8uv6r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hun31")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sfotk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tnmy6")
+"texture": ExtResource("9_nxyhl")
 }],
 "loop": true,
-"name": &"engines",
+"name": &"default",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_4agmf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_2alfi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7f2gf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_r5ewv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_oafv0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_xbqv6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_d4bmg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_dbfex")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_xq76m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_asghx")
+}],
 "loop": true,
-"name": &"none",
+"name": &"new_animation",
 "speed": 5.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rolip"]
+radius = 11.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1baji"]
 radius = 502.036
@@ -119,9 +88,6 @@ height = 58.0
 [node name="Spaceship" parent="." instance=ExtResource("1_s1wep")]
 physics_material_override = SubResource("PhysicsMaterial_uyaiw")
 metadata/_edit_group_ = true
-
-[node name="Camera2D" parent="Spaceship" index="2"]
-zoom = Vector2(1, 1)
 
 [node name="Asteroid" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
 position = Vector2(229, -159)
@@ -146,20 +112,6 @@ offset_right = 1135.0
 offset_bottom = 758.0
 theme = SubResource("Theme_mejk4")
 step = 1.0
-
-[node name="Inventory_UI" parent="UILayer" instance=ExtResource("7_nnx5n")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -390.0
-offset_top = -251.0
-offset_right = -231.0
-offset_bottom = -143.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(5, 5)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_4v4ul")
@@ -228,6 +180,7 @@ position = Vector2(-310, -217)
 position = Vector2(172, 211)
 
 [node name="FighterWrapper" type="Node2D" parent="."]
+position = Vector2(9, 9)
 metadata/_edit_group_ = true
 
 [node name="EnemyHealthBar" type="ProgressBar" parent="FighterWrapper"]
@@ -248,14 +201,13 @@ script = ExtResource("8_5goye")
 [node name="Sprite2D" type="Sprite2D" parent="FighterWrapper/Enemy"]
 texture = ExtResource("9_nxyhl")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FighterWrapper/Enemy"]
+sprite_frames = SubResource("SpriteFrames_7f8op")
+animation = &"new_animation"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FighterWrapper/Enemy"]
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_rolip")
-
-[node name="EngineAnimatedSprite2D" type="AnimatedSprite2D" parent="FighterWrapper/Enemy"]
-position = Vector2(0, 2)
-sprite_frames = SubResource("SpriteFrames_o1r7x")
-animation = &"none"
 
 [node name="Planet1" type="RigidBody2D" parent="."]
 position = Vector2(-1428, -1896)
@@ -336,15 +288,6 @@ texture = ExtResource("21_eixka")
 position = Vector2(0, 1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_4igrx")
-
-[node name="FishItem" parent="." instance=ExtResource("8_m73i2")]
-position = Vector2(126, -99)
-
-[node name="FishItem2" parent="." instance=ExtResource("8_m73i2")]
-position = Vector2(185, 42)
-
-[node name="CoinItem" parent="." instance=ExtResource("9_4aeqo")]
-position = Vector2(-118, 52)
 
 [editable path="Spaceship"]
 [editable path="Asteroid3"]

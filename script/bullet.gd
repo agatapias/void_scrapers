@@ -20,8 +20,7 @@ func _physics_process(delta):
 	
 
 func _on_body_entered(body):
-	if body.is_in_group("Scout"):
-		print("bullet body entered")
+	if body.name == "Enemy":
 		body.get_damage(10)
 	if !body.is_in_group("Spaceship"):
 		queue_free()
