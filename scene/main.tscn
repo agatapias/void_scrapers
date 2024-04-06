@@ -64,17 +64,12 @@ stream = ExtResource("4_scwt6")
 volume_db = -15.0
 script = ExtResource("5_70uol")
 
-[node name="Scout" parent="." instance=ExtResource("6_0axcn")]
-
 [node name="Asteroid3" parent="." groups=["Asteroid"] instance=ExtResource("2_vkusd")]
 position = Vector2(506, -388)
 scale = Vector2(2, 2)
 
 [node name="Asteroid2" parent="." groups=["Asteroid"] instance=ExtResource("2_vkusd")]
 position = Vector2(209, -226)
-
-[node name="Scout2" parent="." instance=ExtResource("6_0axcn")]
-position = Vector2(-387, 314)
 
 [node name="Asteroid4" parent="." groups=["Asteroid"] instance=ExtResource("2_vkusd")]
 position = Vector2(458, -318)

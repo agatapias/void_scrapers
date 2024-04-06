@@ -5,3 +5,4 @@
 [resource]
 script = ExtResource("2_equ6m")
 items = Array[Resource("res://script/inventory_item.gd")]([null, null, null, null, null, null, null, null, null, null, null, null])
+money = 0
