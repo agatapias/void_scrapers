@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://c5sx8syk8thbt"]
 
-[ext_resource type="Script" path="res://Scout.gd" id="1_w0lks"]
+[ext_resource type="Script" path="res://script/Scout.gd" id="1_w0lks"]
 [ext_resource type="Texture2D" uid="uid://cdr163wh6effn" path="res://assets/sprites/enemies/scout/Nautolan Ship - Scout - Base.png" id="2_anj6m"]
 [ext_resource type="Texture2D" uid="uid://cqtff2e0lgvpy" path="res://assets/sprites/enemies/scout/destruction/des1.png" id="3_u62hu"]
 [ext_resource type="Texture2D" uid="uid://davvjrf6flrwi" path="res://assets/sprites/enemies/scout/destruction/des2.png" id="4_dxk40"]

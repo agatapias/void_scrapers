@@ -1,14 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://c1fi0qspec801"]
+[gd_scene load_steps=17 format=3 uid="uid://c1fi0qspec801"]
 
-[ext_resource type="Script" path="res://player_ship.gd" id="1_co6cj"]
-[ext_resource type="PackedScene" uid="uid://v8rkx8a4n5et" path="res://bullet.tscn" id="2_0llbk"]
+[ext_resource type="Script" path="res://script/player_ship.gd" id="1_co6cj"]
+[ext_resource type="PackedScene" uid="uid://v8rkx8a4n5et" path="res://scene/bullet.tscn" id="2_0llbk"]
+[ext_resource type="Resource" uid="uid://18wgg4ivdufu" path="res://inventory/player_inventory.tres" id="3_rdp3g"]
 [ext_resource type="Texture2D" uid="uid://s4nd8ma6uhla" path="res://assets/sprites/ship/ship-idle.png" id="3_uyw8m"]
 [ext_resource type="Texture2D" uid="uid://diq3tsk7cf5jj" path="res://assets/sprites/ship/ship-small-fire.png" id="4_fwwna"]
 [ext_resource type="Texture2D" uid="uid://vbprl7sodqjh" path="res://assets/sprites/ship/ship-medium-fire.png" id="5_3e1ye"]
 [ext_resource type="AudioStream" uid="uid://bi0oyq0et1bxc" path="res://assets/sound_effects/thrusters_loopwav-14699.mp3" id="5_7lotv"]
 [ext_resource type="Texture2D" uid="uid://1def2vij1y1b" path="res://assets/sprites/weapon/gun1.png" id="5_mwueh"]
 [ext_resource type="Texture2D" uid="uid://usc4sbqtym10" path="res://assets/sprites/weapon/gun2.png" id="6_ls1yq"]
-[ext_resource type="Script" path="res://EngineSoundEffect.gd" id="6_pkvdw"]
+[ext_resource type="Script" path="res://script/EngineSoundEffect.gd" id="7_bbyik"]
 [ext_resource type="Texture2D" uid="uid://bveu7auh6i2yj" path="res://assets/sprites/weapon/gun3.png" id="7_ec1w8"]
 [ext_resource type="Texture2D" uid="uid://rlnenhm5hmkm" path="res://assets/sprites/weapon/gun4.png" id="8_r7c1p"]
 [ext_resource type="Texture2D" uid="uid://bqk7ss3y87oga" path="res://assets/sprites/weapon/gun5.png" id="9_flvck"]
@@ -72,6 +73,7 @@ gravity_scale = 0.0
 can_sleep = false
 script = ExtResource("1_co6cj")
 projectile = ExtResource("2_0llbk")
+inventory = ExtResource("3_rdp3g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
@@ -86,7 +88,7 @@ zoom = Vector2(2, 2)
 
 [node name="EngineSoundEffect" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_7lotv")
-script = ExtResource("6_pkvdw")
+script = ExtResource("7_bbyik")
 
 [node name="LeftGunMarker" type="Marker2D" parent="."]
 

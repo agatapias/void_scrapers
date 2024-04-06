@@ -1,4 +1,4 @@
-extends "res://Enemy.gd"
+extends "res://script/Enemy.gd"
 
 const MAX_HEALTH = 500
 

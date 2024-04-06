@@ -1,4 +1,4 @@
-extends "res://Enemy.gd"
+extends "res://script/Enemy.gd"
 
 const MAX_HEALTH = 200
 
@@ -35,12 +35,10 @@ func _process_animation(delta):
 		timer.start()
 		$AnimatedSprite2D.play()
 		$AnimatedSprite2D.animation = "destruction"
-		
 	else:
 		var acc
 		if v0:
 			acc  = (linear_velocity  - v0) / delta
-
 		v0 = linear_velocity
 		
 		if acc and acc.abs() > Vector2.ZERO:
