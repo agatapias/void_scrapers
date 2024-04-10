@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcvaxcx3ca3eq"]
+[gd_scene load_steps=6 format=3 uid="uid://bcvaxcx3ca3eq"]
 
 [ext_resource type="Texture2D" uid="uid://b1qbdf8jelji6" path="res://assets/sprites/Meow-Knight-alone.png" id="1_5pms1"]
 [ext_resource type="Script" path="res://cat_character.gd" id="1_q3a0p"]
+[ext_resource type="Resource" uid="uid://d4l2f2666rhq3" path="res://inventory/cat_merchant_inventory.tres" id="2_14a1t"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0bln5"]
 animations = [{
@@ -15,10 +16,11 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7m8mf"]
-radius = 53.1507
+radius = 129.0
 
 [node name="Cat" type="Area2D"]
 script = ExtResource("1_q3a0p")
+inventory = ExtResource("2_14a1t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0bln5")

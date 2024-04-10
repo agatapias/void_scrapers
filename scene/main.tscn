@@ -18,7 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://12t4jwgja5pq" path="res://assets/sound_effects/fighter_engine.mp3" id="14_mxkqo"]
 [ext_resource type="Script" path="res://script/EngineSoundEffect.gd" id="15_3235v"]
 [ext_resource type="AudioStream" uid="uid://btxf36tq6tkuh" path="res://assets/sound_effects/laser.mp3" id="16_fyqw7"]
-[ext_resource type="PackedScene" path="res://cat_character.tscn" id="16_nwhr7"]
+[ext_resource type="PackedScene" uid="uid://bcvaxcx3ca3eq" path="res://cat_character.tscn" id="16_nwhr7"]
 [ext_resource type="Texture2D" uid="uid://c0uje4lrjei3w" path="res://assets/sprites/planets/planet1.png" id="20_752u3"]
 [ext_resource type="Texture2D" uid="uid://bltfgoo4dk0ng" path="res://assets/sprites/asteroid2.png" id="21_eixka"]
 [ext_resource type="Script" path="res://cat_character_quest.gd" id="22_y2kxv"]
