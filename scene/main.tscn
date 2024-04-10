@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dxbb1xjpse0p7"]
+[gd_scene load_steps=33 format=3 uid="uid://dxbb1xjpse0p7"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://scene/player_ship.tscn" id="1_s1wep"]
 [ext_resource type="PackedScene" uid="uid://bmmhib0afegw2" path="res://scene/asteroid.tscn" id="2_i6m1y"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://daeriaav5p78v" path="res://scene/coin_item.tscn" id="9_4aeqo"]
 [ext_resource type="Texture2D" uid="uid://odm3s1085tpb" path="res://assets/sprites/enemies/fighter/fighter_base.png" id="9_nxyhl"]
 [ext_resource type="Texture2D" uid="uid://dqd6cik3bw6t5" path="res://assets/sprites/enemies/fighter/engines.png" id="10_uxwjc"]
+[ext_resource type="PackedScene" uid="uid://bcvaxcx3ca3eq" path="res://cat_character.tscn" id="16_nwhr7"]
 [ext_resource type="Texture2D" uid="uid://c0uje4lrjei3w" path="res://assets/sprites/planets/planet1.png" id="20_752u3"]
 [ext_resource type="Texture2D" uid="uid://bltfgoo4dk0ng" path="res://assets/sprites/asteroid2.png" id="21_eixka"]
 
@@ -345,6 +346,9 @@ position = Vector2(185, 42)
 
 [node name="CoinItem" parent="." instance=ExtResource("9_4aeqo")]
 position = Vector2(-118, 52)
+
+[node name="Cat" parent="." instance=ExtResource("16_nwhr7")]
+position = Vector2(-66, -64)
 
 [editable path="Spaceship"]
 [editable path="Asteroid3"]
