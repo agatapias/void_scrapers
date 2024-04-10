@@ -74,6 +74,7 @@ func shoot():
 	var bullet = projectile.instantiate()
 	owner.add_child(bullet)
 	bullet.transform = leftGunMarker.global_transform
+	$LaserSound.playing = true
 	
 # Collects an item and adds it to inventory
 func collect(item):
