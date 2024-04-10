@@ -80,6 +80,5 @@ func shoot():
 func collect(item):
 	inventory.insert(item)
 
-
 func collect_coin(item):
 	inventory.addCoins(item)

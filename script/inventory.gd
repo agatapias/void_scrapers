@@ -26,3 +26,13 @@ func addCoins(item: InventoryItem):
 	print(item)
 	money += item.amount
 	update.emit()
+	
+func removeItem(index):
+	print("removeItem called at index:")
+	print(index)
+	items[index] = null
+	update.emit()
+	
+func contains(name):
+	print(items)
+	return items.filter(func(item): return item != null and item.name == name).size() > 0

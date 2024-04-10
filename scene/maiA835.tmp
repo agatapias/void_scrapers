@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dxbb1xjpse0p7"]
+[gd_scene load_steps=32 format=3 uid="uid://dxbb1xjpse0p7"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://scene/player_ship.tscn" id="1_s1wep"]
 [ext_resource type="PackedScene" uid="uid://bmmhib0afegw2" path="res://scene/asteroid.tscn" id="2_i6m1y"]
@@ -12,16 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://d1ay3xkpqv1eg" path="res://scene/fish_item.tscn" id="8_m73i2"]
 [ext_resource type="PackedScene" uid="uid://daeriaav5p78v" path="res://scene/coin_item.tscn" id="9_4aeqo"]
 [ext_resource type="Texture2D" uid="uid://odm3s1085tpb" path="res://assets/sprites/enemies/fighter/fighter_base.png" id="9_nxyhl"]
-[ext_resource type="PackedScene" uid="uid://djt5ahnmfl7hm" path="res://scene/fighter_bullet.tscn" id="10_84l2h"]
 [ext_resource type="Texture2D" uid="uid://dqd6cik3bw6t5" path="res://assets/sprites/enemies/fighter/engines.png" id="10_uxwjc"]
-[ext_resource type="Texture2D" uid="uid://c74odp2op1o2c" path="res://assets/sprites/enemies/fighter/destruction.png" id="13_gi64t"]
-[ext_resource type="AudioStream" uid="uid://12t4jwgja5pq" path="res://assets/sound_effects/fighter_engine.mp3" id="14_mxkqo"]
-[ext_resource type="Script" path="res://script/EngineSoundEffect.gd" id="15_3235v"]
-[ext_resource type="AudioStream" uid="uid://btxf36tq6tkuh" path="res://assets/sound_effects/laser.mp3" id="16_fyqw7"]
-[ext_resource type="PackedScene" path="res://cat_character.tscn" id="16_nwhr7"]
 [ext_resource type="Texture2D" uid="uid://c0uje4lrjei3w" path="res://assets/sprites/planets/planet1.png" id="20_752u3"]
 [ext_resource type="Texture2D" uid="uid://bltfgoo4dk0ng" path="res://assets/sprites/asteroid2.png" id="21_eixka"]
-[ext_resource type="Script" path="res://cat_character_quest.gd" id="22_y2kxv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uyaiw"]
 bounce = 1.0
@@ -114,89 +107,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4uuvl"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5b8do"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ecgkg"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k24gp"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ijhag"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(256, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rtt5f"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(320, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mvpss"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(384, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1yqof"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(448, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8af2e"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(512, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ffb7"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(576, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ua382"]
-animations = [{
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4uuvl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5b8do")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ecgkg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k24gp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ijhag")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rtt5f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mvpss")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1yqof")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8af2e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5ffb7")
-}],
-"loop": true,
-"name": &"destruction",
-"speed": 10.0
-}]
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_1baji"]
 radius = 502.036
 
@@ -212,10 +122,6 @@ metadata/_edit_group_ = true
 
 [node name="Camera2D" parent="Spaceship" index="2"]
 zoom = Vector2(1, 1)
-
-[node name="LaserSound" type="AudioStreamPlayer2D" parent="Spaceship"]
-stream = ExtResource("16_fyqw7")
-volume_db = -10.0
 
 [node name="Asteroid" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
 position = Vector2(229, -159)
@@ -255,35 +161,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
 
-[node name="InteractionAlert" type="Control" parent="UILayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Text" type="RichTextLabel" parent="UILayer/InteractionAlert"]
-layout_mode = 0
-offset_left = 457.0
-offset_top = 660.0
-offset_right = 744.0
-offset_bottom = 700.0
-text = "Naciśnij E, żeby wejść w interakcję"
-scroll_active = false
-
-[node name="Dialog" type="Control" parent="UILayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Text" type="RichTextLabel" parent="UILayer/Dialog"]
-layout_mode = 0
-offset_left = 212.0
-offset_top = 660.0
-offset_right = 953.0
-offset_bottom = 775.0
-scroll_active = false
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_4v4ul")
 volume_db = -15.0
@@ -298,21 +175,27 @@ position = Vector2(-271, -576)
 [node name="ScoutWrapper" type="Node2D" parent="."]
 
 [node name="Enemy" parent="ScoutWrapper" instance=ExtResource("8_eg7m5")]
-position = Vector2(-1036, 474)
-
-[node name="AnimatedSprite2D" parent="ScoutWrapper/Enemy" index="2"]
-animation = &"go"
-
-[node name="EngineAudio" type="AudioStreamPlayer2D" parent="ScoutWrapper/Enemy"]
-stream = ExtResource("14_mxkqo")
-attenuation = 8.57418
-script = ExtResource("15_3235v")
+position = Vector2(-1200, -1296)
 
 [node name="EnemyHealthBar" type="ProgressBar" parent="ScoutWrapper"]
 offset_left = -120.0
 offset_top = -80.0
 offset_right = -79.0
 offset_bottom = -53.0
+max_value = 200.0
+step = 1.0
+script = ExtResource("7_yd4hr")
+
+[node name="ScoutWrapper2" type="Node2D" parent="."]
+
+[node name="Enemy" parent="ScoutWrapper2" instance=ExtResource("8_eg7m5")]
+position = Vector2(-799, 218)
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="ScoutWrapper2"]
+offset_left = -408.0
+offset_top = 265.0
+offset_right = -367.0
+offset_bottom = 292.0
 max_value = 200.0
 step = 1.0
 script = ExtResource("7_yd4hr")
@@ -345,21 +228,22 @@ position = Vector2(-310, -217)
 position = Vector2(172, 211)
 
 [node name="FighterWrapper" type="Node2D" parent="."]
+metadata/_edit_group_ = true
 
 [node name="EnemyHealthBar" type="ProgressBar" parent="FighterWrapper"]
 offset_left = -660.0
 offset_top = 319.0
 offset_right = -619.0
 offset_bottom = 346.0
+max_value = 500.0
 step = 1.0
 script = ExtResource("7_yd4hr")
 metadata/_edit_use_anchors_ = true
 
 [node name="Enemy" type="RigidBody2D" parent="FighterWrapper"]
-position = Vector2(-1075, -1339)
+position = Vector2(-252, 54)
 gravity_scale = 0.0
 script = ExtResource("8_5goye")
-projectile = ExtResource("10_84l2h")
 
 [node name="Sprite2D" type="Sprite2D" parent="FighterWrapper/Enemy"]
 texture = ExtResource("9_nxyhl")
@@ -372,23 +256,6 @@ shape = SubResource("CircleShape2D_rolip")
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_o1r7x")
 animation = &"none"
-
-[node name="GunMarker" type="Marker2D" parent="FighterWrapper/Enemy"]
-position = Vector2(0, -11)
-
-[node name="DestructionAnimatedSprite2D" type="AnimatedSprite2D" parent="FighterWrapper/Enemy"]
-sprite_frames = SubResource("SpriteFrames_ua382")
-
-[node name="EngineAudio" type="AudioStreamPlayer2D" parent="FighterWrapper/Enemy"]
-stream = ExtResource("14_mxkqo")
-volume_db = 5.0
-attenuation = 8.28212
-script = ExtResource("15_3235v")
-
-[node name="LaserSound" type="AudioStreamPlayer2D" parent="FighterWrapper/Enemy"]
-stream = ExtResource("16_fyqw7")
-volume_db = -10.0
-attenuation = 4.92458
 
 [node name="Planet1" type="RigidBody2D" parent="."]
 position = Vector2(-1428, -1896)
@@ -479,14 +346,7 @@ position = Vector2(185, 42)
 [node name="CoinItem" parent="." instance=ExtResource("9_4aeqo")]
 position = Vector2(-118, 52)
 
-[node name="QuestCat" parent="." instance=ExtResource("16_nwhr7")]
-position = Vector2(-132, -128)
-script = ExtResource("22_y2kxv")
-
-[node name="Cat" parent="." instance=ExtResource("16_nwhr7")]
-position = Vector2(-66, -64)
-
 [editable path="Spaceship"]
-[editable path="UILayer/Inventory_UI"]
 [editable path="Asteroid3"]
 [editable path="ScoutWrapper/Enemy"]
+[editable path="ScoutWrapper2/Enemy"]

@@ -1,8 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1ay3xkpqv1eg"]
+[gd_scene load_steps=7 format=3 uid="uid://d1ay3xkpqv1eg"]
 
-[ext_resource type="Texture2D" uid="uid://2lgvk8m4f73t" path="res://assets/sprites/items/16bit-swordfish.png" id="1_2pv84"]
 [ext_resource type="Script" path="res://scene/fish_item.gd" id="1_yb45v"]
 [ext_resource type="Resource" uid="uid://bceag5vec0e6i" path="res://inventory/fish_item.tres" id="2_78u3h"]
+[ext_resource type="Texture2D" uid="uid://d4htrs7ae43fn" path="res://assets/sprites/items/fish1/16bit-fish-angelfish-flame1.png" id="3_hvtat"]
+[ext_resource type="Texture2D" uid="uid://cabvjgk7v2d4w" path="res://assets/sprites/items/fish1/16bit-fish-angelfish-flame2.png" id="4_pfwds"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xhter"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hvtat")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pfwds")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5l0ck"]
 radius = 14.0
@@ -12,9 +27,9 @@ height = 28.0
 script = ExtResource("1_yb45v")
 item = ExtResource("2_78u3h")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
-texture = ExtResource("1_2pv84")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_xhter")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_5l0ck")
