@@ -5,9 +5,15 @@ class_name Inventory
 const MAX_ITEMS = 12
 
 signal update
+signal open
 
 @export var items: Array[InventoryItem]
 @export var money: int
+
+var isSelling = false
+
+func openView():
+	open.emit()
 
 func insert(item: InventoryItem):
 	print("items")
@@ -32,3 +38,11 @@ func removeItem(index):
 	print(index)
 	items[index] = null
 	update.emit()
+
+func sellItem(index):
+	print("sellItem called at index:")
+	print(index)
+	var item = items[index]
+	items[index] = null
+	addCoins(item)
+	
