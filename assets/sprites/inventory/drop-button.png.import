@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dq7q4d8ecl5c8"
-path="res://.godot/imported/inventory_high_res.png-1848f2e6de26444b5b1b52eefbd55d13.ctex"
+uid="uid://coajmjvwva2sy"
+path="res://.godot/imported/drop-button.png-fc15474305ceb47c8cfb2402b6e953e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/inventory_high_res.png"
-dest_files=["res://.godot/imported/inventory_high_res.png-1848f2e6de26444b5b1b52eefbd55d13.ctex"]
+source_file="res://assets/sprites/inventory/drop-button.png"
+dest_files=["res://.godot/imported/drop-button.png-fc15474305ceb47c8cfb2402b6e953e1.ctex"]
 
 [params]
 

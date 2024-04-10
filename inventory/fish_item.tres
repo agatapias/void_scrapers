@@ -7,4 +7,4 @@
 script = ExtResource("1_k4oc3")
 name = "Fish"
 texture = ExtResource("2_vh2ww")
-amount = 1
+amount = 50

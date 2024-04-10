@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dlalcgyycgn7f"]
 
 [ext_resource type="Script" path="res://script/inventory_ui.gd" id="1_w2xvo"]
-[ext_resource type="Texture2D" uid="uid://dpbmgeg2l51v1" path="res://assets/sprites/inventory/inventory_background.png" id="2_i5i8m"]
+[ext_resource type="Texture2D" uid="uid://dq7q4d8ecl5c8" path="res://assets/sprites/inventory/inventory_high_res.png" id="2_ue8ap"]
 [ext_resource type="PackedScene" uid="uid://f8mkn4t1tykv" path="res://inventory/inventory_slot_ui.tscn" id="3_5ggra"]
 [ext_resource type="Script" path="res://inventory/drop_button_ui.gd" id="4_8m6id"]
 [ext_resource type="Texture2D" uid="uid://coajmjvwva2sy" path="res://assets/sprites/inventory/drop-button.png" id="5_n50r0"]
@@ -20,7 +20,7 @@ script = ExtResource("1_w2xvo")
 layout_mode = 0
 offset_right = 159.0
 offset_bottom = 108.0
-texture = ExtResource("2_i5i8m")
+texture = ExtResource("2_ue8ap")
 patch_margin_left = 1
 patch_margin_top = 1
 patch_margin_right = 1
@@ -33,10 +33,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -39.5
-offset_top = -26.0
-offset_right = 38.5
-offset_bottom = 33.0
+offset_left = -38.5
+offset_top = -25.5
+offset_right = 39.5
+offset_bottom = 33.5
 grow_horizontal = 2
 grow_vertical = 2
 columns = 4
@@ -82,12 +82,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -17.5
-offset_top = 8.0
-offset_right = 67.5
-offset_bottom = 31.0
+offset_left = -21.5
+offset_top = 12.0
+offset_right = 63.5
+offset_bottom = 35.0
 grow_horizontal = 2
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.5, 0.5)
 text = "Ekwipunek"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -97,10 +97,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 43.5
-offset_top = 10.0
-offset_right = 96.5
-offset_bottom = 33.0
+offset_left = 40.5
+offset_top = 16.0
+offset_right = 93.5
+offset_bottom = 39.0
 grow_horizontal = 2
 scale = Vector2(0.25, 0.25)
 text = "Złoto:"
@@ -112,10 +112,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 58.5
-offset_top = 10.0
-offset_right = 111.5
-offset_bottom = 33.0
+offset_left = 55.5
+offset_top = 16.0
+offset_right = 108.5
+offset_bottom = 39.0
 grow_horizontal = 2
 scale = Vector2(0.25, 0.25)
 text = "200"
@@ -124,10 +124,10 @@ vertical_alignment = 1
 [node name="DropButton" type="Button" parent="NinePatchRect"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = 124.0
-offset_top = 93.0
-offset_right = 150.0
-offset_bottom = 101.0
+offset_left = 123.0
+offset_top = 89.0
+offset_right = 149.0
+offset_bottom = 97.0
 script = ExtResource("4_8m6id")
 metadata/_edit_group_ = true
 
@@ -139,28 +139,14 @@ texture = ExtResource("5_n50r0")
 [node name="ActionButton" type="Button" parent="NinePatchRect"]
 layout_mode = 0
 offset_left = 66.0
-offset_top = 93.0
+offset_top = 89.0
 offset_right = 190.0
-offset_bottom = 124.0
+offset_bottom = 120.0
 scale = Vector2(0.25, 0.25)
 theme = SubResource("Theme_x3c7c")
 text = "Sprzedaj"
 script = ExtResource("6_kmq3f")
 metadata/_edit_group_ = true
-
-[node name="ItemName" type="Label" parent="NinePatchRect"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -15.5
-offset_top = 20.0
-offset_right = 159.5
-offset_bottom = 43.0
-grow_horizontal = 2
-scale = Vector2(0.2, 0.2)
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [connection signal="pressed" from="NinePatchRect/DropButton" to="NinePatchRect/DropButton" method="_on_pressed"]
 [connection signal="pressed" from="NinePatchRect/ActionButton" to="NinePatchRect/ActionButton" method="_on_pressed"]
