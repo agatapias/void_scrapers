@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dxbb1xjpse0p7"]
+[gd_scene load_steps=42 format=3 uid="uid://dxbb1xjpse0p7"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://player_ship.tscn" id="1_s1wep"]
 [ext_resource type="PackedScene" uid="uid://bmmhib0afegw2" path="res://asteroid.tscn" id="2_i6m1y"]
@@ -8,8 +8,10 @@
 [ext_resource type="Script" path="res://EnemyHealthBar.gd" id="7_yd4hr"]
 [ext_resource type="Script" path="res://Fighter.gd" id="8_5goye"]
 [ext_resource type="PackedScene" uid="uid://c5sx8syk8thbt" path="res://scout.tscn" id="8_eg7m5"]
+[ext_resource type="PackedScene" uid="uid://dph8q5llcjeoa" path="res://fighter_bullet.tscn" id="9_2mxa8"]
 [ext_resource type="Texture2D" uid="uid://odm3s1085tpb" path="res://assets/sprites/enemies/fighter/fighter_base.png" id="9_nxyhl"]
 [ext_resource type="Texture2D" uid="uid://dqd6cik3bw6t5" path="res://assets/sprites/enemies/fighter/engines.png" id="10_uxwjc"]
+[ext_resource type="Texture2D" uid="uid://5ds8a4ixwj7e" path="res://assets/sprites/enemies/fighter/destruction.png" id="11_2uhi6"]
 [ext_resource type="Texture2D" uid="uid://c0uje4lrjei3w" path="res://assets/sprites/planets/planet1.png" id="20_752u3"]
 [ext_resource type="Texture2D" uid="uid://bltfgoo4dk0ng" path="res://assets/sprites/asteroid2.png" id="21_eixka"]
 
@@ -96,12 +98,90 @@ animations = [{
 }],
 "loop": true,
 "name": &"engines",
-"speed": 5.0
+"speed": 20.0
 }, {
 "frames": [],
 "loop": true,
 "name": &"none",
 "speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvty1"]
+atlas = ExtResource("11_2uhi6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tibg"]
+atlas = ExtResource("11_2uhi6")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x05ok"]
+atlas = ExtResource("11_2uhi6")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ti4dk"]
+atlas = ExtResource("11_2uhi6")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1iqrn"]
+atlas = ExtResource("11_2uhi6")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftn7t"]
+atlas = ExtResource("11_2uhi6")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu1w7"]
+atlas = ExtResource("11_2uhi6")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrcvc"]
+atlas = ExtResource("11_2uhi6")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agpo2"]
+atlas = ExtResource("11_2uhi6")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mx4d"]
+atlas = ExtResource("11_2uhi6")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0s7em"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvty1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tibg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x05ok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ti4dk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1iqrn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftn7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu1w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrcvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agpo2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mx4d")
+}],
+"loop": true,
+"name": &"destruction",
+"speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1baji"]
@@ -118,7 +198,7 @@ physics_material_override = SubResource("PhysicsMaterial_uyaiw")
 metadata/_edit_group_ = true
 
 [node name="Camera2D" parent="Spaceship" index="2"]
-zoom = Vector2(1, 1)
+zoom = Vector2(1.5, 1.5)
 
 [node name="Asteroid" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
 position = Vector2(229, -159)
@@ -211,6 +291,7 @@ position = Vector2(-310, -217)
 position = Vector2(172, 211)
 
 [node name="FighterWrapper" type="Node2D" parent="."]
+position = Vector2(-3, 7)
 metadata/_edit_group_ = true
 
 [node name="EnemyHealthBar" type="ProgressBar" parent="FighterWrapper"]
@@ -218,7 +299,6 @@ offset_left = -660.0
 offset_top = 319.0
 offset_right = -619.0
 offset_bottom = 346.0
-max_value = 500.0
 step = 1.0
 script = ExtResource("7_yd4hr")
 metadata/_edit_use_anchors_ = true
@@ -227,6 +307,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-252, 54)
 gravity_scale = 0.0
 script = ExtResource("8_5goye")
+projectile = ExtResource("9_2mxa8")
 
 [node name="Sprite2D" type="Sprite2D" parent="FighterWrapper/Enemy"]
 texture = ExtResource("9_nxyhl")
@@ -238,7 +319,14 @@ shape = SubResource("CircleShape2D_rolip")
 [node name="EngineAnimatedSprite2D" type="AnimatedSprite2D" parent="FighterWrapper/Enemy"]
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_o1r7x")
-animation = &"none"
+animation = &"engines"
+
+[node name="DestructionAnimatedSprite2D" type="AnimatedSprite2D" parent="FighterWrapper/Enemy"]
+sprite_frames = SubResource("SpriteFrames_0s7em")
+animation = &"destruction"
+
+[node name="GunMarker" type="Marker2D" parent="FighterWrapper/Enemy"]
+position = Vector2(0, -12)
 
 [node name="Planet1" type="RigidBody2D" parent="."]
 position = Vector2(-1428, -1896)
