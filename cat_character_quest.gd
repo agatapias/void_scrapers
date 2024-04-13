@@ -9,7 +9,7 @@ var spaceship
 var dialog
 
 const quest_name = 'Zaginiona ryba'
-const quest_dialog = "Kosmiczny podróżniku! Potrzebuje twojej pomocy - zgubiłem swoją rybę. Proszę pomóż mi ją odnaleźć. \n\n[Naciśnij K, żeby zaakceptować]\n[Naciśnij R, żeby odrzucić]"
+const quest_dialog = "Kosmiczny podróżniku! Potrzebuję twojej pomocy - zgubiłem swoją rybę. Proszę pomóż mi ją odnaleźć. Kieruj się ku najbliższej mgławicy a na pewno jej nie przegapisz. \n\n[Naciśnij K, żeby zaakceptować]\n[Naciśnij R, żeby odrzucić]"
 const quest_ongoing = "Nadal czekam na moją rybę! \n\n[Naciśnij K, żeby wyjść]"
 const quest_success = "Dziękuję za pomoc! \n\n[Naciśnij K, żeby wyjść]"
 const quest_after = "Dzień dobry. \n\n[Naciśnij K, żeby wyjść]"
