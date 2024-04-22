@@ -13,6 +13,7 @@ signal cannotBuy
 
 var isSelling = false
 
+
 func openView():
 	open.emit()
 
@@ -65,4 +66,11 @@ func buyItem(item, cost):
 	return true
 	
 	
+func removeByName(name):
+	var item = items.filter(func(item): return item != null and item.name == name)
+	if item == []:
+		return null
+	var index = items.find(item[0])
+	removeItem(index)
+	return item
 

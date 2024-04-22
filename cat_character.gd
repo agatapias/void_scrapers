@@ -1,7 +1,10 @@
 extends Area2D
 
 var isSpaceshipNear = false
+var wasSpaceshipNear = false
 var spaceship = null
+var interacting = false
+var interactionAlert
 
 @export var inventory: Inventory
 @export var shop: Shop
@@ -10,13 +13,28 @@ var spaceship = null
 
 signal merchant
 
+func _ready():
+	interactionAlert = get_node('/root/Main/UILayer/InteractionAlert')
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if (isSpaceshipNear && Input.is_action_just_pressed("talk")):
+	if isSpaceshipNear and not interacting:
+		interactionAlert.visible = true
+	elif wasSpaceshipNear and (!isSpaceshipNear or interacting):
+		interactionAlert.visible = false
+	if (isSpaceshipNear && Input.is_action_just_pressed("interaction")):
 		merchant.emit()
 		#spaceship.inventory.openView()
 		# open shop, pass in player inventory
+		interacting = true
+		get_tree().paused = true
 		shop.openView(spaceship.inventory, inventory)
+	if (interacting and Input.is_action_just_pressed("escape")):
+		interacting = false
+		get_tree().paused = false
+		
+	wasSpaceshipNear = isSpaceshipNear
 
 
 func _on_body_entered(body):
