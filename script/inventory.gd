@@ -6,6 +6,7 @@ const MAX_ITEMS = 12
 
 signal update
 signal open
+signal cannotBuy
 
 @export var items: Array[InventoryItem]
 @export var money: int
@@ -27,16 +28,21 @@ func insert(item: InventoryItem):
 		items[index_of_null] = item
 		update.emit()
 
-func addCoins(item: InventoryItem):
-	print("add coins")
-	print("item")
-	print(item)
-	money += item.amount
+func addCoins(amount: int):
+	money += amount
 	update.emit()
 	
-func subtractCoins(item: InventoryItem):
-	money -= item.amount
+func subtractCoins(amount: int):
+	money -= amount
 	update.emit()
+	
+func canSubtractCoins(amount: int):
+	var tempMoney = money
+	tempMoney -= amount
+	if tempMoney < 0:
+		return false
+	else:
+		return true
 	
 func removeItem(index):
 	print("removeItem called at index:")
@@ -48,21 +54,17 @@ func contains(name):
 	print(items)
 	return items.filter(func(item): return item != null and item.name == name).size() > 0
 
-func sellItem(index):
-	print("sellItem called at index:")
-	print(index)
+func sellItem(index, cost):
 	var item = items[index]
-	print("item: " + str(item))
 	items[index] = null
-	addCoins(item)
+	addCoins(cost)
 	return item
 
-func buyItem(item):
-	print("buyItem called")
-	print("item: " + str(item))
+func buyItem(item, cost):
 	insert(item)
-	subtractCoins(item)
-	return item
+	subtractCoins(cost)
+	return true
+	
 	
 func removeByName(name):
 	var item = items.filter(func(item): return item != null and item.name == name)

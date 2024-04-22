@@ -5,7 +5,6 @@ extends Control
 @onready var coinsLabel: Label = $NinePatchRect/CoinAmount
 @onready var itemNameLabel: Label = $NinePatchRect/ItemName
 @onready var dropButton: Button = $NinePatchRect/DropButton
-@onready var actionButton: Button = $NinePatchRect/ActionButton
 
 var isOpen = false
 var selectedSlotIndex = null
@@ -16,7 +15,6 @@ func _ready():
 	inventory.update.connect(updateSlots)
 	inventory.open.connect(open)
 	dropButton.removeItem.connect(onDropButtonClicked)
-	actionButton.sellItem.connect(onSellClicked)
 	prepareSlots()
 	updateSlots()
 	close()
@@ -27,18 +25,6 @@ func _process(delta):
 		else: open()
 	if Input.is_action_just_pressed("escape"):
 		close()
-	
-	if selectedSlotIndex != null && dropButton.visible == false:
-		dropButton.visible = true
-		if inventory.isSelling && actionButton.visible == false:
-			actionButton.visible = true	
-	elif selectedSlotIndex == null && dropButton.visible == true:
-		dropButton.visible = false
-		if inventory.isSelling && actionButton.visible == true:
-			actionButton.visible = false
-	
-	if !inventory.isSelling && actionButton.visible == true:
-		actionButton.visible = false
 	
 func connectSlots():
 	for slot in slots:
@@ -81,10 +67,5 @@ func onSlotClicked(item, index):
 func onDropButtonClicked():
 	print("onDropButtonClicked called")
 	inventory.removeItem(selectedSlotIndex)
-	selectedSlotIndex = null
-	
-func onSellClicked():
-	print("onSellClicked called")
-	inventory.sellItem(selectedSlotIndex)
 	selectedSlotIndex = null
 	
