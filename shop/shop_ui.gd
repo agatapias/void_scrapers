@@ -107,6 +107,7 @@ func onDropButtonClicked():
 	print("onDropButtonClicked called")
 	getCurrentInventory().removeItem(selectedSlotIndex)
 	unselect()
+	updateSlots(getCurrentInventory())
 	
 func onActionClicked():
 	if state == "Buying":

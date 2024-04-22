@@ -15,6 +15,7 @@ func _ready():
 	inventory.update.connect(updateSlots)
 	inventory.open.connect(open)
 	dropButton.removeItem.connect(onDropButtonClicked)
+	unselect()
 	prepareSlots()
 	updateSlots()
 	close()
@@ -46,19 +47,14 @@ func close():
 	isOpen = false
 	
 func open():
+	unselect()
 	visible = true
 	isOpen = true
 	
 func onSlotClicked(item, index):
-	print("onSlotClicked, item:")
 	if item == null:
-		print("null")
-		selectedSlotIndex = null
-		itemNameLabel.text = ""
+		unselect()
 	else:
-		print(item.name)
-		#var index = inventory.items.find(item)
-		#print("found index: " + str(index))
 		selectedSlotIndex = index
 		itemNameLabel.text = item.name + " - " + str(item.amount) + " coins"
 		itemNameLabel.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -67,5 +63,9 @@ func onSlotClicked(item, index):
 func onDropButtonClicked():
 	print("onDropButtonClicked called")
 	inventory.removeItem(selectedSlotIndex)
-	selectedSlotIndex = null
+	unselect()
+	updateSlots()
 	
+func unselect():
+	selectedSlotIndex = null
+	itemNameLabel.text = ""
