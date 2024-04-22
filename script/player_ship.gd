@@ -30,6 +30,10 @@ func _input(event):
 
 func _physics_process(delta):
 	_frames_since_last_increment += 1
+	if _health <= 0:
+		var game_over = get_node("/root/Main/UILayer/GameOver")
+		get_tree().paused = true
+		game_over.visible = true
 
 func _integrate_forces(state):
 	if Input.is_action_pressed("ui_up") and _frames_since_last_increment >= INCREMENT_INTERVAL:

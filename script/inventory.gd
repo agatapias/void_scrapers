@@ -50,3 +50,11 @@ func sellItem(index):
 	items[index] = null
 	addCoins(item)
 	
+func removeByName(name):
+	var item = items.filter(func(item): return item != null and item.name == name)
+	if item == []:
+		return null
+	var index = items.find(item[0])
+	removeItem(index)
+	return item
+	

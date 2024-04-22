@@ -36,7 +36,7 @@ func _process(delta):
 		elif status == 'ongoing' and spaceship.inventory.contains("Fish"):
 			_set_dialog(quest_success)
 			status = 'finished'
-			spaceship.inventory.removeItem(0)
+			spaceship.inventory.removeByName('Fish')
 		elif status == 'ongoing':
 			_set_dialog(quest_ongoing)
 		else:

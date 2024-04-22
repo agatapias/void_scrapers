@@ -211,7 +211,7 @@ physics_material_override = SubResource("PhysicsMaterial_uyaiw")
 metadata/_edit_group_ = true
 
 [node name="Camera2D" parent="Spaceship" index="2"]
-zoom = Vector2(1, 1)
+zoom = Vector2(1.5, 1.5)
 
 [node name="LaserSound" type="AudioStreamPlayer2D" parent="Spaceship"]
 stream = ExtResource("16_fyqw7")
@@ -223,7 +223,7 @@ position = Vector2(447, -298)
 [node name="SpaceBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="SpaceBackground"]
-motion_scale = Vector2(0.05, 0.05)
+motion_scale = Vector2(0.2, 0.2)
 motion_offset = Vector2(500, 500)
 
 [node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/ParallaxLayer"]
@@ -283,6 +283,24 @@ offset_top = 660.0
 offset_right = 953.0
 offset_bottom = 775.0
 scroll_active = false
+
+[node name="GameOver" type="ColorRect" parent="UILayer"]
+visible = false
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 1188.0
+offset_bottom = 784.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_group_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UILayer/GameOver"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 297.0
+offset_right = 1195.0
+offset_bottom = 533.0
+theme_override_font_sizes/normal_font_size = 180
+text = "KONIEC GRY"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_4v4ul")
