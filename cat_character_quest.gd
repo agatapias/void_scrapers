@@ -3,6 +3,7 @@ extends Area2D
 var isSpaceshipNear = false
 var interactionAlert
 var interacting = false
+var wasSpaceshipNear = false
 var changed = false
 var status = 'new'
 var spaceship 
@@ -18,18 +19,18 @@ func _ready():
 	interactionAlert = get_node('/root/Main/UILayer/InteractionAlert')
 	dialog = get_node('/root/Main/UILayer/Dialog')
 	spaceship = get_node('/root/Main/Spaceship')
-
-
-func _process(delta):
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	
+
+func _process(delta):	
 	if isSpaceshipNear and not interacting:
 		interactionAlert.visible = true
-	elif !isSpaceshipNear or interacting:
+	elif wasSpaceshipNear and (!isSpaceshipNear or interacting):
 		interactionAlert.visible = false
 	if (isSpaceshipNear && Input.is_action_just_pressed("interaction")):
 		_start_interaction()
-		
+	
+	wasSpaceshipNear = isSpaceshipNear
+
 	if interacting and not changed:
 		if status == 'new':
 			_set_dialog(quest_dialog)

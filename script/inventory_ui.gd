@@ -11,6 +11,7 @@ var isOpen = false
 var selectedSlotIndex = null
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	connectSlots()
 	inventory.update.connect(updateSlots)
 	inventory.open.connect(open)

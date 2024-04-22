@@ -20,6 +20,7 @@ var state = "Buying"  # "Buying" or "Selling"
 var currentInventory = merchantInventory if state == "Buying" else playerInventory
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	connectSlots()
 	
 	var callable1 = Callable(setState)

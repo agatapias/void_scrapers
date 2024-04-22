@@ -9,6 +9,13 @@ var torque = 200
 var _health = 0
 var _frames_since_last_increment = 0
 
+var reset_state = false
+
+var checkpoint = {
+	pos = Vector2.ZERO,
+	level = 'Main'
+}
+
 @export var projectile: PackedScene
 @export var inventory: Inventory
 
@@ -32,10 +39,15 @@ func _physics_process(delta):
 	_frames_since_last_increment += 1
 	if _health <= 0:
 		var game_over = get_node("/root/Main/UILayer/GameOver")
+		var game_over_audio = get_node("/root/Main/UILayer/GameOverAudio")
+		game_over_audio.play()
 		get_tree().paused = true
 		game_over.visible = true
 
 func _integrate_forces(state):
+	if reset_state:
+		state.transform = Transform2D(0.0, checkpoint.pos)
+		reset_state = false
 	if Input.is_action_pressed("ui_up") and _frames_since_last_increment >= INCREMENT_INTERVAL:
 		state.apply_force(thrust_vector.rotated(rotation))
 		_frames_since_last_increment = 0
@@ -87,5 +99,14 @@ func collect(item):
 func collect_coin(item):
 	inventory.addCoins(item)
 	
-#func buy_item():
+func save_checkpoint(_level):
+	checkpoint = {pos = position, level = _level} 
+	var saveAudio = get_node("/root/Main/UILayer/GameSavedAudio")
+	saveAudio.play()
 	
+func restore():
+	set_health(MAX_HEALTH/2)
+	linear_velocity = Vector2.ZERO
+	angular_velocity = 0
+	reset_state = true
+

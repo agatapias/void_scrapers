@@ -12,6 +12,7 @@ signal open
 
 var isSelling = false
 
+
 func openView():
 	open.emit()
 

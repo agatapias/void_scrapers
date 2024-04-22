@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dxbb1xjpse0p7"]
+[gd_scene load_steps=58 format=3 uid="uid://dxbb1xjpse0p7"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://scene/player_ship.tscn" id="1_s1wep"]
 [ext_resource type="PackedScene" uid="uid://bmmhib0afegw2" path="res://scene/asteroid.tscn" id="2_i6m1y"]
@@ -7,10 +7,14 @@
 [ext_resource type="AudioStream" uid="uid://byfei1v2i88op" path="res://assets/music/slow-travel.wav" id="6_4v4ul"]
 [ext_resource type="Script" path="res://script/AudioStreamPlayer.gd" id="7_2py8p"]
 [ext_resource type="PackedScene" uid="uid://dlalcgyycgn7f" path="res://inventory/inventory_ui.tscn" id="7_nnx5n"]
+[ext_resource type="Script" path="res://script/Restart.gd" id="7_onywi"]
+[ext_resource type="AudioStream" uid="uid://cn3vlf5yu313l" path="res://assets/sound_effects/game_over.mp3" id="7_qroxv"]
 [ext_resource type="Script" path="res://script/EnemyHealthBar.gd" id="7_yd4hr"]
 [ext_resource type="Script" path="res://script/Fighter.gd" id="8_5goye"]
 [ext_resource type="PackedScene" uid="uid://c5sx8syk8thbt" path="res://scene/scout.tscn" id="8_eg7m5"]
 [ext_resource type="PackedScene" uid="uid://d1ay3xkpqv1eg" path="res://scene/fish_item.tscn" id="8_m73i2"]
+[ext_resource type="Script" path="res://script/GameOverAudio.gd" id="8_pa5ft"]
+[ext_resource type="AudioStream" uid="uid://da6fwqmpcsn5t" path="res://assets/sound_effects/game_saved.mp3" id="8_ug8p2"]
 [ext_resource type="PackedScene" uid="uid://daeriaav5p78v" path="res://scene/coin_item.tscn" id="9_4aeqo"]
 [ext_resource type="Texture2D" uid="uid://odm3s1085tpb" path="res://assets/sprites/enemies/fighter/fighter_base.png" id="9_nxyhl"]
 [ext_resource type="PackedScene" uid="uid://djt5ahnmfl7hm" path="res://scene/fighter_bullet.tscn" id="10_84l2h"]
@@ -20,6 +24,7 @@
 [ext_resource type="Script" path="res://script/EngineSoundEffect.gd" id="15_3235v"]
 [ext_resource type="AudioStream" uid="uid://btxf36tq6tkuh" path="res://assets/sound_effects/laser.mp3" id="16_fyqw7"]
 [ext_resource type="PackedScene" uid="uid://bcvaxcx3ca3eq" path="res://cat_character.tscn" id="16_nwhr7"]
+[ext_resource type="Script" path="res://script/Checkpoint.gd" id="19_tsv00"]
 [ext_resource type="Texture2D" uid="uid://c0uje4lrjei3w" path="res://assets/sprites/planets/planet1.png" id="20_752u3"]
 [ext_resource type="Texture2D" uid="uid://bltfgoo4dk0ng" path="res://assets/sprites/asteroid2.png" id="21_eixka"]
 [ext_resource type="Script" path="res://cat_character_quest.gd" id="22_y2kxv"]
@@ -203,6 +208,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_1baji"]
 radius = 502.036
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_06woq"]
+radius = 689.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4igrx"]
 radius = 12.0
 height = 58.0
@@ -266,6 +274,7 @@ grow_vertical = 2
 scale = Vector2(5, 5)
 
 [node name="InteractionAlert" type="Control" parent="UILayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -301,7 +310,6 @@ offset_top = -5.0
 offset_right = 1188.0
 offset_bottom = 784.0
 color = Color(0, 0, 0, 1)
-metadata/_edit_group_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UILayer/GameOver"]
 layout_mode = 0
@@ -311,6 +319,41 @@ offset_right = 1195.0
 offset_bottom = 533.0
 theme_override_font_sizes/normal_font_size = 180
 text = "KONIEC GRY"
+
+[node name="Restart" type="Button" parent="UILayer/GameOver"]
+layout_mode = 0
+offset_left = 503.0
+offset_top = 585.0
+offset_right = 708.0
+offset_bottom = 645.0
+text = "Wznów grę"
+script = ExtResource("7_onywi")
+
+[node name="CheckpointAlert" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 9.0
+offset_top = -627.0
+offset_right = 49.0
+offset_bottom = -587.0
+metadata/_edit_group_ = true
+
+[node name="Text" type="RichTextLabel" parent="UILayer/CheckpointAlert"]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 660.0
+offset_right = 744.0
+offset_bottom = 761.0
+text = "Jesteś w pobliżu przyjaznej planety. Naciśnij O, żeby ustawić tutaj swój punkt wznowienia gry."
+scroll_active = false
+
+[node name="GameOverAudio" type="AudioStreamPlayer" parent="UILayer"]
+stream = ExtResource("7_qroxv")
+script = ExtResource("8_pa5ft")
+
+[node name="GameSavedAudio" type="AudioStreamPlayer" parent="UILayer"]
+stream = ExtResource("8_ug8p2")
+volume_db = -11.243
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_4v4ul")
@@ -428,6 +471,12 @@ texture = ExtResource("20_752u3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Planet1"]
 shape = SubResource("CircleShape2D_1baji")
 
+[node name="Checkpoint" type="Area2D" parent="Planet1"]
+script = ExtResource("19_tsv00")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planet1/Checkpoint"]
+shape = SubResource("CircleShape2D_06woq")
+
 [node name="Asteroid2_1" type="RigidBody2D" parent="."]
 position = Vector2(56, -336)
 mass = 20.0
@@ -504,11 +553,11 @@ position = Vector2(-1336, -1260)
 position = Vector2(-118, 52)
 
 [node name="QuestCat" parent="." instance=ExtResource("16_nwhr7")]
-position = Vector2(-155, -146)
+position = Vector2(-103, -144)
 script = ExtResource("22_y2kxv")
 
 [node name="Cat" parent="." instance=ExtResource("16_nwhr7")]
-position = Vector2(-1787, -1568)
+position = Vector2(214, 10)
 
 [node name="Asteroid2_6" type="RigidBody2D" parent="."]
 position = Vector2(-197, -395)
@@ -721,8 +770,12 @@ position = Vector2(353, -1204)
 position = Vector2(-1801, -1013)
 
 [node name="FishItem2" parent="." instance=ExtResource("8_m73i2")]
-position = Vector2(-1995, -1221)
+position = Vector2(105, 0)
+
+[connection signal="body_entered" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_entered"]
+[connection signal="body_exited" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_exited"]
 
 [editable path="Spaceship"]
 [editable path="UILayer/Inventory_UI"]
 [editable path="ScoutWrapper/Enemy"]
+[editable path="QuestCat"]
