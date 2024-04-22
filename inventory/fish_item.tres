@@ -6,5 +6,7 @@
 [resource]
 script = ExtResource("1_k4oc3")
 name = "Fish"
+description = "zwyczajna kosmiczna ryba, nie ucieka i nikogo się nie boi"
 texture = ExtResource("2_vh2ww")
 amount = 50
+buyingCost = 60

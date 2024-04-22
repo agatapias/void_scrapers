@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfwanik2mf7ch"]
+[gd_scene load_steps=9 format=3 uid="uid://dfwanik2mf7ch"]
 
 [ext_resource type="Texture2D" uid="uid://dpbmgeg2l51v1" path="res://assets/sprites/inventory/inventory_background.png" id="1_f42wk"]
 [ext_resource type="Script" path="res://shop/shop_ui.gd" id="1_fvmkd"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://inventory/drop_button_ui.gd" id="3_8xibh"]
 [ext_resource type="Texture2D" uid="uid://coajmjvwva2sy" path="res://assets/sprites/inventory/drop-button.png" id="4_r6l5q"]
 [ext_resource type="Script" path="res://inventory/action_button_ui.gd" id="5_74k06"]
+[ext_resource type="Texture2D" uid="uid://b1qbdf8jelji6" path="res://assets/sprites/Meow-Knight-alone.png" id="7_f1gpy"]
 
 [sub_resource type="Theme" id="Theme_fla77"]
 
@@ -82,10 +83,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -17.5
-offset_top = 8.0
-offset_right = 67.5
-offset_bottom = 31.0
+offset_left = -78.5
+offset_top = 4.0
+offset_right = 6.5
+offset_bottom = 27.0
 grow_horizontal = 2
 scale = Vector2(0.4, 0.4)
 text = "Sklep"
@@ -167,10 +168,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -71.5
-offset_top = 11.0
-offset_right = 44.5
-offset_bottom = 34.0
+offset_left = 44.5
+offset_top = 4.0
+offset_right = 160.5
+offset_bottom = 27.0
 grow_horizontal = 2
 scale = Vector2(0.25, 0.25)
 text = "Biznesman"
@@ -178,23 +179,98 @@ vertical_alignment = 1
 
 [node name="SellButton" type="Button" parent="NinePatchRect"]
 layout_mode = 0
-offset_left = 57.0
-offset_top = 18.0
-offset_right = 132.0
-offset_bottom = 49.0
-scale = Vector2(0.2, 0.2)
-text = "Sprzedaj"
+offset_left = 48.0
+offset_top = 13.0
+offset_right = 160.0
+offset_bottom = 44.0
+scale = Vector2(0.25, 0.25)
+text = "Sprzedawaj"
 script = ExtResource("5_74k06")
 
 [node name="BuyButton" type="Button" parent="NinePatchRect"]
 layout_mode = 0
-offset_left = 87.0
-offset_top = 18.0
-offset_right = 162.0
-offset_bottom = 49.0
-scale = Vector2(0.2, 0.2)
-text = "Kup"
+offset_left = 82.0
+offset_top = 13.0
+offset_right = 190.0
+offset_bottom = 44.0
+scale = Vector2(0.25, 0.25)
+text = "Kupuj"
 script = ExtResource("5_74k06")
+
+[node name="CostLabel" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 44.5
+offset_top = 30.0
+offset_right = 148.5
+offset_bottom = 58.0
+grow_horizontal = 2
+scale = Vector2(0.25, 0.25)
+text = "Koszt: "
+
+[node name="Description" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -73.5
+offset_top = 30.0
+offset_right = 50.5
+offset_bottom = 157.0
+grow_horizontal = 2
+scale = Vector2(0.2, 0.2)
+text = "Złota ryba - usprawnia statek i pozwala pływać szybciej!"
+autowrap_mode = 2
+
+[node name="CatMessage" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.5
+offset_top = 79.0
+offset_right = 107.5
+offset_bottom = 102.0
+grow_horizontal = 2
+scale = Vector2(0.2, 0.2)
+text = "Kupuj u mnie! "
+vertical_alignment = 1
+
+[node name="CatImage" type="Sprite2D" parent="NinePatchRect"]
+position = Vector2(12, 95)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_f1gpy")
+
+[node name="ItemCost" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 44.5
+offset_top = 37.0
+offset_right = 148.5
+offset_bottom = 86.0
+grow_horizontal = 2
+scale = Vector2(0.25, 0.25)
+text = "1500 złota"
+autowrap_mode = 2
+
+[node name="PoorLabel" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -21.5
+offset_top = 3.0
+offset_right = 121.5
+offset_bottom = 26.0
+grow_horizontal = 2
+scale = Vector2(0.3, 0.3)
+text = "Za mało złota!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="NinePatchRect/DropButton" to="NinePatchRect/DropButton" method="_on_pressed"]
 [connection signal="pressed" from="NinePatchRect/ActionButton" to="NinePatchRect/ActionButton" method="_on_pressed"]
