@@ -1,0 +1,202 @@
+[gd_scene load_steps=8 format=3 uid="uid://dfwanik2mf7ch"]
+
+[ext_resource type="Texture2D" uid="uid://dpbmgeg2l51v1" path="res://assets/sprites/inventory/inventory_background.png" id="1_f42wk"]
+[ext_resource type="Script" path="res://shop/shop_ui.gd" id="1_fvmkd"]
+[ext_resource type="PackedScene" uid="uid://f8mkn4t1tykv" path="res://inventory/inventory_slot_ui.tscn" id="2_r43s5"]
+[ext_resource type="Script" path="res://inventory/drop_button_ui.gd" id="3_8xibh"]
+[ext_resource type="Texture2D" uid="uid://coajmjvwva2sy" path="res://assets/sprites/inventory/drop-button.png" id="4_r6l5q"]
+[ext_resource type="Script" path="res://inventory/action_button_ui.gd" id="5_74k06"]
+
+[sub_resource type="Theme" id="Theme_fla77"]
+
+[node name="ShopUi" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_fvmkd")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 159.0
+offset_bottom = 108.0
+texture = ExtResource("1_f42wk")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.5
+offset_top = -26.0
+offset_right = 38.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 4
+
+[node name="InventorySlotUI" parent="NinePatchRect/GridContainer" instance=ExtResource("2_r43s5")]
+layout_mode = 2
+
+[node name="InventorySlotUI2" parent="NinePatchRect/GridContainer" instance=ExtResource("2_r43s5")]
+layout_mode = 2
+
+[node name="InventorySlotUI3" parent="NinePatchRect/GridContainer" instance=ExtResource("2_r43s5")]
+layout_mode = 2
+
+[node name="InventorySlotUI4" parent="NinePatchRect/GridContainer" instance=ExtResource("2_r43s5")]
+layout_mode = 2
+
+[node name="InventorySlotUI5" parent="NinePatchRect/GridContainer" instance=ExtResource("2_r43s5")]
+layout_mode = 2
+
+[node name="InventorySlotUI6" parent="NinePatchRect/GridContainer" instance=ExtResource("2_r43s5")]
+layout_mode = 2
+
+[node name="InventorySlotUI7" parent="NinePatchRect/GridContainer" instance=ExtResource("2_r43s5")]
+layout_mode = 2
+
+[node name="InventorySlotUI8" parent="NinePatchRect/GridContainer" instance=ExtResource("2_r43s5")]
+layout_mode = 2
+
+[node name="InventorySlotUI9" parent="NinePatchRect/GridContainer" instance=ExtResource("2_r43s5")]
+layout_mode = 2
+
+[node name="InventorySlotUI10" parent="NinePatchRect/GridContainer" instance=ExtResource("2_r43s5")]
+layout_mode = 2
+
+[node name="InventorySlotUI11" parent="NinePatchRect/GridContainer" instance=ExtResource("2_r43s5")]
+layout_mode = 2
+
+[node name="InventorySlotUI12" parent="NinePatchRect/GridContainer" instance=ExtResource("2_r43s5")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -17.5
+offset_top = 8.0
+offset_right = 67.5
+offset_bottom = 31.0
+grow_horizontal = 2
+scale = Vector2(0.4, 0.4)
+text = "Sklep"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 43.5
+offset_top = 10.0
+offset_right = 96.5
+offset_bottom = 33.0
+grow_horizontal = 2
+scale = Vector2(0.25, 0.25)
+text = "Złoto:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CoinAmount" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 58.5
+offset_top = 10.0
+offset_right = 111.5
+offset_bottom = 33.0
+grow_horizontal = 2
+scale = Vector2(0.25, 0.25)
+text = "200"
+vertical_alignment = 1
+
+[node name="DropButton" type="Button" parent="NinePatchRect"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 124.0
+offset_top = 93.0
+offset_right = 150.0
+offset_bottom = 101.0
+script = ExtResource("3_8xibh")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/DropButton"]
+position = Vector2(13, 4)
+scale = Vector2(0.251634, 0.251634)
+texture = ExtResource("4_r6l5q")
+
+[node name="ActionButton" type="Button" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 93.0
+offset_right = 190.0
+offset_bottom = 124.0
+scale = Vector2(0.25, 0.25)
+theme = SubResource("Theme_fla77")
+text = "Sprzedaj"
+script = ExtResource("5_74k06")
+metadata/_edit_group_ = true
+
+[node name="ItemName" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -15.5
+offset_top = 20.0
+offset_right = 159.5
+offset_bottom = 43.0
+grow_horizontal = 2
+scale = Vector2(0.2, 0.2)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharName" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -71.5
+offset_top = 11.0
+offset_right = 44.5
+offset_bottom = 34.0
+grow_horizontal = 2
+scale = Vector2(0.25, 0.25)
+text = "Biznesman"
+vertical_alignment = 1
+
+[node name="SellButton" type="Button" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 18.0
+offset_right = 132.0
+offset_bottom = 49.0
+scale = Vector2(0.2, 0.2)
+text = "Sprzedaj"
+script = ExtResource("5_74k06")
+
+[node name="BuyButton" type="Button" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 18.0
+offset_right = 162.0
+offset_bottom = 49.0
+scale = Vector2(0.2, 0.2)
+text = "Kup"
+script = ExtResource("5_74k06")
+
+[connection signal="pressed" from="NinePatchRect/DropButton" to="NinePatchRect/DropButton" method="_on_pressed"]
+[connection signal="pressed" from="NinePatchRect/ActionButton" to="NinePatchRect/ActionButton" method="_on_pressed"]
+[connection signal="pressed" from="NinePatchRect/SellButton" to="NinePatchRect/SellButton" method="_on_pressed"]
+[connection signal="pressed" from="NinePatchRect/BuyButton" to="NinePatchRect/BuyButton" method="_on_pressed"]

@@ -1,9 +1,8 @@
-[gd_scene load_steps=52 format=3 uid="uid://dxbb1xjpse0p7"]
+[gd_scene load_steps=50 format=3 uid="uid://dxbb1xjpse0p7"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://scene/player_ship.tscn" id="1_s1wep"]
 [ext_resource type="PackedScene" uid="uid://bmmhib0afegw2" path="res://scene/asteroid.tscn" id="2_i6m1y"]
 [ext_resource type="Texture2D" uid="uid://fp8b086rkxd8" path="res://assets/background/Space Background.png" id="3_86apd"]
-[ext_resource type="PackedScene" uid="uid://dfwanik2mf7ch" path="res://shop/shop_ui.tscn" id="5_1ugx1"]
 [ext_resource type="AudioStream" uid="uid://byfei1v2i88op" path="res://assets/music/slow-travel.wav" id="6_4v4ul"]
 [ext_resource type="Script" path="res://script/AudioStreamPlayer.gd" id="7_2py8p"]
 [ext_resource type="PackedScene" uid="uid://dlalcgyycgn7f" path="res://inventory/inventory_ui.tscn" id="7_nnx5n"]
@@ -198,8 +197,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="GDScript" id="GDScript_noh7b"]
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_1baji"]
 radius = 502.036
 
@@ -235,13 +232,6 @@ texture = ExtResource("3_86apd")
 metadata/_edit_lock_ = true
 
 [node name="UILayer" type="CanvasLayer" parent="."]
-
-[node name="ShopUi" parent="UILayer" instance=ExtResource("5_1ugx1")]
-offset_left = 188.0
-offset_top = 138.0
-offset_right = 228.0
-offset_bottom = 178.0
-scale = Vector2(5, 5)
 
 [node name="HealthBar" type="ProgressBar" parent="UILayer"]
 offset_left = 922.0
@@ -404,7 +394,6 @@ attenuation = 4.92458
 position = Vector2(-1428, -1896)
 mass = 10000.0
 gravity_scale = 0.0
-script = SubResource("GDScript_noh7b")
 
 [node name="Sprite2D" type="Sprite2D" parent="Planet1"]
 texture = ExtResource("20_752u3")
