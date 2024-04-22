@@ -86,3 +86,6 @@ func collect(item):
 
 func collect_coin(item):
 	inventory.addCoins(item)
+	
+#func buy_item():
+	

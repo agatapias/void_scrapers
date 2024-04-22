@@ -33,6 +33,10 @@ func addCoins(item: InventoryItem):
 	money += item.amount
 	update.emit()
 	
+func subtractCoins(item: InventoryItem):
+	money -= item.amount
+	update.emit()
+	
 func removeItem(index):
 	print("removeItem called at index:")
 	print(index)
@@ -47,8 +51,17 @@ func sellItem(index):
 	print("sellItem called at index:")
 	print(index)
 	var item = items[index]
+	print("item: " + str(item))
 	items[index] = null
 	addCoins(item)
+	return item
+
+func buyItem(item):
+	print("buyItem called")
+	print("item: " + str(item))
+	insert(item)
+	subtractCoins(item)
+	return item
 	
 func removeByName(name):
 	var item = items.filter(func(item): return item != null and item.name == name)
@@ -57,4 +70,4 @@ func removeByName(name):
 	var index = items.find(item[0])
 	removeItem(index)
 	return item
-	
+

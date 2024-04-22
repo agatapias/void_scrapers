@@ -1,9 +1,8 @@
-[gd_scene load_steps=52 format=3 uid="uid://dxbb1xjpse0p7"]
+[gd_scene load_steps=50 format=3 uid="uid://dxbb1xjpse0p7"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://scene/player_ship.tscn" id="1_s1wep"]
 [ext_resource type="PackedScene" uid="uid://bmmhib0afegw2" path="res://scene/asteroid.tscn" id="2_i6m1y"]
 [ext_resource type="Texture2D" uid="uid://fp8b086rkxd8" path="res://assets/background/Space Background.png" id="3_86apd"]
-[ext_resource type="PackedScene" uid="uid://dfwanik2mf7ch" path="res://shop/shop_ui.tscn" id="5_1ugx1"]
 [ext_resource type="AudioStream" uid="uid://byfei1v2i88op" path="res://assets/music/slow-travel.wav" id="6_4v4ul"]
 [ext_resource type="Script" path="res://script/AudioStreamPlayer.gd" id="7_2py8p"]
 [ext_resource type="PackedScene" uid="uid://dlalcgyycgn7f" path="res://inventory/inventory_ui.tscn" id="7_nnx5n"]
@@ -198,8 +197,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="GDScript" id="GDScript_noh7b"]
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_1baji"]
 radius = 502.036
 
@@ -214,19 +211,19 @@ physics_material_override = SubResource("PhysicsMaterial_uyaiw")
 metadata/_edit_group_ = true
 
 [node name="Camera2D" parent="Spaceship" index="2"]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(1, 1)
 
 [node name="LaserSound" type="AudioStreamPlayer2D" parent="Spaceship"]
 stream = ExtResource("16_fyqw7")
 volume_db = -10.0
 
 [node name="Asteroid" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
-position = Vector2(447, -298)
+position = Vector2(229, -159)
 
 [node name="SpaceBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="SpaceBackground"]
-motion_scale = Vector2(0.2, 0.2)
+motion_scale = Vector2(0.05, 0.05)
 motion_offset = Vector2(500, 500)
 
 [node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/ParallaxLayer"]
@@ -235,13 +232,6 @@ texture = ExtResource("3_86apd")
 metadata/_edit_lock_ = true
 
 [node name="UILayer" type="CanvasLayer" parent="."]
-
-[node name="ShopUi" parent="UILayer" instance=ExtResource("5_1ugx1")]
-offset_left = 188.0
-offset_top = 138.0
-offset_right = 228.0
-offset_bottom = 178.0
-scale = Vector2(5, 5)
 
 [node name="HealthBar" type="ProgressBar" parent="UILayer"]
 offset_left = 922.0
@@ -294,28 +284,13 @@ offset_right = 953.0
 offset_bottom = 775.0
 scroll_active = false
 
-[node name="GameOver" type="ColorRect" parent="UILayer"]
-visible = false
-offset_left = -5.0
-offset_top = -5.0
-offset_right = 1188.0
-offset_bottom = 784.0
-color = Color(0, 0, 0, 1)
-metadata/_edit_group_ = true
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UILayer/GameOver"]
-layout_mode = 0
-offset_left = 53.0
-offset_top = 297.0
-offset_right = 1195.0
-offset_bottom = 533.0
-theme_override_font_sizes/normal_font_size = 180
-text = "KONIEC GRY"
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_4v4ul")
 volume_db = -15.0
 script = ExtResource("7_2py8p")
+
+[node name="Asteroid3" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
+position = Vector2(-512, -712)
 
 [node name="Asteroid2" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
 position = Vector2(-271, -576)
@@ -323,7 +298,7 @@ position = Vector2(-271, -576)
 [node name="ScoutWrapper" type="Node2D" parent="."]
 
 [node name="Enemy" parent="ScoutWrapper" instance=ExtResource("8_eg7m5")]
-position = Vector2(-1548, 728)
+position = Vector2(-1036, 474)
 
 [node name="AnimatedSprite2D" parent="ScoutWrapper/Enemy" index="2"]
 animation = &"go"
@@ -343,10 +318,10 @@ step = 1.0
 script = ExtResource("7_yd4hr")
 
 [node name="Asteroid4" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
-position = Vector2(447, -298)
+position = Vector2(229, -159)
 
 [node name="Asteroid5" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
-position = Vector2(-164, 173)
+position = Vector2(-71, 78)
 
 [node name="Asteroid6" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
 position = Vector2(124, 87)
@@ -361,10 +336,10 @@ position = Vector2(-159, -143)
 position = Vector2(-370, 1)
 
 [node name="Asteroid10" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
-position = Vector2(-398, 301)
+position = Vector2(-182, 244)
 
 [node name="Asteroid11" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
-position = Vector2(-553, -1330)
+position = Vector2(-310, -217)
 
 [node name="Asteroid12" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
 position = Vector2(172, 211)
@@ -381,8 +356,7 @@ script = ExtResource("7_yd4hr")
 metadata/_edit_use_anchors_ = true
 
 [node name="Enemy" type="RigidBody2D" parent="FighterWrapper"]
-position = Vector2(-1104, -993)
-rotation = -3.6809
+position = Vector2(-1075, -1339)
 gravity_scale = 0.0
 script = ExtResource("8_5goye")
 projectile = ExtResource("10_84l2h")
@@ -420,7 +394,6 @@ attenuation = 4.92458
 position = Vector2(-1428, -1896)
 mass = 10000.0
 gravity_scale = 0.0
-script = SubResource("GDScript_noh7b")
 
 [node name="Sprite2D" type="Sprite2D" parent="Planet1"]
 texture = ExtResource("20_752u3")
@@ -429,7 +402,7 @@ texture = ExtResource("20_752u3")
 shape = SubResource("CircleShape2D_1baji")
 
 [node name="Asteroid2_1" type="RigidBody2D" parent="."]
-position = Vector2(56, -336)
+position = Vector2(40, -180)
 mass = 20.0
 gravity_scale = 0.0
 
@@ -484,7 +457,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_4igrx")
 
 [node name="Asteroid2_5" type="RigidBody2D" parent="."]
-position = Vector2(-1319, -1227)
+position = Vector2(-493, -522)
 rotation = -0.427606
 mass = 20.0
 gravity_scale = 0.0
@@ -498,231 +471,22 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_4igrx")
 
 [node name="FishItem" parent="." instance=ExtResource("8_m73i2")]
-position = Vector2(-1336, -1260)
+position = Vector2(126, -99)
+
+[node name="FishItem2" parent="." instance=ExtResource("8_m73i2")]
+position = Vector2(185, 42)
 
 [node name="CoinItem" parent="." instance=ExtResource("9_4aeqo")]
 position = Vector2(-118, 52)
 
 [node name="QuestCat" parent="." instance=ExtResource("16_nwhr7")]
-position = Vector2(-155, -146)
+position = Vector2(-132, -128)
 script = ExtResource("22_y2kxv")
 
 [node name="Cat" parent="." instance=ExtResource("16_nwhr7")]
-position = Vector2(-1787, -1568)
-
-[node name="Asteroid2_6" type="RigidBody2D" parent="."]
-position = Vector2(-197, -395)
-rotation = 0.366519
-mass = 20.0
-gravity_scale = 0.0
-
-[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_6"]
-texture = ExtResource("21_eixka")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_6"]
-position = Vector2(0, 1)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_4igrx")
-
-[node name="Asteroid2_7" type="RigidBody2D" parent="."]
-position = Vector2(-819, -417)
-rotation = 0.366519
-mass = 20.0
-gravity_scale = 0.0
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_7"]
-texture = ExtResource("21_eixka")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_7"]
-position = Vector2(0, 1)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_4igrx")
-
-[node name="Asteroid2_8" type="RigidBody2D" parent="."]
-position = Vector2(-1197, -172)
-rotation = 1.25664
-mass = 20.0
-gravity_scale = 0.0
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_8"]
-texture = ExtResource("21_eixka")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_8"]
-position = Vector2(0, 1)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_4igrx")
-
-[node name="Asteroid2_9" type="RigidBody2D" parent="."]
-position = Vector2(-578, -785)
-rotation = -3.44004
-mass = 20.0
-gravity_scale = 0.0
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_9"]
-texture = ExtResource("21_eixka")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_9"]
-position = Vector2(0, 1)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_4igrx")
-
-[node name="Asteroid13" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
-position = Vector2(-465, -608)
-
-[node name="Asteroid14" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
-position = Vector2(-418, -1101)
-rotation = 0.00591633
-
-[node name="Asteroid15" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
-position = Vector2(-1016, -629)
-
-[node name="Asteroid2_10" type="RigidBody2D" parent="."]
-position = Vector2(-1336, -782)
-rotation = -6.28319
-mass = 20.0
-gravity_scale = 0.0
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_10"]
-texture = ExtResource("21_eixka")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_10"]
-position = Vector2(0, 1)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_4igrx")
-
-[node name="Asteroid2_11" type="RigidBody2D" parent="."]
-position = Vector2(-785, -1454)
-rotation = 5.03004
-mass = 20.0
-gravity_scale = 0.0
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_11"]
-texture = ExtResource("21_eixka")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_11"]
-position = Vector2(0, 1)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_4igrx")
-
-[node name="Asteroid2_12" type="RigidBody2D" parent="."]
-position = Vector2(-1955, -1151)
-rotation = -4.98466
-mass = 20.0
-gravity_scale = 0.0
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_12"]
-texture = ExtResource("21_eixka")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_12"]
-position = Vector2(0, 1)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_4igrx")
-
-[node name="Asteroid16" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
-position = Vector2(-2245, -1482)
-
-[node name="Asteroid17" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
-position = Vector2(-413, -1606)
-
-[node name="Asteroid2_13" type="RigidBody2D" parent="."]
-position = Vector2(-218, -2095)
-rotation = -0.851721
-mass = 20.0
-gravity_scale = 0.0
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_13"]
-texture = ExtResource("21_eixka")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_13"]
-position = Vector2(0, 1)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_4igrx")
-
-[node name="Asteroid18" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
-position = Vector2(-670, -2309)
-
-[node name="Asteroid2_14" type="RigidBody2D" parent="."]
-position = Vector2(-2272, -1979)
-rotation = -0.973894
-mass = 20.0
-gravity_scale = 0.0
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_14"]
-texture = ExtResource("21_eixka")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_14"]
-position = Vector2(0, 1)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_4igrx")
-
-[node name="Asteroid19" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
-position = Vector2(-1554, -410)
-
-[node name="Asteroid2_15" type="RigidBody2D" parent="."]
-position = Vector2(16, -1391)
-rotation = -6.28319
-mass = 20.0
-gravity_scale = 0.0
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_15"]
-texture = ExtResource("21_eixka")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_15"]
-position = Vector2(0, 1)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_4igrx")
-
-[node name="Asteroid2_16" type="RigidBody2D" parent="."]
-position = Vector2(-1154, 70)
-rotation = -4.98466
-mass = 20.0
-gravity_scale = 0.0
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_16"]
-texture = ExtResource("21_eixka")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_16"]
-position = Vector2(0, 1)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_4igrx")
-
-[node name="Asteroid2_17" type="RigidBody2D" parent="."]
-position = Vector2(142, -787)
-rotation = -0.851721
-mass = 20.0
-gravity_scale = 0.0
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_17"]
-texture = ExtResource("21_eixka")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_17"]
-position = Vector2(0, 1)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_4igrx")
-
-[node name="Asteroid20" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
-position = Vector2(353, -1204)
-
-[node name="Asteroid21" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
-position = Vector2(353, -1204)
-
-[node name="Asteroid22" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
-position = Vector2(-1801, -1013)
-
-[node name="FishItem2" parent="." instance=ExtResource("8_m73i2")]
-position = Vector2(-1995, -1221)
+position = Vector2(103, 79)
 
 [editable path="Spaceship"]
 [editable path="UILayer/Inventory_UI"]
+[editable path="Asteroid3"]
 [editable path="ScoutWrapper/Enemy"]
