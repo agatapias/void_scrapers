@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://dxbb1xjpse0p7"]
+[gd_scene load_steps=27 format=3 uid="uid://dxbb1xjpse0p7"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://scene/player_ship.tscn" id="1_s1wep"]
 [ext_resource type="PackedScene" uid="uid://bmmhib0afegw2" path="res://scene/asteroid.tscn" id="2_i6m1y"]
@@ -6,17 +6,11 @@
 [ext_resource type="AudioStream" uid="uid://byfei1v2i88op" path="res://assets/music/slow-travel.wav" id="6_4v4ul"]
 [ext_resource type="Script" path="res://script/AudioStreamPlayer.gd" id="7_2py8p"]
 [ext_resource type="Script" path="res://script/EnemyHealthBar.gd" id="7_yd4hr"]
-[ext_resource type="Script" path="res://script/Fighter.gd" id="8_5goye"]
 [ext_resource type="PackedScene" uid="uid://c5sx8syk8thbt" path="res://scene/scout.tscn" id="8_eg7m5"]
 [ext_resource type="PackedScene" uid="uid://d1ay3xkpqv1eg" path="res://items/fish_item.tscn" id="8_m73i2"]
 [ext_resource type="PackedScene" uid="uid://daeriaav5p78v" path="res://items/coin_item.tscn" id="9_4aeqo"]
-[ext_resource type="Texture2D" uid="uid://odm3s1085tpb" path="res://assets/sprites/enemies/fighter/fighter_base.png" id="9_nxyhl"]
-[ext_resource type="PackedScene" uid="uid://djt5ahnmfl7hm" path="res://scene/fighter_bullet.tscn" id="10_84l2h"]
-[ext_resource type="Texture2D" uid="uid://dqd6cik3bw6t5" path="res://assets/sprites/enemies/fighter/engines.png" id="10_uxwjc"]
-[ext_resource type="Texture2D" uid="uid://c74odp2op1o2c" path="res://assets/sprites/enemies/fighter/destruction.png" id="13_gi64t"]
 [ext_resource type="AudioStream" uid="uid://12t4jwgja5pq" path="res://assets/sound_effects/fighter_engine.mp3" id="14_mxkqo"]
 [ext_resource type="Script" path="res://script/EngineSoundEffect.gd" id="15_3235v"]
-[ext_resource type="AudioStream" uid="uid://btxf36tq6tkuh" path="res://assets/sound_effects/laser.mp3" id="16_fyqw7"]
 [ext_resource type="PackedScene" uid="uid://bcvaxcx3ca3eq" path="res://shop/cat_character.tscn" id="16_nwhr7"]
 [ext_resource type="Script" path="res://script/Checkpoint.gd" id="19_tsv00"]
 [ext_resource type="Texture2D" uid="uid://c0uje4lrjei3w" path="res://assets/sprites/planets/planet1.png" id="20_752u3"]
@@ -26,175 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://binlpkv1hdrmo" path="res://scene/pretty_asteroid.tscn" id="24_vrgh4"]
 [ext_resource type="PackedScene" uid="uid://cbfse1ej0mvgg" path="res://scene/another_asteroid.tscn" id="25_2t6bf"]
 [ext_resource type="PackedScene" uid="uid://dj4y5srnrw022" path="res://scene/great_asteroid.tscn" id="26_gm2wa"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_rolip"]
-radius = 11.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xh80u"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hga2u"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_74gwe"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_td3ki"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e2sl8"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(256, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k0i7e"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(320, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8uv6r"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(384, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hun31"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(448, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sfotk"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(512, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tnmy6"]
-atlas = ExtResource("10_uxwjc")
-region = Rect2(576, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_o1r7x"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xh80u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hga2u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_74gwe")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_td3ki")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e2sl8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k0i7e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8uv6r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hun31")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sfotk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tnmy6")
-}],
-"loop": true,
-"name": &"engines",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"none",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4uuvl"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5b8do"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ecgkg"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k24gp"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ijhag"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(256, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rtt5f"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(320, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mvpss"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(384, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1yqof"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(448, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8af2e"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(512, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ffb7"]
-atlas = ExtResource("13_gi64t")
-region = Rect2(576, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ua382"]
-animations = [{
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4uuvl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5b8do")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ecgkg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k24gp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ijhag")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rtt5f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mvpss")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1yqof")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8af2e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5ffb7")
-}],
-"loop": true,
-"name": &"destruction",
-"speed": 10.0
-}]
+[ext_resource type="PackedScene" uid="uid://do2q3ueyu1fx6" path="res://scene/diff_asteroid.tscn" id="27_j2p4a"]
+[ext_resource type="PackedScene" uid="uid://clx2c4q05hpbs" path="res://scene/level_transition.tscn" id="28_56pm6"]
 
 [sub_resource type="GDScript" id="GDScript_noh7b"]
 
@@ -284,54 +111,6 @@ position = Vector2(-553, -1330)
 
 [node name="Asteroid12" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
 position = Vector2(172, 211)
-
-[node name="FighterWrapper" type="Node2D" parent="."]
-
-[node name="EnemyHealthBar" type="ProgressBar" parent="FighterWrapper"]
-offset_left = -660.0
-offset_top = 319.0
-offset_right = -619.0
-offset_bottom = 346.0
-step = 1.0
-script = ExtResource("7_yd4hr")
-metadata/_edit_use_anchors_ = true
-
-[node name="Enemy" type="RigidBody2D" parent="FighterWrapper"]
-position = Vector2(-2493, -322)
-rotation = -3.6809
-gravity_scale = 0.0
-script = ExtResource("8_5goye")
-projectile = ExtResource("10_84l2h")
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="FighterWrapper/Enemy"]
-texture = ExtResource("9_nxyhl")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FighterWrapper/Enemy"]
-position = Vector2(0, 2)
-shape = SubResource("CircleShape2D_rolip")
-
-[node name="EngineAnimatedSprite2D" type="AnimatedSprite2D" parent="FighterWrapper/Enemy"]
-position = Vector2(0, 2)
-sprite_frames = SubResource("SpriteFrames_o1r7x")
-animation = &"none"
-
-[node name="GunMarker" type="Marker2D" parent="FighterWrapper/Enemy"]
-position = Vector2(0, -11)
-
-[node name="DestructionAnimatedSprite2D" type="AnimatedSprite2D" parent="FighterWrapper/Enemy"]
-sprite_frames = SubResource("SpriteFrames_ua382")
-
-[node name="EngineAudio" type="AudioStreamPlayer2D" parent="FighterWrapper/Enemy"]
-stream = ExtResource("14_mxkqo")
-volume_db = 5.0
-attenuation = 8.28212
-script = ExtResource("15_3235v")
-
-[node name="LaserSound" type="AudioStreamPlayer2D" parent="FighterWrapper/Enemy"]
-stream = ExtResource("16_fyqw7")
-volume_db = -10.0
-attenuation = 4.92458
 
 [node name="Planet1" type="RigidBody2D" parent="."]
 position = Vector2(-1428, -1896)
@@ -433,9 +212,6 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" parent="QuestCat" index="1"]
 position = Vector2(0, 1)
-
-[node name="Cat" parent="." instance=ExtResource("16_nwhr7")]
-position = Vector2(-2152, 202)
 
 [node name="Asteroid2_6" type="RigidBody2D" parent="."]
 position = Vector2(-131, -446)
@@ -648,7 +424,7 @@ position = Vector2(-282, -861)
 position = Vector2(-1189, -882)
 
 [node name="FishItem2" parent="." instance=ExtResource("8_m73i2")]
-position = Vector2(-2021, -1790)
+position = Vector2(-1965, -1867)
 
 [node name="Asteroid23" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
 position = Vector2(-1394, -1268)
@@ -682,6 +458,11 @@ script = ExtResource("7_yd4hr")
 [node name="PrettyAsteroid" parent="." instance=ExtResource("24_vrgh4")]
 position = Vector2(-341, 235)
 
+[node name="AnotherAsteroid2" parent="." instance=ExtResource("25_2t6bf")]
+position = Vector2(-1199, 1204)
+mass = 500.0
+gravity_scale = 0.0
+
 [node name="AnotherAsteroid" parent="." instance=ExtResource("25_2t6bf")]
 position = Vector2(-370, 626)
 mass = 500.0
@@ -689,6 +470,24 @@ gravity_scale = 0.0
 
 [node name="GreatAsteroid" parent="." instance=ExtResource("26_gm2wa")]
 position = Vector2(-829, 871)
+mass = 500.0
+gravity_scale = 0.0
+
+[node name="DiffAsteroid" parent="." instance=ExtResource("27_j2p4a")]
+position = Vector2(-751, 1533)
+mass = 500.0
+gravity_scale = 0.0
+
+[node name="PrettyAsteroid2" parent="." instance=ExtResource("24_vrgh4")]
+position = Vector2(-1432, 1535)
+
+[node name="GreatAsteroid2" parent="." instance=ExtResource("26_gm2wa")]
+position = Vector2(-1126, 1829)
+mass = 500.0
+gravity_scale = 0.0
+
+[node name="LevelTransition" parent="." instance=ExtResource("28_56pm6")]
+position = Vector2(-1066, 1480)
 
 [connection signal="body_entered" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_entered"]
 [connection signal="body_exited" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_exited"]

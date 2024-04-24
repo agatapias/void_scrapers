@@ -1,12 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1d6h357fuots"]
+[gd_scene load_steps=3 format=3 uid="uid://c1d6h357fuots"]
 
 [ext_resource type="PackedScene" uid="uid://dxbb1xjpse0p7" path="res://scene/main.tscn" id="1_8utpg"]
 [ext_resource type="Script" path="res://SceneManager.gd" id="1_kmj10"]
-[ext_resource type="PackedScene" uid="uid://di0xlol6ep6vt" path="res://scene/main_2.tscn" id="3_ptr57"]
 
 [node name="SceneManager" type="Node"]
 script = ExtResource("1_kmj10")
 scenes = {
-"Main": ExtResource("1_8utpg"),
-"Main2": ExtResource("3_ptr57")
+"Main": ExtResource("1_8utpg")
 }
