@@ -7,6 +7,7 @@ const MAX_ITEMS = 12
 signal update
 signal open
 signal cannotBuy
+signal itemUsed
 
 @export var items: Array[InventoryItem]
 @export var money: int
@@ -45,8 +46,6 @@ func canSubtractCoins(amount: int):
 		return true
 	
 func removeItem(index):
-	print("removeItem called at index:")
-	print(index)
 	items[index] = null
 	update.emit()
 	
@@ -65,7 +64,6 @@ func buyItem(item, cost):
 	subtractCoins(cost)
 	return true
 	
-	
 func removeByName(name):
 	var item = items.filter(func(item): return item != null and item.name == name)
 	if item == []:
@@ -74,3 +72,5 @@ func removeByName(name):
 	removeItem(index)
 	return item
 
+func useItem(index):
+	itemUsed.emit(items[index])

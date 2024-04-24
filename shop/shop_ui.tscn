@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfwanik2mf7ch"]
+[gd_scene load_steps=8 format=3 uid="uid://dfwanik2mf7ch"]
 
 [ext_resource type="Texture2D" uid="uid://dpbmgeg2l51v1" path="res://assets/sprites/inventory/inventory_background.png" id="1_f42wk"]
 [ext_resource type="Script" path="res://shop/shop_ui.gd" id="1_fvmkd"]
 [ext_resource type="PackedScene" uid="uid://f8mkn4t1tykv" path="res://inventory/inventory_slot_ui.tscn" id="2_r43s5"]
-[ext_resource type="Script" path="res://inventory/drop_button_ui.gd" id="3_8xibh"]
 [ext_resource type="Texture2D" uid="uid://coajmjvwva2sy" path="res://assets/sprites/inventory/drop-button.png" id="4_r6l5q"]
 [ext_resource type="Script" path="res://inventory/action_button_ui.gd" id="5_74k06"]
 [ext_resource type="Texture2D" uid="uid://b1qbdf8jelji6" path="res://assets/sprites/Meow-Knight-alone.png" id="7_f1gpy"]
@@ -129,7 +128,7 @@ offset_left = 124.0
 offset_top = 93.0
 offset_right = 150.0
 offset_bottom = 101.0
-script = ExtResource("3_8xibh")
+script = ExtResource("5_74k06")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/DropButton"]

@@ -5,6 +5,7 @@ extends Control
 @onready var coinsLabel: Label = $NinePatchRect/CoinAmount
 @onready var itemNameLabel: Label = $NinePatchRect/ItemName
 @onready var dropButton: Button = $NinePatchRect/DropButton
+@onready var useButton: Button = $NinePatchRect/UseButton
 
 var isOpen = false
 var selectedSlotIndex = null
@@ -14,7 +15,8 @@ func _ready():
 	connectSlots()
 	inventory.update.connect(updateSlots)
 	inventory.open.connect(open)
-	dropButton.removeItem.connect(onDropButtonClicked)
+	dropButton.buttonPressed.connect(onDropButtonClicked)
+	useButton.buttonPressed.connect(onUseButtonClicked)
 	unselect()
 	prepareSlots()
 	updateSlots()
@@ -61,7 +63,12 @@ func onSlotClicked(item, index):
 	updateSlots()
 	
 func onDropButtonClicked():
-	print("onDropButtonClicked called")
+	inventory.removeItem(selectedSlotIndex)
+	unselect()
+	updateSlots()
+	
+func onUseButtonClicked():
+	inventory.useItem(selectedSlotIndex)
 	inventory.removeItem(selectedSlotIndex)
 	unselect()
 	updateSlots()

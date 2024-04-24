@@ -12,10 +12,10 @@
 [ext_resource type="Script" path="res://script/EnemyHealthBar.gd" id="7_yd4hr"]
 [ext_resource type="Script" path="res://script/Fighter.gd" id="8_5goye"]
 [ext_resource type="PackedScene" uid="uid://c5sx8syk8thbt" path="res://scene/scout.tscn" id="8_eg7m5"]
-[ext_resource type="PackedScene" uid="uid://d1ay3xkpqv1eg" path="res://items/fish_item.tscn" id="8_m73i2"]
+[ext_resource type="PackedScene" uid="uid://d1ay3xkpqv1eg" path="res://scene/fish_item.tscn" id="8_m73i2"]
 [ext_resource type="Script" path="res://script/GameOverAudio.gd" id="8_pa5ft"]
 [ext_resource type="AudioStream" uid="uid://da6fwqmpcsn5t" path="res://assets/sound_effects/game_saved.mp3" id="8_ug8p2"]
-[ext_resource type="PackedScene" uid="uid://daeriaav5p78v" path="res://items/coin_item.tscn" id="9_4aeqo"]
+[ext_resource type="PackedScene" uid="uid://daeriaav5p78v" path="res://scene/coin_item.tscn" id="9_4aeqo"]
 [ext_resource type="Texture2D" uid="uid://odm3s1085tpb" path="res://assets/sprites/enemies/fighter/fighter_base.png" id="9_nxyhl"]
 [ext_resource type="PackedScene" uid="uid://djt5ahnmfl7hm" path="res://scene/fighter_bullet.tscn" id="10_84l2h"]
 [ext_resource type="Texture2D" uid="uid://dqd6cik3bw6t5" path="res://assets/sprites/enemies/fighter/engines.png" id="10_uxwjc"]
@@ -272,12 +272,6 @@ offset_bottom = -143.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
-
-[node name="UseButton" parent="UILayer/Inventory_UI/NinePatchRect" index="5"]
-layout_mode = 0
-
-[node name="DropButton" parent="UILayer/Inventory_UI/NinePatchRect" index="6"]
-layout_mode = 0
 
 [node name="InteractionAlert" type="Control" parent="UILayer"]
 visible = false

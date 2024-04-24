@@ -25,10 +25,10 @@ func _ready():
 	
 	var callable1 = Callable(setState)
 	
-	dropButton.removeItem.connect(onDropButtonClicked)
-	actionButton.sellItem.connect(onActionClicked)
-	sellButton.sellItem.connect(callable1.bind("Selling"))
-	buyButton.sellItem.connect(callable1.bind("Buying"))
+	dropButton.buttonPressed.connect(onDropButtonClicked)
+	actionButton.buttonPressed.connect(onActionClicked)
+	sellButton.buttonPressed.connect(callable1.bind("Selling"))
+	buyButton.buttonPressed.connect(callable1.bind("Buying"))
 	shop.open.connect(open)
 	
 	unselect()

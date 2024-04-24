@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://d1ay3xkpqv1eg"]
 
-[ext_resource type="Script" path="res://scene/fish_item.gd" id="1_yb45v"]
-[ext_resource type="Resource" uid="uid://bceag5vec0e6i" path="res://inventory/fish_item.tres" id="2_78u3h"]
+[ext_resource type="Script" path="res://items/fish_item.gd" id="1_yb45v"]
+[ext_resource type="Resource" uid="uid://bceag5vec0e6i" path="res://items/fish_item.tres" id="2_3ejkq"]
 [ext_resource type="Texture2D" uid="uid://d4htrs7ae43fn" path="res://assets/sprites/items/fish1/16bit-fish-angelfish-flame1.png" id="3_hvtat"]
 [ext_resource type="Texture2D" uid="uid://cabvjgk7v2d4w" path="res://assets/sprites/items/fish1/16bit-fish-angelfish-flame2.png" id="4_pfwds"]
 
@@ -25,7 +25,7 @@ height = 28.0
 
 [node name="FishItem" type="Area2D"]
 script = ExtResource("1_yb45v")
-item = ExtResource("2_78u3h")
+item = ExtResource("2_3ejkq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
