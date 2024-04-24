@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://di0xlol6ep6vt"]
+[gd_scene load_steps=51 format=3 uid="uid://di0xlol6ep6vt"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://scene/player_ship.tscn" id="1_dlvmg"]
 [ext_resource type="PackedScene" uid="uid://sskn7og6uw6y" path="res://scene/ui_layer.tscn" id="2_g14c0"]
@@ -21,6 +21,8 @@
 [ext_resource type="AudioStream" uid="uid://btxf36tq6tkuh" path="res://assets/sound_effects/laser.mp3" id="19_rdp5c"]
 [ext_resource type="PackedScene" uid="uid://daeriaav5p78v" path="res://items/coin_item.tscn" id="20_h5q0k"]
 [ext_resource type="PackedScene" uid="uid://dj4y5srnrw022" path="res://scene/great_asteroid.tscn" id="21_7fylw"]
+[ext_resource type="Texture2D" uid="uid://1silxs3g2tq5" path="res://assets/sprites/planets/Planet3.png" id="22_owls1"]
+[ext_resource type="Script" path="res://script/Checkpoint.gd" id="23_2sw72"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t2xdx"]
 radius = 12.0
@@ -194,6 +196,14 @@ animations = [{
 "name": &"destruction",
 "speed": 10.0
 }]
+
+[sub_resource type="GDScript" id="GDScript_rajc4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5qa0t"]
+radius = 502.036
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1vf84"]
+radius = 689.0
 
 [node name="Main2" type="Node"]
 
@@ -821,6 +831,28 @@ script = ExtResource("18_h1nl0")
 stream = ExtResource("19_rdp5c")
 volume_db = -10.0
 attenuation = 4.92458
+
+[node name="Planet1" type="RigidBody2D" parent="."]
+position = Vector2(-789, 304)
+mass = 10000.0
+gravity_scale = 0.0
+script = SubResource("GDScript_rajc4")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Planet1"]
+texture = ExtResource("22_owls1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planet1"]
+shape = SubResource("CircleShape2D_5qa0t")
+
+[node name="Checkpoint" type="Area2D" parent="Planet1"]
+script = ExtResource("23_2sw72")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planet1/Checkpoint"]
+shape = SubResource("CircleShape2D_1vf84")
+
+[connection signal="body_entered" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_entered"]
+[connection signal="body_exited" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_exited"]
 
 [editable path="UILayer"]
 [editable path="UILayer/Inventory_UI"]
