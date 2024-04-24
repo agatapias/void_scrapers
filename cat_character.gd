@@ -14,7 +14,7 @@ var interactionAlert
 signal merchant
 
 func _ready():
-	interactionAlert = get_node('/root/Main/UILayer/InteractionAlert')
+	interactionAlert = get_node('../UILayer/InteractionAlert')
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

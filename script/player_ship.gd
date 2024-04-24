@@ -38,8 +38,8 @@ func _input(event):
 func _physics_process(delta):
 	_frames_since_last_increment += 1
 	if _health <= 0:
-		var game_over = get_node("/root/Main/UILayer/GameOver")
-		var game_over_audio = get_node("/root/Main/UILayer/GameOverAudio")
+		var game_over = get_node("../UILayer/GameOver")
+		var game_over_audio = get_node("../UILayer/GameOverAudio")
 		game_over_audio.play()
 		get_tree().paused = true
 		game_over.visible = true
@@ -77,7 +77,7 @@ func _on_body_entered(body):
 	
 func set_health(health):
 	_health = clamp(health, MIN_HEALTH, MAX_HEALTH)
-	var health_bar = get_node("/root/Main/UILayer/HealthBar")
+	var health_bar = get_node("../UILayer/HealthBar")
 	health_bar.value = _health
 
 func get_damage(damage):
@@ -101,7 +101,7 @@ func collect_coin(item):
 	
 func save_checkpoint(_level):
 	checkpoint = {pos = position, level = _level} 
-	var saveAudio = get_node("/root/Main/UILayer/GameSavedAudio")
+	var saveAudio = get_node("../UILayer/GameSavedAudio")
 	saveAudio.play()
 	
 func restore():

@@ -8,8 +8,8 @@ var isSpaceshipNear = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	alert = get_node('/root/Main/UILayer/CheckpointAlert')
-	spaceship = get_node('/root/Main/Spaceship')
+	alert = get_node('../../UILayer/CheckpointAlert')
+	spaceship = get_node('../../Spaceship')
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
