@@ -1,7 +1,7 @@
 [gd_scene load_steps=46 format=3 uid="uid://di0xlol6ep6vt"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://scene/player_ship.tscn" id="1_dlvmg"]
-[ext_resource type="PackedScene" uid="uid://b2ea7gi1pgtmg" path="res://scene/ui_layer.tscn" id="2_g14c0"]
+[ext_resource type="PackedScene" uid="uid://sskn7og6uw6y" path="res://scene/ui_layer.tscn" id="2_g14c0"]
 [ext_resource type="AudioStream" uid="uid://byfei1v2i88op" path="res://assets/music/slow-travel.wav" id="3_7f8su"]
 [ext_resource type="Script" path="res://script/AudioStreamPlayer.gd" id="4_hemc2"]
 [ext_resource type="Texture2D" uid="uid://6f6wrv4tdlw1" path="res://assets/background/Space Background 2.png" id="5_0uyxl"]

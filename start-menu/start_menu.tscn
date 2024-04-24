@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqd7kyecaiv1m"]
+
+[ext_resource type="Script" path="res://start-menu/start_menu.gd" id="1_l350f"]
+[ext_resource type="Texture2D" uid="uid://b5fvqwytc5hbw" path="res://assets/background/space-background-start-game.png" id="1_rvrdn"]
+[ext_resource type="Script" path="res://inventory/action_button_ui.gd" id="1_wqlj1"]
+[ext_resource type="Theme" uid="uid://dhcqxplhe4q0" path="res://style/exit-button-style.tres" id="3_32uhd"]
+[ext_resource type="Theme" uid="uid://nhqxbkatu3bw" path="res://style/start-button-style.tres" id="3_u1l80"]
+[ext_resource type="Theme" uid="uid://cq7sjd5qjs7e0" path="res://style/game-title-style.tres" id="6_maqdt"]
+
+[node name="StartMenu" type="Node2D"]
+script = ExtResource("1_l350f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(582, 392)
+scale = Vector2(0.981875, 0.981875)
+texture = ExtResource("1_rvrdn")
+
+[node name="ContinueButton" type="Button" parent="."]
+self_modulate = Color(0.568627, 0.462745, 1, 1)
+offset_left = 206.0
+offset_top = 462.0
+offset_right = 504.0
+offset_bottom = 531.0
+theme = ExtResource("3_u1l80")
+text = "Graj"
+script = ExtResource("1_wqlj1")
+
+[node name="ExitButton" type="Button" parent="."]
+self_modulate = Color(0.568627, 0.462745, 1, 1)
+offset_left = 227.0
+offset_top = 565.0
+offset_right = 475.0
+offset_bottom = 618.0
+theme = ExtResource("3_32uhd")
+text = "Wyjdź z gry"
+script = ExtResource("1_wqlj1")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+texture_repeat = 1
+offset_left = 145.0
+offset_top = 266.0
+offset_right = 672.0
+offset_bottom = 376.0
+theme = ExtResource("6_maqdt")
+text = "Void Scrapers"
+
+[connection signal="pressed" from="ContinueButton" to="ContinueButton" method="_on_pressed"]
+[connection signal="pressed" from="ExitButton" to="ExitButton" method="_on_pressed"]

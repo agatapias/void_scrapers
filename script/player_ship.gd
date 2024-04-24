@@ -108,7 +108,7 @@ func collect(item):
 	inventory.insert(item)
 
 func collect_coin(item):
-	inventory.addCoins(item)
+	inventory.addCoins(item.amount)
 	
 func save_checkpoint(_level):
 	checkpoint = {pos = position, level = _level} 
@@ -122,8 +122,11 @@ func restore():
 	reset_state = true
 	
 func equipGun(gun):
+	print("gun equipped")
 	gunEquipped = gun
 	$WeaponSprite.visible = true
 
 func itemUsed(item):
-	item.use(self)
+	match item.idName:
+		"LaserGun": equipGun(item.idName)
+		"Fish": restore_health(10)

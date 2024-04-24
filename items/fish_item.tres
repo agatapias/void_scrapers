@@ -5,7 +5,8 @@
 
 [resource]
 script = ExtResource("1_7owfo")
-name = "Fish"
+name = "Ryber"
+idName = "Fish"
 description = "zwyczajna kosmiczna ryba, nie ucieka i nikogo się nie boi; przyrwaca trochycia"
 texture = ExtResource("2_aiiu6")
 amount = 50

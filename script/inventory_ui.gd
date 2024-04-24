@@ -7,6 +7,9 @@ extends Control
 @onready var dropButton: Button = $NinePatchRect/DropButton
 @onready var useButton: Button = $NinePatchRect/UseButton
 
+@onready var pause_ui: Control = get_node("../Inventory_UI")
+@onready var shop_ui: Control = get_node("../Shop_UI")
+
 var isOpen = false
 var selectedSlotIndex = null
 

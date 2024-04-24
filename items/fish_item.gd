@@ -3,6 +3,7 @@ extends Area2D
 @export var item: InventoryItem
 
 func _ready():
+	item.item_used.connect(use)
 	$AnimatedSprite2D.play()
 
 func _on_body_entered(body):
@@ -11,4 +12,4 @@ func _on_body_entered(body):
 		queue_free()
 
 func use(player):
-	player.restore_health(10)
+	player.equipGun(10)
