@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=2 format=3 uid="uid://d4l2f2666rhq3"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=4 format=3 uid="uid://d4l2f2666rhq3"]
 
 [ext_resource type="Script" path="res://script/inventory.gd" id="1_7komr"]
+[ext_resource type="Resource" uid="uid://jbjntmrtrd1l" path="res://items/laser-gun-item.tres" id="1_trg0u"]
+[ext_resource type="Resource" uid="uid://bceag5vec0e6i" path="res://items/fish_item.tres" id="2_3tnsa"]
 
 [resource]
 script = ExtResource("1_7komr")
-items = Array[Resource("res://script/inventory_item.gd")]([null, null, null, null, null, null, null, null, null, null, null, null])
+items = Array[Resource("res://script/inventory_item.gd")]([ExtResource("1_trg0u"), ExtResource("2_3tnsa"), null, null, null, null, null, null, null, null, null, null])
 money = 1000

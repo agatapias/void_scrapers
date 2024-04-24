@@ -1,6 +1,6 @@
 extends Button
 
-signal sellItem
+signal buttonPressed
 
 func _on_pressed():
-	sellItem.emit()
+	buttonPressed.emit()

@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+class_name Spaceship
+
 const MAX_HEALTH = 100
 const MIN_HEALTH = 0
 const INCREMENT_INTERVAL = 10
@@ -21,11 +23,16 @@ var checkpoint = {
 
 @onready var leftGunMarker = $LeftGunMarker
 
+var gunEquipped: String = "none"  # "none" "LaserGun" "BombGun"
+
 func _ready():
 	contact_monitor = true
 	max_contacts_reported = 10000
 	connect("body_entered", _on_body_entered)
 	set_health(MAX_HEALTH)
+	inventory.itemUsed.connect(itemUsed)
+	
+	$WeaponSprite.visible = false
 
 func _input(event):
 	if event is InputEventKey:
@@ -69,12 +76,14 @@ func _integrate_forces(state):
 	if linear_velocity.length() > 50:
 		state.linear_velocity = state.linear_velocity.limit_length(200)
 		
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") && gunEquipped != "none":
 		shoot()
 
 func _on_body_entered(body):
 	get_damage(10)
 	
+	
+# Health
 func set_health(health):
 	_health = clamp(health, MIN_HEALTH, MAX_HEALTH)
 	var health_bar = get_node("../UILayer/HealthBar")
@@ -86,6 +95,8 @@ func get_damage(damage):
 func restore_health(health_points):
 	set_health(_health + health_points)
 	
+
+# Actions
 func shoot():
 	var bullet = projectile.instantiate()
 	owner.add_child(bullet)
@@ -109,4 +120,10 @@ func restore():
 	linear_velocity = Vector2.ZERO
 	angular_velocity = 0
 	reset_state = true
+	
+func equipGun(gun):
+	gunEquipped = gun
+	$WeaponSprite.visible = true
 
+func itemUsed(item):
+	item.use(self)

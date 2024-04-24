@@ -5,7 +5,7 @@ extends Control
 @onready var coinsLabel: Label = $NinePatchRect/CoinAmount
 @onready var itemNameLabel: Label = $NinePatchRect/ItemName
 @onready var dropButton: Button = $NinePatchRect/DropButton
-@onready var actionButton: Button = $NinePatchRect/ActionButton
+@onready var useButton: Button = $NinePatchRect/UseButton
 
 var isOpen = false
 var selectedSlotIndex = null
@@ -15,8 +15,9 @@ func _ready():
 	connectSlots()
 	inventory.update.connect(updateSlots)
 	inventory.open.connect(open)
-	dropButton.removeItem.connect(onDropButtonClicked)
-	actionButton.sellItem.connect(onSellClicked)
+	dropButton.buttonPressed.connect(onDropButtonClicked)
+	useButton.buttonPressed.connect(onUseButtonClicked)
+	unselect()
 	prepareSlots()
 	updateSlots()
 	close()
@@ -27,18 +28,6 @@ func _process(delta):
 		else: open()
 	if Input.is_action_just_pressed("escape"):
 		close()
-	
-	if selectedSlotIndex != null && dropButton.visible == false:
-		dropButton.visible = true
-		if inventory.isSelling && actionButton.visible == false:
-			actionButton.visible = true	
-	elif selectedSlotIndex == null && dropButton.visible == true:
-		dropButton.visible = false
-		if inventory.isSelling && actionButton.visible == true:
-			actionButton.visible = false
-	
-	if !inventory.isSelling && actionButton.visible == true:
-		actionButton.visible = false
 	
 func connectSlots():
 	for slot in slots:
@@ -60,31 +49,30 @@ func close():
 	isOpen = false
 	
 func open():
+	unselect()
 	visible = true
 	isOpen = true
 	
 func onSlotClicked(item, index):
-	print("onSlotClicked, item:")
 	if item == null:
-		print("null")
-		selectedSlotIndex = null
-		itemNameLabel.text = ""
+		unselect()
 	else:
-		print(item.name)
-		#var index = inventory.items.find(item)
-		#print("found index: " + str(index))
 		selectedSlotIndex = index
 		itemNameLabel.text = item.name + " - " + str(item.amount) + " coins"
 		itemNameLabel.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	updateSlots()
 	
 func onDropButtonClicked():
-	print("onDropButtonClicked called")
 	inventory.removeItem(selectedSlotIndex)
-	selectedSlotIndex = null
+	unselect()
+	updateSlots()
 	
-func onSellClicked():
-	print("onSellClicked called")
-	inventory.sellItem(selectedSlotIndex)
-	selectedSlotIndex = null
+func onUseButtonClicked():
+	inventory.useItem(selectedSlotIndex)
+	inventory.removeItem(selectedSlotIndex)
+	unselect()
+	updateSlots()
 	
+func unselect():
+	selectedSlotIndex = null
+	itemNameLabel.text = ""
