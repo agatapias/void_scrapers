@@ -6,5 +6,9 @@
 [resource]
 script = ExtResource("1_3dym6")
 name = "Coin"
+idName = "Coin"
+description = ""
 texture = ExtResource("2_j2ott")
 amount = 1
+buyingCost = 1
+rarity = "Common"

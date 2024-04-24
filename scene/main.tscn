@@ -275,9 +275,27 @@ scale = Vector2(5, 5)
 
 [node name="UseButton" parent="UILayer/Inventory_UI/NinePatchRect" index="5"]
 layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 51.0
+offset_top = 92.0
+offset_right = 159.0
+offset_bottom = 123.0
 
 [node name="DropButton" parent="UILayer/Inventory_UI/NinePatchRect" index="6"]
 layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 85.4
+offset_top = 92.2
+offset_right = 193.4
+offset_bottom = 123.2
 
 [node name="InteractionAlert" type="Control" parent="UILayer"]
 visible = false

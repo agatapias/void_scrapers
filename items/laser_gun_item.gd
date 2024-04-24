@@ -4,7 +4,7 @@ extends Area2D
 
 func _ready():
 	item.item_used.connect(use)
-	$AnimatedSprite2D.play()
+	#$AnimatedSprite2D.play()
 
 func _on_body_entered(body):
 	if body.is_in_group("Spaceship"):
@@ -12,4 +12,4 @@ func _on_body_entered(body):
 		queue_free()
 
 func use(player):
-	player.equipGun(10)
+	player.equipGun(item.name)

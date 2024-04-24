@@ -6,7 +6,9 @@
 [resource]
 script = ExtResource("1_qyd21")
 name = "Broń laserowa"
+idName = "LaserGun"
 description = "posiada dwa źródła mocy, jest szybka i pozwala na zwinne ataki"
 texture = ExtResource("2_lsiil")
 amount = 200
-buyingCost = 300
+buyingCost = 1
+rarity = "Common"
