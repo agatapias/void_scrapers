@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://do2q3ueyu1fx6"]
+
+[ext_resource type="Texture2D" uid="uid://b8m7ofgagclx1" path="res://assets/sprites/asteroid8.png" id="1_n8gyf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_870ds"]
+radius = 67.0
+height = 164.0
+
+[node name="DiffAsteroid" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.551429, 0.545714)
+texture = ExtResource("1_n8gyf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, -14)
+shape = SubResource("CapsuleShape2D_870ds")

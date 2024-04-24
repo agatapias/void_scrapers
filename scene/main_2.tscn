@@ -1,144 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://di0xlol6ep6vt"]
+[gd_scene load_steps=5 format=3 uid="uid://di0xlol6ep6vt"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://scene/player_ship.tscn" id="1_dlvmg"]
-[ext_resource type="PackedScene" uid="uid://dfwanik2mf7ch" path="res://shop/shop_ui.tscn" id="2_njq2i"]
-[ext_resource type="PackedScene" uid="uid://dlalcgyycgn7f" path="res://inventory/inventory_ui.tscn" id="3_euoks"]
-[ext_resource type="Script" path="res://script/Restart.gd" id="4_0ft2g"]
-[ext_resource type="AudioStream" uid="uid://cn3vlf5yu313l" path="res://assets/sound_effects/game_over.mp3" id="5_ff2v7"]
-[ext_resource type="Script" path="res://script/GameOverAudio.gd" id="6_wc5uj"]
-[ext_resource type="AudioStream" uid="uid://da6fwqmpcsn5t" path="res://assets/sound_effects/game_saved.mp3" id="7_8p7jh"]
-
-[sub_resource type="Theme" id="Theme_s71vb"]
+[ext_resource type="PackedScene" uid="uid://b2ea7gi1pgtmg" path="res://scene/ui_layer.tscn" id="2_g14c0"]
+[ext_resource type="AudioStream" uid="uid://byfei1v2i88op" path="res://assets/music/slow-travel.wav" id="3_7f8su"]
+[ext_resource type="Script" path="res://script/AudioStreamPlayer.gd" id="4_hemc2"]
 
 [node name="Main2" type="Node"]
 
 [node name="Spaceship" parent="." instance=ExtResource("1_dlvmg")]
 
-[node name="UILayer" type="CanvasLayer" parent="."]
+[node name="UILayer" parent="." instance=ExtResource("2_g14c0")]
 
-[node name="ShopUi" parent="UILayer" instance=ExtResource("2_njq2i")]
-offset_left = 188.0
-offset_top = 138.0
-offset_right = 228.0
-offset_bottom = 178.0
-scale = Vector2(5, 5)
-
-[node name="HealthBar" type="ProgressBar" parent="UILayer"]
-offset_left = 922.0
-offset_top = 731.0
-offset_right = 1135.0
-offset_bottom = 758.0
-theme = SubResource("Theme_s71vb")
-step = 1.0
-
-[node name="Inventory_UI" parent="UILayer" instance=ExtResource("3_euoks")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -390.0
-offset_top = -251.0
-offset_right = -231.0
-offset_bottom = -143.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(5, 5)
-
-[node name="UseButton" parent="UILayer/Inventory_UI/NinePatchRect" index="5"]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 108.0
-offset_bottom = 31.0
-
-[node name="DropButton" parent="UILayer/Inventory_UI/NinePatchRect" index="6"]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 108.0
-offset_bottom = 31.0
-
-[node name="InteractionAlert" type="Control" parent="UILayer"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Text" type="RichTextLabel" parent="UILayer/InteractionAlert"]
-layout_mode = 0
-offset_left = 457.0
-offset_top = 660.0
-offset_right = 744.0
-offset_bottom = 700.0
-text = "Naciśnij E, żeby wejść w interakcję"
-scroll_active = false
-
-[node name="Dialog" type="Control" parent="UILayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Text" type="RichTextLabel" parent="UILayer/Dialog"]
-layout_mode = 0
-offset_left = 212.0
-offset_top = 660.0
-offset_right = 953.0
-offset_bottom = 775.0
-scroll_active = false
-
-[node name="GameOver" type="ColorRect" parent="UILayer"]
-visible = false
-offset_left = -5.0
-offset_top = -5.0
-offset_right = 1188.0
-offset_bottom = 784.0
-color = Color(0, 0, 0, 1)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UILayer/GameOver"]
-layout_mode = 0
-offset_left = 53.0
-offset_top = 297.0
-offset_right = 1195.0
-offset_bottom = 533.0
-theme_override_font_sizes/normal_font_size = 180
-text = "KONIEC GRY"
-
-[node name="Restart" type="Button" parent="UILayer/GameOver"]
-layout_mode = 0
-offset_left = 503.0
-offset_top = 585.0
-offset_right = 708.0
-offset_bottom = 645.0
-text = "Wznów grę"
-script = ExtResource("4_0ft2g")
-
-[node name="CheckpointAlert" type="Control" parent="UILayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 9.0
-offset_top = -627.0
-offset_right = 49.0
-offset_bottom = -587.0
-metadata/_edit_group_ = true
-
-[node name="Text" type="RichTextLabel" parent="UILayer/CheckpointAlert"]
-layout_mode = 0
-offset_left = 457.0
-offset_top = 660.0
-offset_right = 744.0
-offset_bottom = 761.0
-text = "Jesteś w pobliżu przyjaznej planety. Naciśnij O, żeby ustawić tutaj swój punkt wznowienia gry."
-scroll_active = false
-
-[node name="GameOverAudio" type="AudioStreamPlayer" parent="UILayer"]
-stream = ExtResource("5_ff2v7")
-script = ExtResource("6_wc5uj")
-
-[node name="GameSavedAudio" type="AudioStreamPlayer" parent="UILayer"]
-stream = ExtResource("7_8p7jh")
-volume_db = -11.243
-
-[editable path="UILayer/Inventory_UI"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7f8su")
+volume_db = -15.0
+script = ExtResource("4_hemc2")

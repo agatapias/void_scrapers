@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://binlpkv1hdrmo"]
+
+[ext_resource type="Texture2D" uid="uid://nq32g4j6y76h" path="res://assets/sprites/asteroid5.png" id="1_ob7mr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fb35q"]
+radius = 57.3822
+height = 177.189
+
+[node name="PrettyAsteroid" type="RigidBody2D"]
+mass = 200.0
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.638571, 0.532857)
+texture = ExtResource("1_ob7mr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, -2)
+rotation = -0.837758
+shape = SubResource("CapsuleShape2D_fb35q")
