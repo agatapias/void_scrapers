@@ -1,6 +1,7 @@
 extends Control
 
-@onready var inventory_ui: Control = $UILayer/Inventory_UI
+@onready var inventory_ui: Control = get_node("../Inventory_UI")
+@onready var shop_ui: Control = get_node("../Shop_UI")
 
 var isOpen = false
 
@@ -26,7 +27,8 @@ func close():
 	isOpen = false
 	
 func open():
-	#inventory_ui.close()
+	inventory_ui.close()
+	shop_ui.close()
 	get_tree().paused = true
 	visible = true
 	isOpen = true
