@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://82wwi4ndsjxb"]
+
+[ext_resource type="Script" path="res://pause/pause.gd" id="1_eegea"]
+[ext_resource type="Texture2D" uid="uid://dpbmgeg2l51v1" path="res://assets/sprites/inventory/inventory_background.png" id="1_lu5qp"]
+[ext_resource type="Script" path="res://inventory/action_button_ui.gd" id="2_kcnf7"]
+[ext_resource type="Texture2D" uid="uid://b1qbdf8jelji6" path="res://assets/sprites/Meow-Knight-alone.png" id="3_pbrru"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 69.0
+offset_bottom = 64.0
+script = ExtResource("1_eegea")
+metadata/_edit_group_ = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_right = 69.0
+offset_bottom = 63.0
+texture = ExtResource("1_lu5qp")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="Label" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -17.5
+offset_top = 9.0
+offset_right = 67.5
+offset_bottom = 32.0
+grow_horizontal = 2
+scale = Vector2(0.4, 0.4)
+text = "Pauza"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 25.0
+offset_right = 129.0
+offset_bottom = 56.0
+scale = Vector2(0.3, 0.3)
+text = "Kontynuuj"
+script = ExtResource("2_kcnf7")
+
+[node name="ExitButton" type="Button" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 38.0
+offset_right = 130.0
+offset_bottom = 69.0
+scale = Vector2(0.3, 0.3)
+text = "Wyjdź z gry"
+script = ExtResource("2_kcnf7")
+
+[node name="CatImage" type="Sprite2D" parent="NinePatchRect"]
+position = Vector2(8, 55)
+scale = Vector2(0.90625, 0.90625)
+texture = ExtResource("3_pbrru")
+
+[connection signal="pressed" from="NinePatchRect/ContinueButton" to="NinePatchRect/ContinueButton" method="_on_pressed"]
+[connection signal="pressed" from="NinePatchRect/ExitButton" to="NinePatchRect/ExitButton" method="_on_pressed"]

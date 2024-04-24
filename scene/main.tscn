@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://dxbb1xjpse0p7"]
+[gd_scene load_steps=59 format=3 uid="uid://dxbb1xjpse0p7"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://scene/player_ship.tscn" id="1_s1wep"]
 [ext_resource type="PackedScene" uid="uid://bmmhib0afegw2" path="res://scene/asteroid.tscn" id="2_i6m1y"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://odm3s1085tpb" path="res://assets/sprites/enemies/fighter/fighter_base.png" id="9_nxyhl"]
 [ext_resource type="PackedScene" uid="uid://djt5ahnmfl7hm" path="res://scene/fighter_bullet.tscn" id="10_84l2h"]
 [ext_resource type="Texture2D" uid="uid://dqd6cik3bw6t5" path="res://assets/sprites/enemies/fighter/engines.png" id="10_uxwjc"]
+[ext_resource type="PackedScene" uid="uid://82wwi4ndsjxb" path="res://pause/pause.tscn" id="11_ssvtw"]
 [ext_resource type="Texture2D" uid="uid://c74odp2op1o2c" path="res://assets/sprites/enemies/fighter/destruction.png" id="13_gi64t"]
 [ext_resource type="AudioStream" uid="uid://12t4jwgja5pq" path="res://assets/sound_effects/fighter_engine.mp3" id="14_mxkqo"]
 [ext_resource type="Script" path="res://script/EngineSoundEffect.gd" id="15_3235v"]
@@ -378,6 +379,13 @@ script = ExtResource("8_pa5ft")
 [node name="GameSavedAudio" type="AudioStreamPlayer" parent="UILayer"]
 stream = ExtResource("8_ug8p2")
 volume_db = -11.243
+
+[node name="Control" parent="UILayer" instance=ExtResource("11_ssvtw")]
+offset_left = 445.0
+offset_top = 254.0
+offset_right = 514.0
+offset_bottom = 318.0
+scale = Vector2(4, 4)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_4v4ul")
@@ -797,7 +805,7 @@ position = Vector2(-1801, -1013)
 position = Vector2(105, 0)
 
 [node name="Cat2" parent="." instance=ExtResource("16_nwhr7")]
-position = Vector2(107, 61)
+position = Vector2(138, 180)
 
 [node name="FishItem3" parent="." instance=ExtResource("8_m73i2")]
 position = Vector2(109, -12)

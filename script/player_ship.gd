@@ -108,7 +108,7 @@ func collect(item):
 	inventory.insert(item)
 
 func collect_coin(item):
-	inventory.addCoins(item)
+	inventory.addCoins(item.amount)
 	
 func save_checkpoint(_level):
 	checkpoint = {pos = position, level = _level} 
