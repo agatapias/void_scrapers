@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1d6h357fuots"]
+
+[ext_resource type="PackedScene" uid="uid://dxbb1xjpse0p7" path="res://scene/main.tscn" id="1_8utpg"]
+[ext_resource type="Script" path="res://SceneManager.gd" id="1_kmj10"]
+[ext_resource type="PackedScene" uid="uid://di0xlol6ep6vt" path="res://scene/main_2.tscn" id="3_olh8e"]
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_kmj10")
+
+[node name="Main" parent="." instance=ExtResource("1_8utpg")]
+
+[node name="Main2" parent="." instance=ExtResource("3_olh8e")]
+
+[editable path="Main"]
+[editable path="Main/Spaceship"]
+[editable path="Main/UILayer/Inventory_UI"]
+[editable path="Main/ScoutWrapper/Enemy"]
+[editable path="Main/QuestCat"]
