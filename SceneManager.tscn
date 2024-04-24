@@ -9,10 +9,20 @@ script = ExtResource("1_kmj10")
 
 [node name="Main" parent="." instance=ExtResource("1_8utpg")]
 
+[node name="Enemy" parent="Main/ScoutWrapper" index="0"]
+position = Vector2(-1222, -622)
+
+[node name="Cat" parent="Main" index="26"]
+position = Vector2(-1641, 1080)
+
+[node name="Enemy" parent="Main/ScoutWrapper2" index="0"]
+position = Vector2(-175, -1171)
+
 [node name="Main2" parent="." instance=ExtResource("3_olh8e")]
 
 [editable path="Main"]
 [editable path="Main/Spaceship"]
-[editable path="Main/UILayer/Inventory_UI"]
 [editable path="Main/ScoutWrapper/Enemy"]
 [editable path="Main/QuestCat"]
+[editable path="Main/ScoutWrapper2/Enemy"]
+[editable path="Main2"]

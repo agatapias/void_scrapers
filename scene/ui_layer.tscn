@@ -1,0 +1,139 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2ea7gi1pgtmg"]
+
+[ext_resource type="PackedScene" uid="uid://dfwanik2mf7ch" path="res://shop/shop_ui.tscn" id="1_bxujp"]
+[ext_resource type="PackedScene" uid="uid://dlalcgyycgn7f" path="res://inventory/inventory_ui.tscn" id="2_tm0cr"]
+[ext_resource type="Script" path="res://script/Restart.gd" id="3_hnx6s"]
+[ext_resource type="AudioStream" uid="uid://cn3vlf5yu313l" path="res://assets/sound_effects/game_over.mp3" id="4_nhyl8"]
+[ext_resource type="Script" path="res://script/GameOverAudio.gd" id="5_4k2ul"]
+[ext_resource type="AudioStream" uid="uid://da6fwqmpcsn5t" path="res://assets/sound_effects/game_saved.mp3" id="6_6uesi"]
+
+[sub_resource type="Theme" id="Theme_37pt3"]
+
+[node name="UILayer" type="CanvasLayer"]
+
+[node name="ShopUi" parent="." instance=ExtResource("1_bxujp")]
+offset_left = 188.0
+offset_top = 138.0
+offset_right = 228.0
+offset_bottom = 178.0
+scale = Vector2(5, 5)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = 922.0
+offset_top = 731.0
+offset_right = 1135.0
+offset_bottom = 758.0
+theme = SubResource("Theme_37pt3")
+step = 1.0
+
+[node name="Inventory_UI" parent="." instance=ExtResource("2_tm0cr")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -390.0
+offset_top = -251.0
+offset_right = -231.0
+offset_bottom = -143.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+
+[node name="UseButton" parent="Inventory_UI/NinePatchRect" index="5"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 108.0
+offset_bottom = 31.0
+
+[node name="DropButton" parent="Inventory_UI/NinePatchRect" index="6"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 108.0
+offset_bottom = 31.0
+
+[node name="InteractionAlert" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Text" type="RichTextLabel" parent="InteractionAlert"]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 660.0
+offset_right = 744.0
+offset_bottom = 700.0
+text = "Naciśnij E, żeby wejść w interakcję"
+scroll_active = false
+
+[node name="Dialog" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Text" type="RichTextLabel" parent="Dialog"]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 559.0
+offset_right = 955.0
+offset_bottom = 796.0
+scroll_active = false
+
+[node name="GameOver" type="ColorRect" parent="."]
+visible = false
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 1188.0
+offset_bottom = 784.0
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GameOver"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 297.0
+offset_right = 1195.0
+offset_bottom = 533.0
+theme_override_font_sizes/normal_font_size = 180
+text = "KONIEC GRY"
+
+[node name="Restart" type="Button" parent="GameOver"]
+layout_mode = 0
+offset_left = 503.0
+offset_top = 585.0
+offset_right = 708.0
+offset_bottom = 645.0
+text = "Wznów grę"
+script = ExtResource("3_hnx6s")
+
+[node name="CheckpointAlert" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 9.0
+offset_top = -627.0
+offset_right = 49.0
+offset_bottom = -587.0
+metadata/_edit_group_ = true
+
+[node name="Text" type="RichTextLabel" parent="CheckpointAlert"]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 660.0
+offset_right = 744.0
+offset_bottom = 761.0
+text = "Jesteś w pobliżu przyjaznej planety. Naciśnij O, żeby ustawić tutaj swój punkt wznowienia gry."
+scroll_active = false
+
+[node name="GameOverAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_nhyl8")
+script = ExtResource("5_4k2ul")
+
+[node name="GameSavedAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_6uesi")
+volume_db = -11.243
+
+[editable path="Inventory_UI"]

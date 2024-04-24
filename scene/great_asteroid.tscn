@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj4y5srnrw022"]
+
+[ext_resource type="Texture2D" uid="uid://c47pqx2sei3jj" path="res://assets/sprites/asteroid7.png" id="1_7hcs2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yxhng"]
+radius = 113.137
+
+[node name="GreatAsteroid" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.611429, 0.548571)
+texture = ExtResource("1_7hcs2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, -4)
+shape = SubResource("CircleShape2D_yxhng")
