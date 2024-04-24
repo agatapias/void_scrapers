@@ -7,8 +7,8 @@ extends Control
 @onready var dropButton: Button = $NinePatchRect/DropButton
 @onready var useButton: Button = $NinePatchRect/UseButton
 
-@onready var pause_ui: Control = get_node("../Inventory_UI")
-@onready var shop_ui: Control = get_node("../Shop_UI")
+@onready var pause_ui: Control = get_node("../PauseUi")
+@onready var shop_ui: Control = get_node("../ShopUi")
 
 var isOpen = false
 var selectedSlotIndex = null
@@ -26,7 +26,7 @@ func _ready():
 	close()
 	
 func _process(delta):
-	if Input.is_action_just_pressed("inventory"):
+	if Input.is_action_just_pressed("inventory") && pause_ui.visible != true:
 		if isOpen: close()
 		else: open()
 	if Input.is_action_just_pressed("escape"):
@@ -53,6 +53,7 @@ func close():
 	
 func open():
 	unselect()
+	shop_ui.close()
 	visible = true
 	isOpen = true
 	

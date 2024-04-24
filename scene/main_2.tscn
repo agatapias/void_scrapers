@@ -211,10 +211,10 @@ radius = 689.0
 
 [node name="UILayer" parent="." instance=ExtResource("2_g14c0")]
 
-[node name="CheckpointAlert" parent="UILayer" index="6"]
+[node name="CheckpointAlert" parent="UILayer" index="4"]
 visible = false
 
-[node name="TransitionAlert" parent="UILayer" index="9"]
+[node name="TransitionAlert" parent="UILayer" index="7"]
 visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

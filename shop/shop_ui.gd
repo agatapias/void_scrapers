@@ -10,6 +10,9 @@ extends Control
 @onready var sellButton: Button = $NinePatchRect/SellButton
 @onready var buyButton: Button = $NinePatchRect/BuyButton
 
+@onready var pause_ui: Control = get_node("../PauseUi")
+@onready var inventory_ui: Control = get_node("../Inventory_UI")
+
 var playerInventory: Inventory = null
 var merchantInventory: Inventory = null
 
@@ -81,6 +84,7 @@ func close():
 	isOpen = false
 	
 func open(pInv, mInv):
+	inventory_ui.close()
 	visible = true
 	isOpen = true
 	prepare(pInv, mInv)
@@ -110,6 +114,7 @@ func onDropButtonClicked():
 	updateSlots(getCurrentInventory())
 	
 func onActionClicked():
+	print("onActionClicked")
 	if state == "Buying":
 		onBuyCliked()
 	else:
