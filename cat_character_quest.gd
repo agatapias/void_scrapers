@@ -16,9 +16,9 @@ const quest_success = "Dziękuję za pomoc! \n\n[Naciśnij K, żeby wyjść]"
 const quest_after = "Dzień dobry. \n\n[Naciśnij K, żeby wyjść]"
 
 func _ready():
-	interactionAlert = get_node('/root/Main/UILayer/InteractionAlert')
-	dialog = get_node('/root/Main/UILayer/Dialog')
-	spaceship = get_node('/root/Main/Spaceship')
+	interactionAlert = get_node('../UILayer/InteractionAlert')
+	dialog = get_node('../UILayer/Dialog')
+	spaceship = get_node('../Spaceship')
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _process(delta):	
