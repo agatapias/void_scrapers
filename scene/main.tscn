@@ -435,7 +435,7 @@ metadata/_edit_group_ = true
 position = Vector2(0, 1)
 
 [node name="Cat" parent="." instance=ExtResource("16_nwhr7")]
-position = Vector2(-2152, 202)
+position = Vector2(-209, 35)
 
 [node name="Asteroid2_6" type="RigidBody2D" parent="."]
 position = Vector2(-131, -446)
@@ -693,6 +693,7 @@ position = Vector2(-829, 871)
 [connection signal="body_entered" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_entered"]
 [connection signal="body_exited" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_exited"]
 
+[editable path="Spaceship"]
 [editable path="ScoutWrapper/Enemy"]
 [editable path="QuestCat"]
 [editable path="ScoutWrapper2/Enemy"]

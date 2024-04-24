@@ -1,7 +1,7 @@
 extends Control
 
 @onready var inventory_ui: Control = get_node("../Inventory_UI")
-@onready var shop_ui: Control = get_node("../Shop_UI")
+@onready var shop_ui: Control = get_node("../ShopUi")
 
 var isOpen = false
 
