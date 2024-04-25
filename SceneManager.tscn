@@ -4,12 +4,14 @@
 [ext_resource type="Script" path="res://SceneManager.gd" id="1_kmj10"]
 [ext_resource type="PackedScene" uid="uid://di0xlol6ep6vt" path="res://scene/main_2.tscn" id="3_ptr57"]
 [ext_resource type="PackedScene" uid="uid://dh5f3mk18fcuq" path="res://transition_layer.tscn" id="4_ex0i8"]
+[ext_resource type="PackedScene" uid="uid://cqd7kyecaiv1m" path="res://start-menu/start_menu.tscn" id="4_m27pt"]
 
 [node name="SceneManager" type="Node"]
 script = ExtResource("1_kmj10")
 scenes = {
 "Main": ExtResource("1_8utpg"),
-"Main2": ExtResource("3_ptr57")
+"Main2": ExtResource("3_ptr57"),
+"Menu": ExtResource("4_m27pt")
 }
 
 [node name="TransitionLayer" parent="." instance=ExtResource("4_ex0i8")]
