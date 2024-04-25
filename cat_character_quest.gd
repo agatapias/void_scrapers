@@ -34,10 +34,10 @@ func _process(delta):
 	if interacting and not changed:
 		if status == 'new':
 			_set_dialog(quest_dialog)
-		elif status == 'ongoing' and spaceship.inventory.contains("Fish"):
+		elif status == 'ongoing' and spaceship.inventory.contains("Ryber"):
 			_set_dialog(quest_success)
 			status = 'finished'
-			spaceship.inventory.removeByName('Fish')
+			spaceship.inventory.removeByName('Ryber')
 		elif status == 'ongoing':
 			_set_dialog(quest_ongoing)
 		else:

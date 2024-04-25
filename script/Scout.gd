@@ -1,6 +1,6 @@
 extends "res://script/Enemy.gd"
 
-const MAX_HEALTH = 200
+const MAX_HEALTH = 50
 
 var target_speed = 50.0 # Desired speed in the direction of the target vector
 var acceleration_time = 1.0 # Time to reach the target speed

@@ -451,7 +451,7 @@ offset_left = -120.0
 offset_top = -80.0
 offset_right = -79.0
 offset_bottom = -53.0
-max_value = 200.0
+max_value = 50.0
 step = 1.0
 script = ExtResource("7_yd4hr")
 

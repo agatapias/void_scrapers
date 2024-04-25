@@ -15,6 +15,7 @@ func _ready():
 	connect("body_entered", _on_body_entered)
 	health_bar = get_node("../EnemyHealthBar")
 	health_bar.value = self.health
+	health_bar.set_max(max_health())
 
 func _on_body_entered(body: Node):
 	pass
