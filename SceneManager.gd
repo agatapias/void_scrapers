@@ -6,15 +6,15 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for child in get_children():
-		remove_child(child)
 	var scene = scenes['Main'].instantiate()
 	add_child(scene)
 	$Main/LevelTransition.transition.connect(callback)
 
 func callback(data):
+	
 	for child in get_children():
-		remove_child(child)
+		if child.name != 'TransitionLayer':
+			remove_child(child)
 	print(data['level_node'])
 	var scene = scenes[data.level_node].instantiate()
 	add_child(scene)
