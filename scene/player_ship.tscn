@@ -106,3 +106,4 @@ animation = &"shoot"
 
 [node name="LaserSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_bwhq0")
+volume_db = -20.0
