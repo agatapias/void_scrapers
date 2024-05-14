@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://daeriaav5p78v"]
+[gd_scene load_steps=16 format=3 uid="uid://daeriaav5p78v"]
 
 [ext_resource type="Script" path="res://items/coin_item.gd" id="1_lkdko"]
 [ext_resource type="Texture2D" uid="uid://bkyvusyxvntvi" path="res://assets/sprites/items/coin3_20x20.png" id="1_tcpox"]
 [ext_resource type="Resource" uid="uid://dxy40a3kb1md3" path="res://items/coin_item.tres" id="2_pw2bf"]
+[ext_resource type="AudioStream" uid="uid://bbrfl1bxvaexc" path="res://assets/sound_effects/collectcoin-6075.mp3" id="4_g6sfo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k8lii"]
 atlas = ExtResource("1_tcpox")
@@ -87,4 +88,10 @@ sprite_frames = SubResource("SpriteFrames_tetax")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_f45a8")
 
+[node name="CollectSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_g6sfo")
+
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

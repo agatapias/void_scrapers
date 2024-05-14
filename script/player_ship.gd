@@ -7,10 +7,12 @@ const MIN_HEALTH = 0
 const INCREMENT_INTERVAL = 10
 
 var thrust_vector = Vector2(0, -200)
+var suck_vector = Vector2(0, -100)
 var torque = 200
 var _health = 0
 var _frames_since_last_increment = 0
 
+var suckingGravities = []
 var reset_state = false
 
 var checkpoint = {
@@ -18,12 +20,21 @@ var checkpoint = {
 	level = 'Main'
 }
 
+var rng = RandomNumberGenerator.new()
+
 @export var projectile: PackedScene
+@export var gravitySpiral: PackedScene
 @export var inventory: Inventory
 
 @onready var leftGunMarker = $LeftGunMarker
 
 var gunEquipped: String = "none"  # "none" "LaserGun" "BombGun"
+
+func _target_vector(gravity) -> Vector2:
+	return position.direction_to(gravity.position)
+
+func _target_rotation(gravity) -> Vector2:
+	return position.direction_to(gravity.rotation)
 
 func _ready():
 	contact_monitor = true
@@ -31,6 +42,7 @@ func _ready():
 	connect("body_entered", _on_body_entered)
 	set_health(MAX_HEALTH)
 	inventory.itemUsed.connect(itemUsed)
+	setTimerRandom()
 	
 	$WeaponSprite.visible = false
 
@@ -55,6 +67,10 @@ func _integrate_forces(state):
 	if reset_state:
 		state.transform = Transform2D(0.0, checkpoint.pos)
 		reset_state = false
+	if suckingGravities.size() > 0:
+		for gravity in suckingGravities:
+			var targetVector = _target_vector(gravity)
+			state.apply_force(targetVector * 20)
 	if Input.is_action_pressed("ui_up") and _frames_since_last_increment >= INCREMENT_INTERVAL:
 		state.apply_force(thrust_vector.rotated(rotation))
 		_frames_since_last_increment = 0
@@ -130,3 +146,26 @@ func itemUsed(item):
 	match item.idName:
 		"LaserGun": equipGun(item.idName)
 		"Fish": restore_health(10)
+
+func beSucked(gravity):
+	suckingGravities.append(gravity)
+	
+func stopBeingSucked(gravity):
+	suckingGravities.erase(gravity)
+
+func spawnGravitySpiral():
+	var randomX = rng.randf_range(20.0, 460.0)
+	var randomY = rng.randf_range(20.0, 160.0)
+	var spiral = gravitySpiral.instantiate()
+	var newTransform = self.global_transform
+	newTransform.x = newTransform.x + Vector2(randomX, 0)
+	newTransform.x = newTransform.y + Vector2(0, randomY)
+	owner.add_child(spiral)
+	spiral.transform = newTransform
+	setTimerRandom()
+	
+func setTimerRandom():
+	var randomTime = rng.randf_range(10.0, 30.0)
+	$Timer.connect("timeout", spawnGravitySpiral)
+	$Timer.set_wait_time(randomTime)
+	$Timer.start()

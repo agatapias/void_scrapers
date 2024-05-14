@@ -2,6 +2,7 @@ extends Control
 
 @onready var inventory_ui: Control = get_node("../Inventory_UI")
 @onready var shop_ui: Control = get_node("../ShopUi")
+@onready var help_ui: Control = get_node("../Help")
 
 var isOpen = false
 
@@ -10,6 +11,7 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	$NinePatchRect/ContinueButton.buttonPressed.connect(onContinueButtonClicked)
 	$NinePatchRect/ExitButton.buttonPressed.connect(onExitButtonClicked)
+	$NinePatchRect/HelpButton.buttonPressed.connect(onHelpButtonClicked)
 	close()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,3 +40,7 @@ func onContinueButtonClicked():
 	
 func onExitButtonClicked():
 	get_tree().quit()
+	
+func onHelpButtonClicked():
+	close()
+	help_ui.open()

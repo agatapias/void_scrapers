@@ -1,12 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://sskn7og6uw6y"]
+[gd_scene load_steps=12 format=3 uid="uid://sskn7og6uw6y"]
 
 [ext_resource type="PackedScene" uid="uid://dfwanik2mf7ch" path="res://shop/shop_ui.tscn" id="1_bxujp"]
+[ext_resource type="Script" path="res://scene/dialog.gd" id="1_jvs7g"]
+[ext_resource type="Texture2D" uid="uid://bccvu2uhtwc5" path="res://assets/sprites/dialogue/dialog2.png" id="1_kj0yc"]
 [ext_resource type="PackedScene" uid="uid://dlalcgyycgn7f" path="res://inventory/inventory_ui.tscn" id="2_tm0cr"]
 [ext_resource type="Script" path="res://script/Restart.gd" id="3_hnx6s"]
 [ext_resource type="AudioStream" uid="uid://cn3vlf5yu313l" path="res://assets/sound_effects/game_over.mp3" id="4_nhyl8"]
 [ext_resource type="Script" path="res://script/GameOverAudio.gd" id="5_4k2ul"]
 [ext_resource type="AudioStream" uid="uid://da6fwqmpcsn5t" path="res://assets/sound_effects/game_saved.mp3" id="6_6uesi"]
 [ext_resource type="PackedScene" uid="uid://82wwi4ndsjxb" path="res://pause/pause.tscn" id="7_42iyk"]
+[ext_resource type="PackedScene" uid="uid://brmvsqqsejgu4" path="res://help/help.tscn" id="8_vqf3g"]
 
 [sub_resource type="Theme" id="Theme_37pt3"]
 
@@ -41,6 +44,21 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_jvs7g")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Dialog"]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 534.0
+offset_right = 1006.0
+offset_bottom = 770.0
+texture = ExtResource("1_kj0yc")
+region_rect = Rect2(0, 0, 30, 30)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+metadata/_edit_group_ = true
 
 [node name="Text" type="RichTextLabel" parent="Dialog"]
 layout_mode = 0
@@ -140,3 +158,17 @@ offset_top = 140.0
 offset_right = 348.0
 offset_bottom = 250.0
 scale = Vector2(5, 5)
+
+[node name="Help" parent="." instance=ExtResource("8_vqf3g")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -327.0
+offset_top = -226.0
+offset_right = -105.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
