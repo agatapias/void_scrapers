@@ -208,9 +208,8 @@ position = Vector2(-118, 52)
 [node name="QuestCat" parent="." instance=ExtResource("16_nwhr7")]
 position = Vector2(-103, -144)
 script = ExtResource("22_y2kxv")
-metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" parent="QuestCat" index="1"]
+[node name="CollisionShape2D" parent="QuestCat" index="0"]
 position = Vector2(0, 1)
 
 [node name="Asteroid2_6" type="RigidBody2D" parent="."]

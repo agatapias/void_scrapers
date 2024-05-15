@@ -86,6 +86,7 @@ func _process_movement(delta):
 
 func _process_destruction():
 	if health <= 0:
+		$Sprite2D.visible = false  
 		currentAnimation = "destruction"
 		$DestructionAnimatedSprite2D.play()
 		$DestructionAnimatedSprite2D.animation = "destruction"
@@ -114,6 +115,7 @@ func _on_destruction_animated_sprite_2d_animation_finished():
 		die()
 
 func die():
+	self.visible = false
 	drop_many_coins()
 	get_parent().queue_free()
 
@@ -123,12 +125,14 @@ func drop_many_coins():
 		drop_coin()
 	
 func drop_coin():
-	var randX = rng.randi_range(-10,10)
-	var randY = rng.randi_range(-10,10)
+	var randX = rng.randi_range(-20,20)
+	var randY = rng.randi_range(-20,20)
 	var newTransform = self.global_transform
 	newTransform.x = newTransform.x + Vector2(randX, 0)
 	newTransform.y = newTransform.y + Vector2(0, randY)
 	var newCoin = coin.instantiate()
 	owner.add_child(newCoin)
 	newCoin.transform = self.global_transform
+	newCoin.position.x = newCoin.position.x + randX
+	newCoin.position.y = newCoin.position.y + randY
 	
