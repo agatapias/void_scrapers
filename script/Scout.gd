@@ -9,6 +9,8 @@ var state = "idle"
 
 var target: RigidBody2D
 
+var currentAnimation = ""
+
 func _target_vector() -> Vector2:
 	return position.direction_to(target.position)
 
@@ -27,12 +29,7 @@ func _physics_process(delta):
 	
 func _process_animation(delta):
 	if health <= 0:
-		var timer = Timer.new()
-		get_parent().add_child(timer)
-
-		timer.connect("timeout", get_parent().queue_free)
-		timer.set_wait_time(0.6)
-		timer.start()
+		currentAnimation = "destruction"
 		$AnimatedSprite2D.play()
 		$AnimatedSprite2D.animation = "destruction"
 
@@ -77,3 +74,8 @@ func _process_state():
 
 func max_health():
 	return MAX_HEALTH
+
+
+func _on_animated_sprite_2d_animation_finished():
+	if currentAnimation == "destruction":
+		get_parent().queue_free
