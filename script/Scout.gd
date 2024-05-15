@@ -29,12 +29,6 @@ func _physics_process(delta):
 	
 func _process_animation(delta):
 	if health <= 0:
-		#var timer = Timer.new()
-		#get_parent().add_child(timer)
-
-		#timer.connect("timeout", get_parent().queue_free)
-		#timer.set_wait_time(0.6)
-		#timer.start()
 		currentAnimation = "destruction"
 		$AnimatedSprite2D.play()
 		$AnimatedSprite2D.animation = "destruction"

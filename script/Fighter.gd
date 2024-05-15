@@ -52,7 +52,7 @@ func rotate_to_target(delta):
 	#torque = clamp(rotation_speed*torque, -max_torque, max_torque)
 	#apply_torque_impulse(torque)
 	
-	apply_torque_impulse(angle_diff)
+	apply_torque_impulse(2*angle_diff)
 	return angle_diff
 	
 func _process_state():
