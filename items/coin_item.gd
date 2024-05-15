@@ -21,3 +21,5 @@ func _start_death_timer():
 func _kill_node():
 	print("killing node")
 	queue_free()
+
+	

@@ -1,6 +1,6 @@
 extends "res://script/Enemy.gd"
 
-const MAX_HEALTH = 100
+const MAX_HEALTH = 60
 
 var acceleration_speed = 5000.0 # Time to reach the target speed
 var rotation_speed = 2.0
@@ -10,10 +10,14 @@ var state = "idle"
 var target: RigidBody2D
 
 @export var projectile: PackedScene
+@export var coin: PackedScene
 @onready var gunMarker = $GunMarker
 
 var last_shot = 0
 var current_time = 0
+var currentAnimation = ""
+
+var rng = RandomNumberGenerator.new()
 
 func _physics_process(delta):
 	current_time = current_time + delta
@@ -82,12 +86,7 @@ func _process_movement(delta):
 
 func _process_destruction():
 	if health <= 0:
-		var timer = Timer.new()
-		get_parent().add_child(timer)
-
-		timer.connect("timeout", get_parent().queue_free)
-		timer.set_wait_time(0.6)
-		timer.start()
+		currentAnimation = "destruction"
 		$DestructionAnimatedSprite2D.play()
 		$DestructionAnimatedSprite2D.animation = "destruction"
 		
@@ -109,3 +108,27 @@ func _shoot():
 	owner.add_child(bullet)
 	bullet.transform = gunMarker.global_transform
 	$LaserSound.playing = true
+	
+func _on_destruction_animated_sprite_2d_animation_finished():
+	if currentAnimation == "destruction":
+		die()
+
+func die():
+	drop_many_coins()
+	get_parent().queue_free()
+
+func drop_many_coins():
+	var rand = rng.randi_range(2,7)
+	for i in rand:
+		drop_coin()
+	
+func drop_coin():
+	var randX = rng.randi_range(-10,10)
+	var randY = rng.randi_range(-10,10)
+	var newTransform = self.global_transform
+	newTransform.x = newTransform.x + Vector2(randX, 0)
+	newTransform.y = newTransform.y + Vector2(0, randY)
+	var newCoin = coin.instantiate()
+	owner.add_child(newCoin)
+	newCoin.transform = self.global_transform
+	

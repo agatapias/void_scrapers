@@ -57,7 +57,7 @@ func _input(event):
 func _physics_process(delta):
 	_frames_since_last_increment += 1
 	if _health <= 0:
-		var game_over = get_node("../UILayer/GameOver")
+		var game_over = get_node("../UILayer/GameOverScreen")
 		var game_over_audio = get_node("../UILayer/GameOverAudio")
 		game_over_audio.play()
 		get_tree().paused = true

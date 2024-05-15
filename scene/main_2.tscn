@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://di0xlol6ep6vt"]
+[gd_scene load_steps=55 format=3 uid="uid://di0xlol6ep6vt"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://scene/player_ship.tscn" id="1_dlvmg"]
 [ext_resource type="PackedScene" uid="uid://sskn7og6uw6y" path="res://scene/ui_layer.tscn" id="2_g14c0"]
@@ -157,7 +157,7 @@ region = Rect2(576, 0, 64, 64)
 [sub_resource type="SpriteFrames" id="SpriteFrames_ewfqi"]
 animations = [{
 "frames": [],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -192,10 +192,34 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5ffb7")
 }],
-"loop": true,
+"loop": false,
 "name": &"destruction",
 "speed": 10.0
 }]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_thxp6"]
+bg_color = Color(0.745098, 0.227451, 0.176471, 1)
+
+[sub_resource type="Theme" id="Theme_a6jo4"]
+ProgressBar/colors/font_color = Color(0, 0, 0, 1)
+ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 0
+ProgressBar/font_sizes/font_size = 16
+ProgressBar/fonts/font = null
+ProgressBar/styles/background = null
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_thxp6")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_upmi6"]
+bg_color = Color(0.745098, 0.227451, 0.176471, 1)
+
+[sub_resource type="Theme" id="Theme_w4luh"]
+ProgressBar/colors/font_color = Color(0, 0, 0, 1)
+ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 0
+ProgressBar/font_sizes/font_size = 16
+ProgressBar/fonts/font = null
+ProgressBar/styles/background = null
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_upmi6")
 
 [sub_resource type="GDScript" id="GDScript_rajc4"]
 
@@ -211,10 +235,10 @@ radius = 689.0
 
 [node name="UILayer" parent="." instance=ExtResource("2_g14c0")]
 
-[node name="CheckpointAlert" parent="UILayer" index="4"]
+[node name="CheckpointAlert" parent="UILayer" index="5"]
 visible = false
 
-[node name="TransitionAlert" parent="UILayer" index="7"]
+[node name="TransitionAlert" parent="UILayer" index="8"]
 visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -238,7 +262,6 @@ position = Vector2(1505, -886)
 
 [node name="Cat" parent="." instance=ExtResource("7_07das")]
 position = Vector2(75, -162)
-metadata/_edit_group_ = true
 
 [node name="Asteroid2_1" type="RigidBody2D" parent="."]
 position = Vector2(-209, -372)
@@ -264,21 +287,13 @@ gravity_scale = 0.0
 
 [node name="FighterWrapper" type="Node2D" parent="."]
 
-[node name="EnemyHealthBar" type="ProgressBar" parent="FighterWrapper"]
-offset_left = -660.0
-offset_top = 319.0
-offset_right = -619.0
-offset_bottom = 346.0
-step = 1.0
-script = ExtResource("11_rwlm8")
-metadata/_edit_use_anchors_ = true
-
 [node name="Enemy" type="RigidBody2D" parent="FighterWrapper"]
 position = Vector2(1113, -1399)
 rotation = -2.28464
 gravity_scale = 0.0
 script = ExtResource("12_qf4ef")
 projectile = ExtResource("13_0ief1")
+coin = ExtResource("20_h5q0k")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="FighterWrapper/Enemy"]
@@ -298,6 +313,7 @@ position = Vector2(0, -11)
 
 [node name="DestructionAnimatedSprite2D" type="AnimatedSprite2D" parent="FighterWrapper/Enemy"]
 sprite_frames = SubResource("SpriteFrames_ewfqi")
+animation = &"destruction"
 
 [node name="EngineAudio" type="AudioStreamPlayer2D" parent="FighterWrapper/Enemy"]
 stream = ExtResource("17_47wiv")
@@ -309,6 +325,32 @@ script = ExtResource("18_h1nl0")
 stream = ExtResource("19_rdp5c")
 volume_db = -10.0
 attenuation = 4.92458
+
+[node name="Control" type="Control" parent="FighterWrapper"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("11_rwlm8")
+
+[node name="LifeLabel" type="Label" parent="FighterWrapper/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(0.6, 0.6)
+text = "Życie"
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="FighterWrapper/Control"]
+layout_mode = 0
+offset_left = -660.0
+offset_top = 319.0
+offset_right = -619.0
+offset_bottom = 346.0
+scale = Vector2(0.8, 0.8)
+theme = SubResource("Theme_a6jo4")
+max_value = 60.0
+step = 1.0
+metadata/_edit_use_anchors_ = true
 
 [node name="CoinItem" parent="." instance=ExtResource("20_h5q0k")]
 position = Vector2(4, -293)
@@ -786,21 +828,13 @@ rotation = -0.191986
 
 [node name="FighterWrapper2" type="Node2D" parent="."]
 
-[node name="EnemyHealthBar" type="ProgressBar" parent="FighterWrapper2"]
-offset_left = -660.0
-offset_top = 319.0
-offset_right = -619.0
-offset_bottom = 346.0
-step = 1.0
-script = ExtResource("11_rwlm8")
-metadata/_edit_use_anchors_ = true
-
 [node name="Enemy" type="RigidBody2D" parent="FighterWrapper2"]
 position = Vector2(1436, -942)
 rotation = -1.64934
 gravity_scale = 0.0
 script = ExtResource("12_qf4ef")
 projectile = ExtResource("13_0ief1")
+coin = ExtResource("20_h5q0k")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="FighterWrapper2/Enemy"]
@@ -820,6 +854,7 @@ position = Vector2(0, -11)
 
 [node name="DestructionAnimatedSprite2D" type="AnimatedSprite2D" parent="FighterWrapper2/Enemy"]
 sprite_frames = SubResource("SpriteFrames_ewfqi")
+animation = &"destruction"
 
 [node name="EngineAudio" type="AudioStreamPlayer2D" parent="FighterWrapper2/Enemy"]
 stream = ExtResource("17_47wiv")
@@ -831,6 +866,31 @@ script = ExtResource("18_h1nl0")
 stream = ExtResource("19_rdp5c")
 volume_db = -10.0
 attenuation = 4.92458
+
+[node name="Control" type="Control" parent="FighterWrapper2"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("11_rwlm8")
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="FighterWrapper2/Control"]
+layout_mode = 0
+offset_left = -660.0
+offset_top = 319.0
+offset_right = -619.0
+offset_bottom = 346.0
+scale = Vector2(0.8, 0.8)
+theme = SubResource("Theme_w4luh")
+max_value = 60.0
+step = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="LifeLabel" type="Label" parent="FighterWrapper2/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(0.6, 0.6)
 
 [node name="Planet1" type="RigidBody2D" parent="."]
 position = Vector2(-789, 304)
@@ -851,6 +911,8 @@ script = ExtResource("23_2sw72")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Planet1/Checkpoint"]
 shape = SubResource("CircleShape2D_1vf84")
 
+[connection signal="animation_finished" from="FighterWrapper/Enemy/DestructionAnimatedSprite2D" to="FighterWrapper/Enemy" method="_on_destruction_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="FighterWrapper2/Enemy/DestructionAnimatedSprite2D" to="FighterWrapper2/Enemy" method="_on_destruction_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_entered"]
 [connection signal="body_exited" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_exited"]
 
