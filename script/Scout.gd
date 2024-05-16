@@ -73,6 +73,7 @@ func _process_state():
 		state = "hostile"
 
 func max_health():
+	print("scout max health called")
 	return MAX_HEALTH
 
 
