@@ -16,11 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://bltfgoo4dk0ng" path="res://assets/sprites/asteroid2.png" id="21_eixka"]
 [ext_resource type="PackedScene" uid="uid://sskn7og6uw6y" path="res://scene/ui_layer.tscn" id="23_roe1x"]
 [ext_resource type="PackedScene" uid="uid://bfkwmdcjkl434" path="res://scene/cat_quest_1.tscn" id="23_ur1ow"]
-[ext_resource type="PackedScene" uid="uid://binlpkv1hdrmo" path="res://scene/pretty_asteroid.tscn" id="24_vrgh4"]
-[ext_resource type="PackedScene" uid="uid://cbfse1ej0mvgg" path="res://scene/another_asteroid.tscn" id="25_2t6bf"]
-[ext_resource type="PackedScene" uid="uid://dj4y5srnrw022" path="res://scene/great_asteroid.tscn" id="26_gm2wa"]
-[ext_resource type="PackedScene" uid="uid://do2q3ueyu1fx6" path="res://scene/diff_asteroid.tscn" id="27_j2p4a"]
-[ext_resource type="PackedScene" uid="uid://clx2c4q05hpbs" path="res://scene/level_transition.tscn" id="28_56pm6"]
+[ext_resource type="PackedScene" path="res://scene/pretty_asteroid.tscn" id="24_vrgh4"]
+[ext_resource type="PackedScene" path="res://scene/another_asteroid.tscn" id="25_2t6bf"]
+[ext_resource type="PackedScene" path="res://scene/great_asteroid.tscn" id="26_gm2wa"]
+[ext_resource type="PackedScene" path="res://scene/diff_asteroid.tscn" id="27_j2p4a"]
+[ext_resource type="PackedScene" path="res://scene/level_transition.tscn" id="28_56pm6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmn6t"]
 bg_color = Color(0.745098, 0.227451, 0.176471, 1)

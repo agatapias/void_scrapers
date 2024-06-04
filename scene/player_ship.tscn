@@ -166,7 +166,7 @@ stream = ExtResource("14_bwhq0")
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="Shield" type="Area2D" parent="."]
+[node name="Shield" type="Area2D" parent="." groups=["shield"]]
 
 [node name="ShieldAnimated" type="AnimatedSprite2D" parent="Shield"]
 position = Vector2(-4.54747e-13, -2.38419e-07)
@@ -178,5 +178,6 @@ shape = SubResource("CircleShape2D_hy8pn")
 
 [node name="ShieldTimer" type="Timer" parent="Shield"]
 
+[connection signal="area_entered" from="Shield" to="." method="_on_shield_area_entered"]
 [connection signal="body_entered" from="Shield" to="." method="_on_shield_body_entered"]
 [connection signal="body_exited" from="Shield" to="." method="_on_shield_body_exited"]

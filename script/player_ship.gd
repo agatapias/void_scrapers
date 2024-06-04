@@ -99,6 +99,7 @@ func _integrate_forces(state):
 		shoot()
 
 func _on_body_entered(body):
+	print("on spaceship body entered")
 	get_damage(10)
 	
 	
@@ -188,9 +189,11 @@ func _on_shield_body_entered(body):
 	if body.is_in_group("enemy"):
 		body.set_repulsed(true)
 		body.get_damage(10)
-	elif body.is_in_group("bullet"):
-		body.queue_free()
 
 func _on_shield_body_exited(body):
 	if body.is_in_group("enemy"):
 		body.set_repulsed(false)
+
+func _on_shield_area_entered(area):
+	if area.is_in_group("bullet"):
+		area.queue_free()

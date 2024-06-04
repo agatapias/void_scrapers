@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bfkwmdcjkl434"]
 
 [ext_resource type="Script" path="res://cat_character_quest.gd" id="1_g3tny"]
-[ext_resource type="Texture2D" uid="uid://c0uje4lrjei3w" path="res://assets/sprites/planets/Planet1.png" id="2_agbpx"]
+[ext_resource type="Texture2D" uid="uid://c0uje4lrjei3w" path="res://assets/sprites/planets/planet1.png" id="2_agbpx"]
 [ext_resource type="Texture2D" uid="uid://b3riwprqrrc3i" path="res://assets/sprites/Meow-Knight_Idle.png" id="4_lav7b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7m8mf"]
