@@ -90,7 +90,7 @@ func _process_repulsion(delta):
 	var direction = _direction_to_target()
 	var relative_velocity = linear_velocity - target.linear_velocity
 	var velocity_adjustment_factor = max(100, min(abs(relative_velocity.dot(direction)) * abs(relative_velocity.length()) / 50, 300))
-	print(velocity_adjustment_factor)
+	print("Repulsion = " + str(velocity_adjustment_factor))
 	apply_central_impulse(-direction * velocity_adjustment_factor)
 		
 
