@@ -6,6 +6,7 @@ var acceleration_speed = 5000.0 # Time to reach the target speed
 var rotation_speed = 2.0
 
 var state = "idle"
+var isRepulsed = false
 
 var target: RigidBody2D
 
@@ -28,8 +29,9 @@ func _physics_process(delta):
 		if state == "hostile":
 			_process_movement(delta)
 			_process_shooting(delta)
-					
-	
+		if isRepulsed:
+			_process_repulsion(delta)
+			
 	_process_destruction()
 		
 func _target_vector(delta) -> Vector2:
@@ -84,6 +86,14 @@ func _process_movement(delta):
 		$EngineAudio.playing = false
 		$EngineAnimatedSprite2D.animation = "none";
 
+
+func _process_repulsion(delta):
+	print("process repulsion")
+	var direction_adjustment_factor = _target_vector(delta).dot(Vector2.UP.rotated(-rotation))
+	var velocity_adjustment_factor = min(max(linear_velocity.dot(Vector2.UP.rotated(-rotation)), 1), acceleration_speed)
+	apply_central_impulse(Vector2.UP.rotated(-rotation) * direction_adjustment_factor * delta * acceleration_speed / velocity_adjustment_factor)
+		
+
 func _process_destruction():
 	if health <= 0:
 		$Sprite2D.visible = false  
@@ -136,3 +146,5 @@ func drop_coin():
 	newCoin.position.x = newCoin.position.x + randX
 	newCoin.position.y = newCoin.position.y + randY
 	
+func set_repulsed(value):
+	isRepulsed = value

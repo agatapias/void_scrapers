@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://d31eqal8alek0"]
+
+[ext_resource type="Script" path="res://script/inventory_item.gd" id="1_ruijp"]
+[ext_resource type="Texture2D" uid="uid://vk2ywxk6utuq" path="res://assets/sprites/items/shield/small-shield.png" id="2_wh5mn"]
+
+[resource]
+script = ExtResource("1_ruijp")
+name = "Tarcza"
+idName = "Shield"
+description = "Super tarcza! Przez 5 sekund będzie chronić Cię przed każdym przeciwnikiem!"
+texture = ExtResource("2_wh5mn")
+amount = 1
+buyingCost = 1
+rarity = "Common"

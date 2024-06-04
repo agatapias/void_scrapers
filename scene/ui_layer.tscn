@@ -25,6 +25,21 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_be5lw")
 
 [node name="UILayer" type="CanvasLayer"]
 
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = 922.0
+offset_top = 731.0
+offset_right = 1135.0
+offset_bottom = 758.0
+theme = SubResource("Theme_37pt3")
+step = 1.0
+
+[node name="LifeLabel" type="Label" parent="."]
+offset_left = 926.0
+offset_top = 703.0
+offset_right = 966.0
+offset_bottom = 726.0
+text = "Życie"
+
 [node name="InteractionAlert" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -99,21 +114,6 @@ offset_bottom = 645.0
 text = "Wznów grę"
 script = ExtResource("3_hnx6s")
 
-[node name="LifeLabel" type="Label" parent="."]
-offset_left = 926.0
-offset_top = 703.0
-offset_right = 966.0
-offset_bottom = 726.0
-text = "Życie"
-
-[node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = 922.0
-offset_top = 731.0
-offset_right = 1135.0
-offset_bottom = 758.0
-theme = SubResource("Theme_37pt3")
-step = 1.0
-
 [node name="CheckpointAlert" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -134,6 +134,7 @@ scroll_active = false
 
 [node name="GameOverAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_nhyl8")
+volume_db = -8.0
 script = ExtResource("5_4k2ul")
 
 [node name="GameSavedAudio" type="AudioStreamPlayer" parent="."]

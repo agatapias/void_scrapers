@@ -233,14 +233,6 @@ radius = 689.0
 
 [node name="Spaceship" parent="." instance=ExtResource("1_dlvmg")]
 
-[node name="UILayer" parent="." instance=ExtResource("2_g14c0")]
-
-[node name="CheckpointAlert" parent="UILayer" index="5"]
-visible = false
-
-[node name="TransitionAlert" parent="UILayer" index="8"]
-visible = false
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_7f8su")
 volume_db = -15.0
@@ -287,7 +279,7 @@ gravity_scale = 0.0
 
 [node name="FighterWrapper" type="Node2D" parent="."]
 
-[node name="Enemy" type="RigidBody2D" parent="FighterWrapper"]
+[node name="Enemy" type="RigidBody2D" parent="FighterWrapper" groups=["enemy"]]
 position = Vector2(1113, -1399)
 rotation = -2.28464
 gravity_scale = 0.0
@@ -828,7 +820,7 @@ rotation = -0.191986
 
 [node name="FighterWrapper2" type="Node2D" parent="."]
 
-[node name="Enemy" type="RigidBody2D" parent="FighterWrapper2"]
+[node name="Enemy" type="RigidBody2D" parent="FighterWrapper2" groups=["enemy"]]
 position = Vector2(1436, -942)
 rotation = -1.64934
 gravity_scale = 0.0
@@ -911,10 +903,9 @@ script = ExtResource("23_2sw72")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Planet1/Checkpoint"]
 shape = SubResource("CircleShape2D_1vf84")
 
+[node name="UILayer" parent="." instance=ExtResource("2_g14c0")]
+
 [connection signal="animation_finished" from="FighterWrapper/Enemy/DestructionAnimatedSprite2D" to="FighterWrapper/Enemy" method="_on_destruction_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="FighterWrapper2/Enemy/DestructionAnimatedSprite2D" to="FighterWrapper2/Enemy" method="_on_destruction_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_entered"]
 [connection signal="body_exited" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_exited"]
-
-[editable path="UILayer"]
-[editable path="UILayer/Inventory_UI"]
