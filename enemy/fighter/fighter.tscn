@@ -1,9 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://gov8238yo4b0"]
+[gd_scene load_steps=35 format=3 uid="uid://gov8238yo4b0"]
 
 [ext_resource type="Script" path="res://script/EnemyHealthBar.gd" id="1_l0j1f"]
 [ext_resource type="Script" path="res://script/Fighter.gd" id="2_ywkb2"]
 [ext_resource type="PackedScene" uid="uid://djt5ahnmfl7hm" path="res://scene/fighter_bullet.tscn" id="3_swfbj"]
 [ext_resource type="Texture2D" uid="uid://odm3s1085tpb" path="res://assets/sprites/enemies/fighter/fighter_base.png" id="4_anbaw"]
+[ext_resource type="PackedScene" uid="uid://daeriaav5p78v" path="res://items/coin_item.tscn" id="4_c8pmh"]
 [ext_resource type="Texture2D" uid="uid://dqd6cik3bw6t5" path="res://assets/sprites/enemies/fighter/engines.png" id="5_y4q0h"]
 [ext_resource type="Texture2D" uid="uid://c74odp2op1o2c" path="res://assets/sprites/enemies/fighter/destruction.png" id="6_uv0r8"]
 [ext_resource type="AudioStream" uid="uid://12t4jwgja5pq" path="res://assets/sound_effects/fighter_engine.mp3" id="7_7n446"]
@@ -196,12 +197,13 @@ step = 1.0
 script = ExtResource("1_l0j1f")
 metadata/_edit_use_anchors_ = true
 
-[node name="Enemy" type="RigidBody2D" parent="FighterWrapper"]
+[node name="Enemy" type="RigidBody2D" parent="FighterWrapper" groups=["enemy"]]
 position = Vector2(0, 6)
 rotation = -2.28464
 gravity_scale = 0.0
 script = ExtResource("2_ywkb2")
 projectile = ExtResource("3_swfbj")
+coin = ExtResource("4_c8pmh")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="FighterWrapper/Enemy"]

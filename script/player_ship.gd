@@ -15,6 +15,8 @@ var _frames_since_last_increment = 0
 var suckingGravities = []
 var reset_state = false
 
+var hasShieldEquipped = false
+
 var checkpoint = {
 	pos = Vector2.ZERO,
 	level = 'Main'
@@ -40,6 +42,7 @@ func _ready():
 	contact_monitor = true
 	max_contacts_reported = 10000
 	connect("body_entered", _on_body_entered)
+	drop_shield()
 	set_health(MAX_HEALTH)
 	inventory.itemUsed.connect(itemUsed)
 	setTimerRandom()
@@ -138,14 +141,25 @@ func restore():
 	reset_state = true
 	
 func equipGun(gun):
-	print("gun equipped")
 	gunEquipped = gun
 	$WeaponSprite.visible = true
+	
+func use_shield():
+	$Shield/ShieldAnimated.visible = true
+	$Shield/ShieldCollisionShape.set_deferred("disabled", false)
+	$Shield/ShieldTimer.connect("timeout", drop_shield)
+	$Shield/ShieldTimer.set_wait_time(10)
+	$Shield/ShieldTimer.start()
+	
+func drop_shield():
+	$Shield/ShieldAnimated.visible = false
+	$Shield/ShieldCollisionShape.set_deferred("disabled", true)
 
 func itemUsed(item):
 	match item.idName:
 		"LaserGun": equipGun(item.idName)
 		"Fish": restore_health(10)
+		"Shield": use_shield()
 
 func beSucked(gravity):
 	suckingGravities.append(gravity)
@@ -169,3 +183,14 @@ func setTimerRandom():
 	$Timer.connect("timeout", spawnGravitySpiral)
 	$Timer.set_wait_time(randomTime)
 	$Timer.start()
+
+func _on_shield_body_entered(body):
+	if body.is_in_group("enemy"):
+		body.set_repulsed(true)
+		body.get_damage(10)
+	elif body.is_in_group("bullet"):
+		body.queue_free()
+
+func _on_shield_body_exited(body):
+	if body.is_in_group("enemy"):
+		body.set_repulsed(false)
