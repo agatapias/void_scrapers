@@ -48,6 +48,7 @@ func updateSlots():
 	coinsLabel.text = str(inventory.money)
 	
 func close():
+	get_tree().paused = false
 	visible = false
 	isOpen = false
 	
@@ -56,6 +57,7 @@ func open():
 	shop_ui.close()
 	visible = true
 	isOpen = true
+	get_tree().paused = true
 	
 func onSlotClicked(item, index):
 	if item == null:

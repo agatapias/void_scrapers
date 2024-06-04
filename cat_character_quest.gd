@@ -1,5 +1,7 @@
 extends Area2D
 
+@onready var dialogUi: Control = get_node("../UILayer/Dialog")
+
 var isSpaceshipNear = false
 var interactionAlert
 var interacting = false
@@ -54,8 +56,8 @@ func _process(delta):
 			_leave_interaction()
 
 func _set_dialog(str):
-	dialog.visible = true
-	dialog.get_child(0).text = str
+	dialogUi.open()
+	dialogUi.setText(str)
 
 func _start_interaction():
 	interacting = true
@@ -64,7 +66,8 @@ func _start_interaction():
 func _leave_interaction():
 	interacting = false
 	get_tree().paused = false
-	dialog.visible = false
+	dialogUi.close()
+	dialogUi.setText("")
 	interactionAlert.visible = false
 	changed = false
 

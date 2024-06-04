@@ -80,11 +80,15 @@ func updateSlots(inv):
 	coinsLabel.text = str(inv.money)
 	
 func close():
+	print("shop close called")
+	var tree = await get_tree()
+	tree.paused = false
 	visible = false
 	isOpen = false
 	
 func open(pInv, mInv):
-	inventory_ui.close()
+	#inventory_ui.close()
+	#get_tree().paused = true
 	visible = true
 	isOpen = true
 	prepare(pInv, mInv)

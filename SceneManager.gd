@@ -16,7 +16,7 @@ func _ready():
 func callbackForScene(_data):
 	$TransitionLayer.transition()
 	data = _data
-
+ 
 func callback():
 	for child in get_children():
 		if child.name != 'TransitionLayer':

@@ -1,14 +1,27 @@
-[gd_scene load_steps=9 format=3 uid="uid://sskn7og6uw6y"]
+[gd_scene load_steps=13 format=3 uid="uid://sskn7og6uw6y"]
 
 [ext_resource type="PackedScene" uid="uid://dfwanik2mf7ch" path="res://shop/shop_ui.tscn" id="1_bxujp"]
+[ext_resource type="Script" path="res://scene/dialog.gd" id="1_jvs7g"]
+[ext_resource type="Texture2D" uid="uid://bccvu2uhtwc5" path="res://assets/sprites/dialogue/dialog2.png" id="1_kj0yc"]
 [ext_resource type="PackedScene" uid="uid://dlalcgyycgn7f" path="res://inventory/inventory_ui.tscn" id="2_tm0cr"]
 [ext_resource type="Script" path="res://script/Restart.gd" id="3_hnx6s"]
 [ext_resource type="AudioStream" uid="uid://cn3vlf5yu313l" path="res://assets/sound_effects/game_over.mp3" id="4_nhyl8"]
 [ext_resource type="Script" path="res://script/GameOverAudio.gd" id="5_4k2ul"]
 [ext_resource type="AudioStream" uid="uid://da6fwqmpcsn5t" path="res://assets/sound_effects/game_saved.mp3" id="6_6uesi"]
 [ext_resource type="PackedScene" uid="uid://82wwi4ndsjxb" path="res://pause/pause.tscn" id="7_42iyk"]
+[ext_resource type="PackedScene" uid="uid://brmvsqqsejgu4" path="res://help/help.tscn" id="8_vqf3g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_be5lw"]
+bg_color = Color(1, 0.27451, 0.588235, 1)
 
 [sub_resource type="Theme" id="Theme_37pt3"]
+ProgressBar/colors/font_color = Color(0, 0, 0, 1)
+ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 0
+ProgressBar/font_sizes/font_size = 16
+ProgressBar/fonts/font = null
+ProgressBar/styles/background = null
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_be5lw")
 
 [node name="UILayer" type="CanvasLayer"]
 
@@ -19,6 +32,13 @@ offset_right = 1135.0
 offset_bottom = 758.0
 theme = SubResource("Theme_37pt3")
 step = 1.0
+
+[node name="LifeLabel" type="Label" parent="."]
+offset_left = 926.0
+offset_top = 703.0
+offset_right = 966.0
+offset_bottom = 726.0
+text = "Życie"
 
 [node name="InteractionAlert" type="Control" parent="."]
 visible = false
@@ -37,10 +57,26 @@ text = "Naciśnij E, żeby wejść w interakcję"
 scroll_active = false
 
 [node name="Dialog" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_jvs7g")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Dialog"]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 534.0
+offset_right = 1006.0
+offset_bottom = 770.0
+texture = ExtResource("1_kj0yc")
+region_rect = Rect2(0, 0, 30, 30)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+metadata/_edit_group_ = true
 
 [node name="Text" type="RichTextLabel" parent="Dialog"]
 layout_mode = 0
@@ -50,15 +86,18 @@ offset_right = 955.0
 offset_bottom = 796.0
 scroll_active = false
 
-[node name="GameOver" type="ColorRect" parent="."]
+[node name="GameOverScreen" type="CanvasLayer" parent="." groups=["GameOverScreen"]]
 visible = false
+
+[node name="GameOver" type="ColorRect" parent="GameOverScreen"]
+top_level = true
 offset_left = -5.0
 offset_top = -5.0
 offset_right = 1188.0
 offset_bottom = 784.0
 color = Color(0, 0, 0, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="GameOver"]
+[node name="RichTextLabel" type="RichTextLabel" parent="GameOverScreen/GameOver"]
 layout_mode = 0
 offset_left = 53.0
 offset_top = 297.0
@@ -67,7 +106,7 @@ offset_bottom = 533.0
 theme_override_font_sizes/normal_font_size = 180
 text = "KONIEC GRY"
 
-[node name="Restart" type="Button" parent="GameOver"]
+[node name="Restart" type="Button" parent="GameOverScreen/GameOver"]
 layout_mode = 0
 offset_left = 503.0
 offset_top = 585.0
@@ -77,6 +116,7 @@ text = "Wznów grę"
 script = ExtResource("3_hnx6s")
 
 [node name="CheckpointAlert" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 9.0
@@ -96,6 +136,7 @@ scroll_active = false
 
 [node name="GameOverAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_nhyl8")
+volume_db = -8.0
 script = ExtResource("5_4k2ul")
 
 [node name="GameSavedAudio" type="AudioStreamPlayer" parent="."]
@@ -103,6 +144,7 @@ stream = ExtResource("6_6uesi")
 volume_db = -11.243
 
 [node name="TransitionAlert" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 9.0
@@ -121,6 +163,7 @@ text = "Naciśnij [E], żeby przejść do następnego poziomu"
 scroll_active = false
 
 [node name="PauseUi" parent="." instance=ExtResource("7_42iyk")]
+visible = false
 offset_left = 435.0
 offset_top = 249.0
 offset_right = 519.0
@@ -140,3 +183,18 @@ offset_top = 140.0
 offset_right = 348.0
 offset_bottom = 250.0
 scale = Vector2(5, 5)
+
+[node name="Help" parent="." instance=ExtResource("8_vqf3g")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -327.0
+offset_top = -226.0
+offset_right = -105.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)

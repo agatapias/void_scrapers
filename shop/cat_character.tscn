@@ -1,35 +1,101 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcvaxcx3ca3eq"]
+[gd_scene load_steps=15 format=3 uid="uid://bcvaxcx3ca3eq"]
 
-[ext_resource type="Texture2D" uid="uid://b1qbdf8jelji6" path="res://assets/sprites/Meow-Knight-alone.png" id="1_5pms1"]
 [ext_resource type="Script" path="res://shop/cat_character.gd" id="1_q3a0p"]
 [ext_resource type="Resource" uid="uid://d4l2f2666rhq3" path="res://inventory/cat_merchant_inventory.tres" id="2_14a1t"]
 [ext_resource type="Resource" uid="uid://bnyl0honuehva" path="res://shop/shop.tres" id="3_gyyeh"]
+[ext_resource type="Texture2D" uid="uid://b3riwprqrrc3i" path="res://assets/sprites/Meow-Knight_Idle.png" id="4_x2rf6"]
+[ext_resource type="Texture2D" uid="uid://ceask65s2dyp6" path="res://assets/sprites/ship/ship13.png" id="5_5c3pj"]
+[ext_resource type="Texture2D" uid="uid://b4undmawet5m8" path="res://assets/sprites/sklep-label.png" id="6_ubv0f"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_0bln5"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_7m8mf"]
+radius = 197.01
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ix15a"]
+atlas = ExtResource("4_x2rf6")
+region = Rect2(0, 0, 16, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0ex6"]
+atlas = ExtResource("4_x2rf6")
+region = Rect2(0, 25, 16, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ucu4"]
+atlas = ExtResource("4_x2rf6")
+region = Rect2(0, 50, 16, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rye2"]
+atlas = ExtResource("4_x2rf6")
+region = Rect2(0, 75, 16, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqrej"]
+atlas = ExtResource("4_x2rf6")
+region = Rect2(0, 100, 16, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8sohc"]
+atlas = ExtResource("4_x2rf6")
+region = Rect2(0, 125, 16, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d53qv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_5pms1")
+"texture": SubResource("AtlasTexture_ix15a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0ex6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ucu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rye2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqrej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8sohc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqrej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rye2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ucu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0ex6")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7m8mf"]
-radius = 129.0
-
 [node name="Cat" type="Area2D"]
 script = ExtResource("1_q3a0p")
 inventory = ExtResource("2_14a1t")
 shop = ExtResource("3_gyyeh")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2.5, 2.5)
-sprite_frames = SubResource("SpriteFrames_0bln5")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(45, 4)
 shape = SubResource("CircleShape2D_7m8mf")
+
+[node name="Ship" type="Sprite2D" parent="."]
+position = Vector2(43, 8)
+scale = Vector2(4.03125, 4.03125)
+texture = ExtResource("5_5c3pj")
+
+[node name="StoreLabel" type="Sprite2D" parent="."]
+position = Vector2(37, 89)
+scale = Vector2(0.109133, 0.109133)
+texture = ExtResource("6_ubv0f")
+
+[node name="CatAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, 7)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_d53qv")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

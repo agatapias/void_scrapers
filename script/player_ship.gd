@@ -7,30 +7,45 @@ const MIN_HEALTH = 0
 const INCREMENT_INTERVAL = 10
 
 var thrust_vector = Vector2(0, -200)
+var suck_vector = Vector2(0, -100)
 var torque = 200
 var _health = 0
 var _frames_since_last_increment = 0
 
+var suckingGravities = []
 var reset_state = false
+
+var hasShieldEquipped = false
 
 var checkpoint = {
 	pos = Vector2.ZERO,
 	level = 'Main'
 }
 
+var rng = RandomNumberGenerator.new()
+
 @export var projectile: PackedScene
+@export var gravitySpiral: PackedScene
 @export var inventory: Inventory
 
 @onready var leftGunMarker = $LeftGunMarker
 
 var gunEquipped: String = "none"  # "none" "LaserGun" "BombGun"
 
+func _target_vector(gravity) -> Vector2:
+	return position.direction_to(gravity.position)
+
+func _target_rotation(gravity) -> Vector2:
+	return position.direction_to(gravity.rotation)
+
 func _ready():
 	contact_monitor = true
 	max_contacts_reported = 10000
 	connect("body_entered", _on_body_entered)
+	drop_shield()
 	set_health(MAX_HEALTH)
 	inventory.itemUsed.connect(itemUsed)
+	setTimerRandom()
 	
 	$WeaponSprite.visible = false
 
@@ -45,7 +60,7 @@ func _input(event):
 func _physics_process(delta):
 	_frames_since_last_increment += 1
 	if _health <= 0:
-		var game_over = get_node("../UILayer/GameOver")
+		var game_over = get_node("../UILayer/GameOverScreen")
 		var game_over_audio = get_node("../UILayer/GameOverAudio")
 		game_over_audio.play()
 		get_tree().paused = true
@@ -55,6 +70,10 @@ func _integrate_forces(state):
 	if reset_state:
 		state.transform = Transform2D(0.0, checkpoint.pos)
 		reset_state = false
+	if suckingGravities.size() > 0:
+		for gravity in suckingGravities:
+			var targetVector = _target_vector(gravity)
+			state.apply_force(targetVector * 20)
 	if Input.is_action_pressed("ui_up") and _frames_since_last_increment >= INCREMENT_INTERVAL:
 		state.apply_force(thrust_vector.rotated(rotation))
 		_frames_since_last_increment = 0
@@ -122,11 +141,56 @@ func restore():
 	reset_state = true
 	
 func equipGun(gun):
-	print("gun equipped")
 	gunEquipped = gun
 	$WeaponSprite.visible = true
+	
+func use_shield():
+	$Shield/ShieldAnimated.visible = true
+	$Shield/ShieldCollisionShape.set_deferred("disabled", false)
+	$Shield/ShieldTimer.connect("timeout", drop_shield)
+	$Shield/ShieldTimer.set_wait_time(10)
+	$Shield/ShieldTimer.start()
+	
+func drop_shield():
+	$Shield/ShieldAnimated.visible = false
+	$Shield/ShieldCollisionShape.set_deferred("disabled", true)
 
 func itemUsed(item):
 	match item.idName:
 		"LaserGun": equipGun(item.idName)
 		"Fish": restore_health(10)
+		"Shield": use_shield()
+
+func beSucked(gravity):
+	suckingGravities.append(gravity)
+	
+func stopBeingSucked(gravity):
+	suckingGravities.erase(gravity)
+
+func spawnGravitySpiral():
+	var randomX = rng.randf_range(20.0, 460.0)
+	var randomY = rng.randf_range(20.0, 160.0)
+	var spiral = gravitySpiral.instantiate()
+	var newTransform = self.global_transform
+	newTransform.x = newTransform.x + Vector2(randomX, 0)
+	newTransform.x = newTransform.y + Vector2(0, randomY)
+	owner.add_child(spiral)
+	spiral.transform = newTransform
+	setTimerRandom()
+	
+func setTimerRandom():
+	var randomTime = rng.randf_range(10.0, 30.0)
+	$Timer.connect("timeout", spawnGravitySpiral)
+	$Timer.set_wait_time(randomTime)
+	$Timer.start()
+
+func _on_shield_body_entered(body):
+	if body.is_in_group("enemy"):
+		body.set_repulsed(true)
+		body.get_damage(10)
+	elif body.is_in_group("bullet"):
+		body.queue_free()
+
+func _on_shield_body_exited(body):
+	if body.is_in_group("enemy"):
+		body.set_repulsed(false)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dxbb1xjpse0p7"]
+[gd_scene load_steps=28 format=3 uid="uid://dxbb1xjpse0p7"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://scene/player_ship.tscn" id="1_s1wep"]
 [ext_resource type="PackedScene" uid="uid://bmmhib0afegw2" path="res://scene/asteroid.tscn" id="2_i6m1y"]
@@ -11,17 +11,22 @@
 [ext_resource type="PackedScene" uid="uid://daeriaav5p78v" path="res://items/coin_item.tscn" id="9_4aeqo"]
 [ext_resource type="AudioStream" uid="uid://12t4jwgja5pq" path="res://assets/sound_effects/fighter_engine.mp3" id="14_mxkqo"]
 [ext_resource type="Script" path="res://script/EngineSoundEffect.gd" id="15_3235v"]
-[ext_resource type="PackedScene" uid="uid://bcvaxcx3ca3eq" path="res://shop/cat_character.tscn" id="16_nwhr7"]
 [ext_resource type="Script" path="res://script/Checkpoint.gd" id="19_tsv00"]
 [ext_resource type="Texture2D" uid="uid://c0uje4lrjei3w" path="res://assets/sprites/planets/planet1.png" id="20_752u3"]
 [ext_resource type="Texture2D" uid="uid://bltfgoo4dk0ng" path="res://assets/sprites/asteroid2.png" id="21_eixka"]
-[ext_resource type="Script" path="res://cat_character_quest.gd" id="22_y2kxv"]
 [ext_resource type="PackedScene" uid="uid://sskn7og6uw6y" path="res://scene/ui_layer.tscn" id="23_roe1x"]
+[ext_resource type="PackedScene" uid="uid://bfkwmdcjkl434" path="res://scene/cat_quest_1.tscn" id="23_ur1ow"]
 [ext_resource type="PackedScene" uid="uid://binlpkv1hdrmo" path="res://scene/pretty_asteroid.tscn" id="24_vrgh4"]
 [ext_resource type="PackedScene" uid="uid://cbfse1ej0mvgg" path="res://scene/another_asteroid.tscn" id="25_2t6bf"]
 [ext_resource type="PackedScene" uid="uid://dj4y5srnrw022" path="res://scene/great_asteroid.tscn" id="26_gm2wa"]
 [ext_resource type="PackedScene" uid="uid://do2q3ueyu1fx6" path="res://scene/diff_asteroid.tscn" id="27_j2p4a"]
 [ext_resource type="PackedScene" uid="uid://clx2c4q05hpbs" path="res://scene/level_transition.tscn" id="28_56pm6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmn6t"]
+bg_color = Color(0.745098, 0.227451, 0.176471, 1)
+
+[sub_resource type="Theme" id="Theme_ksk6o"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_rmn6t")
 
 [sub_resource type="GDScript" id="GDScript_noh7b"]
 
@@ -38,6 +43,8 @@ height = 58.0
 [node name="Main" type="Node"]
 
 [node name="Spaceship" parent="." instance=ExtResource("1_s1wep")]
+position = Vector2(-791, 1292)
+metadata/_edit_group_ = true
 
 [node name="UILayer" parent="." instance=ExtResource("23_roe1x")]
 
@@ -65,25 +72,40 @@ position = Vector2(-271, -576)
 
 [node name="ScoutWrapper" type="Node2D" parent="."]
 
-[node name="Enemy" parent="ScoutWrapper" instance=ExtResource("8_eg7m5")]
+[node name="Enemy" parent="ScoutWrapper" groups=["enemy"] instance=ExtResource("8_eg7m5")]
 position = Vector2(-1210, -604)
-
-[node name="AnimatedSprite2D" parent="ScoutWrapper/Enemy" index="2"]
-animation = &"go"
 
 [node name="EngineAudio" type="AudioStreamPlayer2D" parent="ScoutWrapper/Enemy"]
 stream = ExtResource("14_mxkqo")
 attenuation = 8.57418
 script = ExtResource("15_3235v")
 
-[node name="EnemyHealthBar" type="ProgressBar" parent="ScoutWrapper"]
+[node name="Control" type="Control" parent="ScoutWrapper"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1210.0
+offset_top = -604.0
+offset_right = -1170.0
+offset_bottom = -564.0
+script = ExtResource("7_yd4hr")
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="ScoutWrapper/Control"]
+layout_mode = 0
 offset_left = -120.0
 offset_top = -80.0
 offset_right = -79.0
 offset_bottom = -53.0
-max_value = 200.0
+scale = Vector2(0.8, 0.8)
+theme = SubResource("Theme_ksk6o")
+max_value = 50.0
 step = 1.0
-script = ExtResource("7_yd4hr")
+
+[node name="LifeLabel" type="Label" parent="ScoutWrapper/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(0.6, 0.6)
+text = "Życie"
 
 [node name="Asteroid4" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
 position = Vector2(-88, -531)
@@ -204,14 +226,6 @@ position = Vector2(-1336, -1260)
 
 [node name="CoinItem" parent="." instance=ExtResource("9_4aeqo")]
 position = Vector2(-118, 52)
-
-[node name="QuestCat" parent="." instance=ExtResource("16_nwhr7")]
-position = Vector2(-103, -144)
-script = ExtResource("22_y2kxv")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" parent="QuestCat" index="1"]
-position = Vector2(0, 1)
 
 [node name="Asteroid2_6" type="RigidBody2D" parent="."]
 position = Vector2(-131, -446)
@@ -435,25 +449,38 @@ position = Vector2(-1283, -1282)
 
 [node name="ScoutWrapper2" type="Node2D" parent="."]
 
-[node name="Enemy" parent="ScoutWrapper2" instance=ExtResource("8_eg7m5")]
+[node name="Enemy" parent="ScoutWrapper2" groups=["enemy"] instance=ExtResource("8_eg7m5")]
 position = Vector2(-368, -1020)
-
-[node name="AnimatedSprite2D" parent="ScoutWrapper2/Enemy" index="2"]
-animation = &"go"
 
 [node name="EngineAudio" type="AudioStreamPlayer2D" parent="ScoutWrapper2/Enemy"]
 stream = ExtResource("14_mxkqo")
 attenuation = 8.57418
 script = ExtResource("15_3235v")
 
-[node name="EnemyHealthBar" type="ProgressBar" parent="ScoutWrapper2"]
+[node name="Control" type="Control" parent="ScoutWrapper2"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_yd4hr")
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="ScoutWrapper2/Control"]
+layout_mode = 0
 offset_left = -120.0
 offset_top = -80.0
 offset_right = -79.0
 offset_bottom = -53.0
+scale = Vector2(0.8, 0.8)
+theme = SubResource("Theme_ksk6o")
 max_value = 50.0
 step = 1.0
-script = ExtResource("7_yd4hr")
+
+[node name="LifeLabel" type="Label" parent="ScoutWrapper2/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(0.6, 0.6)
+text = "Życie"
 
 [node name="PrettyAsteroid" parent="." instance=ExtResource("24_vrgh4")]
 position = Vector2(-341, 235)
@@ -489,10 +516,15 @@ gravity_scale = 0.0
 [node name="LevelTransition" parent="." instance=ExtResource("28_56pm6")]
 position = Vector2(-1066, 1480)
 
+[node name="CoinItem2" parent="." instance=ExtResource("9_4aeqo")]
+position = Vector2(76, -38)
+
+[node name="QuestCat" parent="." instance=ExtResource("23_ur1ow")]
+position = Vector2(-150, -279)
+
 [connection signal="body_entered" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_entered"]
 [connection signal="body_exited" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_exited"]
 
 [editable path="Spaceship"]
 [editable path="ScoutWrapper/Enemy"]
-[editable path="QuestCat"]
 [editable path="ScoutWrapper2/Enemy"]

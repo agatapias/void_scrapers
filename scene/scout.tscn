@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://c5sx8syk8thbt"]
+[gd_scene load_steps=22 format=3 uid="uid://c5sx8syk8thbt"]
 
 [ext_resource type="Script" path="res://script/Scout.gd" id="1_w0lks"]
+[ext_resource type="PackedScene" uid="uid://daeriaav5p78v" path="res://items/coin_item.tscn" id="2_46ur3"]
 [ext_resource type="Texture2D" uid="uid://cdr163wh6effn" path="res://assets/sprites/enemies/scout/Nautolan Ship - Scout - Base.png" id="2_anj6m"]
 [ext_resource type="Texture2D" uid="uid://cqtff2e0lgvpy" path="res://assets/sprites/enemies/scout/destruction/des1.png" id="3_u62hu"]
 [ext_resource type="Texture2D" uid="uid://davvjrf6flrwi" path="res://assets/sprites/enemies/scout/destruction/des2.png" id="4_dxk40"]
@@ -67,7 +68,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("10_wkne2")
 }],
-"loop": true,
+"loop": false,
 "name": &"destruction",
 "speed": 5.0
 }, {
@@ -105,6 +106,7 @@ animations = [{
 position = Vector2(-89, -25)
 gravity_scale = 0.0
 script = ExtResource("1_w0lks")
+coin = ExtResource("2_46ur3")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -119,3 +121,4 @@ sprite_frames = SubResource("SpriteFrames_afg4u")
 animation = &"destruction"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

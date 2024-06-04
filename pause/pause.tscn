@@ -88,6 +88,17 @@ scale = Vector2(0.2, 0.2)
 text = "Zmień głośność"
 vertical_alignment = 1
 
+[node name="HelpButton" type="Button" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 4.0
+offset_right = 126.0
+offset_bottom = 35.0
+scale = Vector2(0.3, 0.3)
+text = "Pomoc"
+script = ExtResource("2_kcnf7")
+
 [connection signal="pressed" from="NinePatchRect/ContinueButton" to="NinePatchRect/ContinueButton" method="_on_pressed"]
 [connection signal="pressed" from="NinePatchRect/ExitButton" to="NinePatchRect/ExitButton" method="_on_pressed"]
 [connection signal="value_changed" from="NinePatchRect/VolumeSlider" to="NinePatchRect/VolumeSlider" method="_on_value_changed"]
+[connection signal="pressed" from="NinePatchRect/HelpButton" to="NinePatchRect/HelpButton" method="_on_pressed"]

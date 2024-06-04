@@ -1,0 +1,861 @@
+[gd_scene load_steps=51 format=3 uid="uid://di0xlol6ep6vt"]
+
+[ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://scene/player_ship.tscn" id="1_dlvmg"]
+[ext_resource type="PackedScene" uid="uid://sskn7og6uw6y" path="res://scene/ui_layer.tscn" id="2_g14c0"]
+[ext_resource type="AudioStream" uid="uid://byfei1v2i88op" path="res://assets/music/slow-travel.wav" id="3_7f8su"]
+[ext_resource type="Script" path="res://script/AudioStreamPlayer.gd" id="4_hemc2"]
+[ext_resource type="Texture2D" uid="uid://6f6wrv4tdlw1" path="res://assets/background/Space Background 2.png" id="5_0uyxl"]
+[ext_resource type="PackedScene" uid="uid://bmmhib0afegw2" path="res://scene/asteroid.tscn" id="6_tajre"]
+[ext_resource type="PackedScene" uid="uid://bcvaxcx3ca3eq" path="res://shop/cat_character.tscn" id="7_07das"]
+[ext_resource type="Texture2D" uid="uid://bltfgoo4dk0ng" path="res://assets/sprites/asteroid2.png" id="8_330cs"]
+[ext_resource type="PackedScene" path="res://scene/pretty_asteroid.tscn" id="9_61fh4"]
+[ext_resource type="PackedScene" path="res://scene/another_asteroid.tscn" id="10_fv4ta"]
+[ext_resource type="Script" path="res://script/EnemyHealthBar.gd" id="11_rwlm8"]
+[ext_resource type="Script" path="res://script/Fighter.gd" id="12_qf4ef"]
+[ext_resource type="PackedScene" uid="uid://djt5ahnmfl7hm" path="res://scene/fighter_bullet.tscn" id="13_0ief1"]
+[ext_resource type="Texture2D" uid="uid://odm3s1085tpb" path="res://assets/sprites/enemies/fighter/fighter_base.png" id="14_xt2xj"]
+[ext_resource type="Texture2D" uid="uid://dqd6cik3bw6t5" path="res://assets/sprites/enemies/fighter/engines.png" id="15_wmhpc"]
+[ext_resource type="Texture2D" uid="uid://c74odp2op1o2c" path="res://assets/sprites/enemies/fighter/destruction.png" id="16_adtpq"]
+[ext_resource type="AudioStream" uid="uid://12t4jwgja5pq" path="res://assets/sound_effects/fighter_engine.mp3" id="17_47wiv"]
+[ext_resource type="Script" path="res://script/EngineSoundEffect.gd" id="18_h1nl0"]
+[ext_resource type="AudioStream" uid="uid://btxf36tq6tkuh" path="res://assets/sound_effects/laser.mp3" id="19_rdp5c"]
+[ext_resource type="PackedScene" uid="uid://daeriaav5p78v" path="res://items/coin_item.tscn" id="20_h5q0k"]
+[ext_resource type="PackedScene" path="res://scene/great_asteroid.tscn" id="21_7fylw"]
+[ext_resource type="Texture2D" uid="uid://1silxs3g2tq5" path="res://assets/sprites/planets/Planet3.png" id="22_owls1"]
+[ext_resource type="Script" path="res://script/Checkpoint.gd" id="23_2sw72"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t2xdx"]
+radius = 12.0
+height = 58.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g8vuk"]
+radius = 11.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xh80u"]
+atlas = ExtResource("15_wmhpc")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hga2u"]
+atlas = ExtResource("15_wmhpc")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74gwe"]
+atlas = ExtResource("15_wmhpc")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_td3ki"]
+atlas = ExtResource("15_wmhpc")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2sl8"]
+atlas = ExtResource("15_wmhpc")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0i7e"]
+atlas = ExtResource("15_wmhpc")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uv6r"]
+atlas = ExtResource("15_wmhpc")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hun31"]
+atlas = ExtResource("15_wmhpc")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfotk"]
+atlas = ExtResource("15_wmhpc")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnmy6"]
+atlas = ExtResource("15_wmhpc")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h11ir"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xh80u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hga2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74gwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_td3ki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2sl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0i7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8uv6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hun31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfotk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnmy6")
+}],
+"loop": true,
+"name": &"engines",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"none",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4uuvl"]
+atlas = ExtResource("16_adtpq")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5b8do"]
+atlas = ExtResource("16_adtpq")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecgkg"]
+atlas = ExtResource("16_adtpq")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k24gp"]
+atlas = ExtResource("16_adtpq")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijhag"]
+atlas = ExtResource("16_adtpq")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtt5f"]
+atlas = ExtResource("16_adtpq")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvpss"]
+atlas = ExtResource("16_adtpq")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yqof"]
+atlas = ExtResource("16_adtpq")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8af2e"]
+atlas = ExtResource("16_adtpq")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ffb7"]
+atlas = ExtResource("16_adtpq")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ewfqi"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4uuvl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5b8do")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecgkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k24gp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijhag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtt5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvpss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yqof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8af2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ffb7")
+}],
+"loop": true,
+"name": &"destruction",
+"speed": 10.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_rajc4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5qa0t"]
+radius = 502.036
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1vf84"]
+radius = 689.0
+
+[node name="Main2" type="Node"]
+
+[node name="Spaceship" parent="." instance=ExtResource("1_dlvmg")]
+
+[node name="UILayer" parent="." instance=ExtResource("2_g14c0")]
+
+[node name="CheckpointAlert" parent="UILayer" index="4"]
+visible = false
+
+[node name="TransitionAlert" parent="UILayer" index="7"]
+visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7f8su")
+volume_db = -15.0
+script = ExtResource("4_hemc2")
+
+[node name="SpaceBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="SpaceBackground"]
+motion_scale = Vector2(0.2, 0.2)
+motion_offset = Vector2(500, 500)
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/ParallaxLayer"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_0uyxl")
+metadata/_edit_lock_ = true
+
+[node name="Asteroid" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1505, -886)
+
+[node name="Cat" parent="." instance=ExtResource("7_07das")]
+position = Vector2(75, -162)
+metadata/_edit_group_ = true
+
+[node name="Asteroid2_1" type="RigidBody2D" parent="."]
+position = Vector2(-209, -372)
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_1"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_1"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="PrettyAsteroid" parent="." instance=ExtResource("9_61fh4")]
+position = Vector2(-257, -617)
+
+[node name="AnotherAsteroid" parent="." instance=ExtResource("10_fv4ta")]
+position = Vector2(1324, -729)
+mass = 500.0
+gravity_scale = 0.0
+
+[node name="FighterWrapper" type="Node2D" parent="."]
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="FighterWrapper"]
+offset_left = -660.0
+offset_top = 319.0
+offset_right = -619.0
+offset_bottom = 346.0
+step = 1.0
+script = ExtResource("11_rwlm8")
+metadata/_edit_use_anchors_ = true
+
+[node name="Enemy" type="RigidBody2D" parent="FighterWrapper"]
+position = Vector2(1113, -1399)
+rotation = -2.28464
+gravity_scale = 0.0
+script = ExtResource("12_qf4ef")
+projectile = ExtResource("13_0ief1")
+coin = ExtResource("20_h5q0k")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="FighterWrapper/Enemy"]
+texture = ExtResource("14_xt2xj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FighterWrapper/Enemy"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_g8vuk")
+
+[node name="EngineAnimatedSprite2D" type="AnimatedSprite2D" parent="FighterWrapper/Enemy"]
+position = Vector2(0, 2)
+sprite_frames = SubResource("SpriteFrames_h11ir")
+animation = &"none"
+
+[node name="GunMarker" type="Marker2D" parent="FighterWrapper/Enemy"]
+position = Vector2(0, -11)
+
+[node name="DestructionAnimatedSprite2D" type="AnimatedSprite2D" parent="FighterWrapper/Enemy"]
+sprite_frames = SubResource("SpriteFrames_ewfqi")
+
+[node name="EngineAudio" type="AudioStreamPlayer2D" parent="FighterWrapper/Enemy"]
+stream = ExtResource("17_47wiv")
+volume_db = 5.0
+attenuation = 8.28212
+script = ExtResource("18_h1nl0")
+
+[node name="LaserSound" type="AudioStreamPlayer2D" parent="FighterWrapper/Enemy"]
+stream = ExtResource("19_rdp5c")
+volume_db = -10.0
+attenuation = 4.92458
+
+[node name="CoinItem" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(4, -293)
+
+[node name="CoinItem2" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(6, -437)
+
+[node name="CoinItem3" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(-2, -607)
+
+[node name="CoinItem4" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(6, -735)
+
+[node name="CoinItem5" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(-5, -886)
+
+[node name="CoinItem6" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(105, -998)
+
+[node name="CoinItem7" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(293, -1084)
+
+[node name="CoinItem8" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(471, -1132)
+
+[node name="CoinItem9" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(685, -1104)
+
+[node name="CoinItem10" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(863, -988)
+
+[node name="CoinItem11" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(983, -832)
+
+[node name="CoinItem12" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(1151, -920)
+
+[node name="CoinItem13" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(1033, -1096)
+
+[node name="CoinItem14" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(841, -1214)
+
+[node name="CoinItem15" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(1035, -1326)
+
+[node name="CoinItem16" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(1193, -1206)
+
+[node name="CoinItem17" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(1347, -1060)
+
+[node name="Asteroid2_2" type="RigidBody2D" parent="."]
+position = Vector2(95, 136)
+rotation = 0.148353
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_2"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_2"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_3" type="RigidBody2D" parent="."]
+position = Vector2(346, -50)
+rotation = 6.06502
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_3"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_3"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_4" type="RigidBody2D" parent="."]
+position = Vector2(414, -410)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_4"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_4"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(404, -217)
+
+[node name="Asteroid2_5" type="RigidBody2D" parent="."]
+position = Vector2(329, -767)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_5"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_5"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid3" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(283, -516)
+
+[node name="Asteroid2_6" type="RigidBody2D" parent="."]
+position = Vector2(427, -600)
+rotation = 4.41568
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_6"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_6"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid4" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(541, -697)
+rotation = 4.41568
+
+[node name="Asteroid2_7" type="RigidBody2D" parent="."]
+position = Vector2(1047, -701)
+rotation = 6.06502
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_7"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_7"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_8" type="RigidBody2D" parent="."]
+position = Vector2(794, -612)
+rotation = 1.87797
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_8"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_8"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid5" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(658, -385)
+
+[node name="PrettyAsteroid2" parent="." instance=ExtResource("9_61fh4")]
+position = Vector2(1025, -419)
+rotation = -0.191986
+
+[node name="Asteroid2_9" type="RigidBody2D" parent="."]
+position = Vector2(1460, -594)
+rotation = 0.925025
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_9"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_9"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="PrettyAsteroid3" parent="." instance=ExtResource("9_61fh4")]
+position = Vector2(351, 121)
+rotation = -3.61981
+
+[node name="Asteroid6" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1674, -745)
+
+[node name="Asteroid7" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-216, -1021)
+
+[node name="Asteroid2_10" type="RigidBody2D" parent="."]
+position = Vector2(-159, -865)
+rotation = 2.41205
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_10"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_10"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="PrettyAsteroid4" parent="." instance=ExtResource("9_61fh4")]
+position = Vector2(-19, -1193)
+rotation = -0.418879
+
+[node name="GreatAsteroid2" parent="." instance=ExtResource("21_7fylw")]
+position = Vector2(319, -1357)
+mass = 500.0
+gravity_scale = 0.0
+
+[node name="Asteroid2_11" type="RigidBody2D" parent="."]
+position = Vector2(404, -949)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_11"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_11"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_12" type="RigidBody2D" parent="."]
+position = Vector2(579, -894)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_12"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_12"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid8" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(699, -770)
+rotation = 4.41568
+
+[node name="Asteroid2_13" type="RigidBody2D" parent="."]
+position = Vector2(681, -1369)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_13"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_13"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_14" type="RigidBody2D" parent="."]
+position = Vector2(694, -1559)
+rotation = 2.45219
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_14"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_14"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid9" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(908, -1617)
+
+[node name="Asteroid2_15" type="RigidBody2D" parent="."]
+position = Vector2(965, -1461)
+rotation = 2.41205
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_15"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_15"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="PrettyAsteroid5" parent="." instance=ExtResource("9_61fh4")]
+position = Vector2(1208, -1516)
+
+[node name="Asteroid2_16" type="RigidBody2D" parent="."]
+position = Vector2(1523, -1252)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_16"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_16"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid10" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1513, -1059)
+
+[node name="Asteroid11" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1392, -1358)
+
+[node name="Asteroid2_17" type="RigidBody2D" parent="."]
+position = Vector2(1536, -1442)
+rotation = 4.41568
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_17"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_17"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid12" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1710, -1150)
+
+[node name="Asteroid2_18" type="RigidBody2D" parent="."]
+position = Vector2(1371, -1664)
+rotation = 2.45219
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_18"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_18"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid13" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1585, -1722)
+
+[node name="Asteroid2_19" type="RigidBody2D" parent="."]
+position = Vector2(491, -1879)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_19"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_19"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid14" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(703, -1809)
+rotation = 4.41568
+
+[node name="Asteroid2_20" type="RigidBody2D" parent="."]
+position = Vector2(566, -2061)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_20"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_20"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_21" type="RigidBody2D" parent="."]
+position = Vector2(741, -2006)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_21"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_21"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid15" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(861, -1882)
+rotation = 4.41568
+
+[node name="Asteroid2_22" type="RigidBody2D" parent="."]
+position = Vector2(1794, -1447)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_22"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_22"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid16" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2006, -1377)
+rotation = 4.41568
+
+[node name="Asteroid2_23" type="RigidBody2D" parent="."]
+position = Vector2(1869, -1629)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_23"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_23"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_24" type="RigidBody2D" parent="."]
+position = Vector2(2044, -1574)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_24"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_24"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid17" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2164, -1450)
+rotation = 4.41568
+
+[node name="PrettyAsteroid6" parent="." instance=ExtResource("9_61fh4")]
+position = Vector2(2091, -905)
+rotation = -0.191986
+
+[node name="FighterWrapper2" type="Node2D" parent="."]
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="FighterWrapper2"]
+offset_left = -660.0
+offset_top = 319.0
+offset_right = -619.0
+offset_bottom = 346.0
+max_value = 60.0
+step = 1.0
+script = ExtResource("11_rwlm8")
+metadata/_edit_use_anchors_ = true
+
+[node name="Enemy" type="RigidBody2D" parent="FighterWrapper2"]
+position = Vector2(1436, -942)
+rotation = -1.64934
+gravity_scale = 0.0
+script = ExtResource("12_qf4ef")
+projectile = ExtResource("13_0ief1")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="FighterWrapper2/Enemy"]
+texture = ExtResource("14_xt2xj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FighterWrapper2/Enemy"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_g8vuk")
+
+[node name="EngineAnimatedSprite2D" type="AnimatedSprite2D" parent="FighterWrapper2/Enemy"]
+position = Vector2(0, 2)
+sprite_frames = SubResource("SpriteFrames_h11ir")
+animation = &"none"
+
+[node name="GunMarker" type="Marker2D" parent="FighterWrapper2/Enemy"]
+position = Vector2(0, -11)
+
+[node name="DestructionAnimatedSprite2D" type="AnimatedSprite2D" parent="FighterWrapper2/Enemy"]
+sprite_frames = SubResource("SpriteFrames_ewfqi")
+
+[node name="EngineAudio" type="AudioStreamPlayer2D" parent="FighterWrapper2/Enemy"]
+stream = ExtResource("17_47wiv")
+volume_db = 5.0
+attenuation = 8.28212
+script = ExtResource("18_h1nl0")
+
+[node name="LaserSound" type="AudioStreamPlayer2D" parent="FighterWrapper2/Enemy"]
+stream = ExtResource("19_rdp5c")
+volume_db = -10.0
+attenuation = 4.92458
+
+[node name="Planet1" type="RigidBody2D" parent="."]
+position = Vector2(-789, 304)
+mass = 10000.0
+gravity_scale = 0.0
+script = SubResource("GDScript_rajc4")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Planet1"]
+texture = ExtResource("22_owls1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planet1"]
+shape = SubResource("CircleShape2D_5qa0t")
+
+[node name="Checkpoint" type="Area2D" parent="Planet1"]
+script = ExtResource("23_2sw72")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planet1/Checkpoint"]
+shape = SubResource("CircleShape2D_1vf84")
+
+[connection signal="animation_finished" from="FighterWrapper2/Enemy/DestructionAnimatedSprite2D" to="FighterWrapper2/Enemy" method="_on_destruction_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_entered"]
+[connection signal="body_exited" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_exited"]
+
+[editable path="UILayer"]
+[editable path="UILayer/Inventory_UI"]

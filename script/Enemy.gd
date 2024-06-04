@@ -13,7 +13,7 @@ func _ready():
 	contact_monitor = true
 	max_contacts_reported = 10000
 	connect("body_entered", _on_body_entered)
-	health_bar = get_node("../EnemyHealthBar")
+	health_bar = get_node("../Control/EnemyHealthBar")
 	health_bar.value = self.health
 	health_bar.set_max(max_health())
 
@@ -27,3 +27,4 @@ func set_health(new_health):
 
 func get_damage(damage):
 	self.set_health(self.health - damage)
+	
