@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://deby2g447tevh"]
+
+[ext_resource type="Script" path="res://script/inventory_item.gd" id="1_045ne"]
+[ext_resource type="Texture2D" uid="uid://dvo8h2pk8kjy3" path="res://assets/sprites/items/speed_item.png" id="2_4pcsq"]
+
+[resource]
+script = ExtResource("1_045ne")
+name = "Przyspieszenie"
+idName = "Speed"
+description = "chwilowe zwiększenie szybkości, znacznie ułatwia poruszanie się po szerokim terenie i unikanie wrogów."
+texture = ExtResource("2_4pcsq")
+amount = 40
+buyingCost = 50
+count = 1
+rarity = "Rare"

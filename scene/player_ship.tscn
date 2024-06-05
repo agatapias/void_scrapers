@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c1fi0qspec801"]
+[gd_scene load_steps=48 format=3 uid="uid://c1fi0qspec801"]
 
 [ext_resource type="Script" path="res://script/player_ship.gd" id="1_co6cj"]
 [ext_resource type="PackedScene" uid="uid://v8rkx8a4n5et" path="res://scene/bullet.tscn" id="2_0llbk"]
@@ -10,9 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://vbprl7sodqjh" path="res://assets/sprites/ship/ship-medium-fire.png" id="5_3e1ye"]
 [ext_resource type="AudioStream" uid="uid://bi0oyq0et1bxc" path="res://assets/sound_effects/thrusters_loopwav-14699.mp3" id="5_7lotv"]
 [ext_resource type="Texture2D" uid="uid://1def2vij1y1b" path="res://assets/sprites/weapon/gun1.png" id="5_mwueh"]
+[ext_resource type="Texture2D" uid="uid://d04drfwnbowhy" path="res://assets/sprites/items/Main Ship - Base - Full health.png" id="6_5xah8"]
 [ext_resource type="Texture2D" uid="uid://usc4sbqtym10" path="res://assets/sprites/weapon/gun2.png" id="6_ls1yq"]
+[ext_resource type="Texture2D" uid="uid://ctc38447t2yvy" path="res://assets/sprites/items/Main Ship - Engines - Base Engine.png" id="7_0i2la"]
 [ext_resource type="Script" path="res://script/EngineSoundEffect.gd" id="7_bbyik"]
 [ext_resource type="Texture2D" uid="uid://bveu7auh6i2yj" path="res://assets/sprites/weapon/gun3.png" id="7_ec1w8"]
+[ext_resource type="Texture2D" uid="uid://bh44a3up522qp" path="res://assets/sprites/items/Main Ship - Engines - Supercharged Engine - Powering.png" id="7_h8tw0"]
 [ext_resource type="Texture2D" uid="uid://rlnenhm5hmkm" path="res://assets/sprites/weapon/gun4.png" id="8_r7c1p"]
 [ext_resource type="Texture2D" uid="uid://bqk7ss3y87oga" path="res://assets/sprites/weapon/gun5.png" id="9_flvck"]
 [ext_resource type="AudioStream" uid="uid://btxf36tq6tkuh" path="res://assets/sound_effects/laser.mp3" id="14_bwhq0"]
@@ -27,9 +30,46 @@
 [ext_resource type="Texture2D" uid="uid://de7mp4lom128t" path="res://assets/sprites/items/shield/018.png" id="24_vtx3p"]
 [ext_resource type="Texture2D" uid="uid://ch8skffnqdlyc" path="res://assets/sprites/items/shield/020.png" id="25_k6jv7"]
 [ext_resource type="Texture2D" uid="uid://8vkwli8mmhka" path="res://assets/sprites/items/shield/022.png" id="26_nvvvw"]
+[ext_resource type="Texture2D" uid="uid://m3d30rgi7htl" path="res://assets/sprites/items/engine-intense.png" id="28_yw643"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7pyf1"]
 bounce = 0.2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybqvn"]
+atlas = ExtResource("7_h8tw0")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87qls"]
+atlas = ExtResource("7_h8tw0")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmre2"]
+atlas = ExtResource("7_h8tw0")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6yal"]
+atlas = ExtResource("7_h8tw0")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q8nve"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybqvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87qls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmre2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6yal")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d12l0"]
 animations = [{
@@ -129,6 +169,42 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_hy8pn"]
 radius = 63.6396
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyscv"]
+atlas = ExtResource("28_yw643")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asqwc"]
+atlas = ExtResource("28_yw643")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qleei"]
+atlas = ExtResource("28_yw643")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5x88s"]
+atlas = ExtResource("28_yw643")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xcdvq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyscv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asqwc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qleei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5x88s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Spaceship" type="RigidBody2D" groups=["Spaceship"]]
 mass = 0.5
 physics_material_override = SubResource("PhysicsMaterial_7pyf1")
@@ -140,7 +216,18 @@ bomb = ExtResource("3_snweo")
 gravitySpiral = ExtResource("3_wpmyd")
 inventory = ExtResource("3_rdp3g")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("6_5xah8")
+
+[node name="Engine" type="Sprite2D" parent="."]
+texture = ExtResource("7_0i2la")
+
+[node name="NormalEngineAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_q8nve")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_d12l0")
 animation = &"go"
@@ -179,6 +266,9 @@ sprite_frames = SubResource("SpriteFrames_s7sn8")
 shape = SubResource("CircleShape2D_hy8pn")
 
 [node name="ShieldTimer" type="Timer" parent="Shield"]
+
+[node name="IntenseEngineAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xcdvq")
 
 [connection signal="area_entered" from="Shield" to="." method="_on_shield_area_entered"]
 [connection signal="body_entered" from="Shield" to="." method="_on_shield_body_entered"]

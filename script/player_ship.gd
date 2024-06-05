@@ -22,6 +22,8 @@ var checkpoint = {
 	level = 'Main'
 }
 
+var isIntenseEngine = false
+
 var rng = RandomNumberGenerator.new()
 
 @export var projectile: PackedScene
@@ -79,11 +81,17 @@ func _integrate_forces(state):
 		state.apply_force(thrust_vector.rotated(rotation))
 		_frames_since_last_increment = 0
 	if Input.is_action_pressed("ui_up"):
-		$AnimatedSprite2D.play()
-		$AnimatedSprite2D.animation = "go"
+		if isIntenseEngine:
+			$IntenseEngineAnimation.visible = true
+			$IntenseEngineAnimation.play()
+		else:
+			$NormalEngineAnimation.visible = true
+			$NormalEngineAnimation.play()
 	else:
-		$AnimatedSprite2D.stop()
-		$AnimatedSprite2D.animation = "default"
+		$NormalEngineAnimation.visible = false
+		$NormalEngineAnimation.stop()
+		$IntenseEngineAnimation.visible = false
+		$IntenseEngineAnimation.stop()
 
 		
 	var rotation_direction = 0
@@ -173,6 +181,21 @@ func itemUsed(item):
 		"Shrimp": restore_health(50)
 		"Plankton": restore_health(20)
 		"Krill": restore_health(10)
+		"Speed": use_speed_power_up()
+		
+func use_speed_power_up():
+	thrust_vector =  Vector2(0, -400)
+	isIntenseEngine = true
+	var timer = Timer.new()
+	self.add_child(timer)
+	timer.connect("timeout", on_speed_end)
+	timer.set_wait_time(10.0)
+	timer.start()
+	
+func on_speed_end():
+	print("speed power up ended")
+	thrust_vector =  Vector2(0, -200)
+	isIntenseEngine = false
 
 func beSucked(gravity):
 	suckingGravities.append(gravity)

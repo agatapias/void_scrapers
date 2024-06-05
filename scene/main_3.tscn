@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuqr1r8j1m0ce"]
+
+[ext_resource type="Texture2D" uid="uid://hdwc2ql1h173" path="res://assets/background/Space Background (10).png" id="1_ng5x5"]
+[ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://scene/player_ship.tscn" id="2_oikr1"]
+[ext_resource type="PackedScene" uid="uid://sskn7og6uw6y" path="res://scene/ui_layer.tscn" id="3_qr4hi"]
+[ext_resource type="AudioStream" uid="uid://dh242t74dtdp7" path="res://assets/music/final-space-15424.mp3" id="4_pggba"]
+[ext_resource type="Script" path="res://script/AudioStreamPlayer.gd" id="5_10idp"]
+
+[node name="Main3" type="Node2D"]
+
+[node name="SpaceBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="SpaceBackground"]
+motion_scale = Vector2(0.2, 0.2)
+motion_offset = Vector2(500, 500)
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/ParallaxLayer"]
+position = Vector2(-31, -233)
+scale = Vector2(2, 2)
+texture = ExtResource("1_ng5x5")
+
+[node name="Spaceship" parent="." instance=ExtResource("2_oikr1")]
+position = Vector2(235, 174)
+scale = Vector2(2, 2)
+
+[node name="UILayer" parent="." instance=ExtResource("3_qr4hi")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pggba")
+volume_db = -15.0
+script = ExtResource("5_10idp")
