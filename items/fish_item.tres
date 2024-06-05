@@ -10,5 +10,6 @@ idName = "Fish"
 description = "zwyczajna kosmiczna ryba, nie ucieka i nikogo się nie boi; przyrwaca trochycia"
 texture = ExtResource("2_aiiu6")
 amount = 50
-buyingCost = 60
+buyingCost = 1
+count = 1
 rarity = "Common"
