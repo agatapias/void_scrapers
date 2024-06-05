@@ -35,7 +35,6 @@ func _process(delta):
 	if Input.is_action_just_pressed("use_bomb"):
 		updateSlots()
 		var index_of_bomb = inventory.findByName("Bomba")
-		print("index of bomb: " + str(index_of_bomb))
 		# Check if the index is valid
 		if index_of_bomb != -1:
 			selectedSlotIndex = index_of_bomb

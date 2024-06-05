@@ -81,9 +81,6 @@ func findByName(name):
 
 func useItem(index):
 	var item = items[index]
-	print("use item called")
-	print("item name: " + str(item.name))
-	print("item count: " + str(item.count))
 	itemUsed.emit(item)
 	if item.count <= 1:
 		self.removeItem(index)

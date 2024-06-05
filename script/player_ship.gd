@@ -158,10 +158,10 @@ func drop_shield():
 	
 func use_bomb():
 	print("bomb used")
-	#var bullet = bomb.instantiate()
-	#owner.add_child(bullet)
-	#bullet.transform = self.global_transform
-	#$LaserSound.playing = true
+	var bullet = bomb.instantiate()
+	owner.add_child(bullet)
+	bullet.transform = self.global_transform
+	$LaserSound.playing = true
 	
 	
 func itemUsed(item):
