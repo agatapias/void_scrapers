@@ -223,7 +223,6 @@ position = Vector2(0, -11)
 
 [node name="DestructionAnimatedSprite2D" type="AnimatedSprite2D" parent="FighterWrapper/Enemy"]
 sprite_frames = SubResource("SpriteFrames_b48h4")
-animation = &"destruction"
 
 [node name="EngineAudio" type="AudioStreamPlayer2D" parent="FighterWrapper/Enemy"]
 stream = ExtResource("7_7n446")

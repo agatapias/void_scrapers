@@ -9,10 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://c5sx8syk8thbt" path="res://scene/scout.tscn" id="8_eg7m5"]
 [ext_resource type="PackedScene" uid="uid://d1ay3xkpqv1eg" path="res://items/fish_item.tscn" id="8_m73i2"]
 [ext_resource type="PackedScene" uid="uid://daeriaav5p78v" path="res://items/coin_item.tscn" id="9_4aeqo"]
-[ext_resource type="Texture2D" uid="uid://cgjiw75genbac" path="res://assets/sprites/planet1-big.png" id="11_odjoa"]
 [ext_resource type="AudioStream" uid="uid://12t4jwgja5pq" path="res://assets/sound_effects/fighter_engine.mp3" id="14_mxkqo"]
 [ext_resource type="Script" path="res://script/EngineSoundEffect.gd" id="15_3235v"]
 [ext_resource type="Script" path="res://script/Checkpoint.gd" id="19_tsv00"]
+[ext_resource type="Texture2D" uid="uid://c0uje4lrjei3w" path="res://assets/sprites/planets/planet1.png" id="20_752u3"]
 [ext_resource type="Texture2D" uid="uid://bltfgoo4dk0ng" path="res://assets/sprites/asteroid2.png" id="21_eixka"]
 [ext_resource type="PackedScene" uid="uid://sskn7og6uw6y" path="res://scene/ui_layer.tscn" id="23_roe1x"]
 [ext_resource type="PackedScene" uid="uid://bfkwmdcjkl434" path="res://scene/cat_quest_1.tscn" id="23_ur1ow"]
@@ -22,11 +22,11 @@
 [ext_resource type="PackedScene" path="res://scene/diff_asteroid.tscn" id="27_j2p4a"]
 [ext_resource type="PackedScene" path="res://scene/level_transition.tscn" id="28_56pm6"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmn6t"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpf2x"]
 bg_color = Color(0.745098, 0.227451, 0.176471, 1)
 
 [sub_resource type="Theme" id="Theme_ksk6o"]
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_rmn6t")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_lpf2x")
 
 [sub_resource type="GDScript" id="GDScript_noh7b"]
 
@@ -43,7 +43,6 @@ height = 58.0
 [node name="Main" type="Node"]
 
 [node name="Spaceship" parent="." instance=ExtResource("1_s1wep")]
-position = Vector2(-791, 1292)
 metadata/_edit_group_ = true
 
 [node name="UILayer" parent="." instance=ExtResource("23_roe1x")]
@@ -141,7 +140,7 @@ gravity_scale = 0.0
 script = SubResource("GDScript_noh7b")
 
 [node name="Sprite2D" type="Sprite2D" parent="Planet1"]
-texture = ExtResource("11_odjoa")
+texture = ExtResource("20_752u3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Planet1"]
 shape = SubResource("CircleShape2D_1baji")
