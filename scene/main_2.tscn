@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://di0xlol6ep6vt"]
+[gd_scene load_steps=67 format=3 uid="uid://di0xlol6ep6vt"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://scene/player_ship.tscn" id="1_dlvmg"]
 [ext_resource type="PackedScene" uid="uid://sskn7og6uw6y" path="res://scene/ui_layer.tscn" id="2_g14c0"]
@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bmmhib0afegw2" path="res://scene/asteroid.tscn" id="6_tajre"]
 [ext_resource type="PackedScene" uid="uid://bcvaxcx3ca3eq" path="res://shop/cat_character.tscn" id="7_07das"]
 [ext_resource type="Texture2D" uid="uid://bltfgoo4dk0ng" path="res://assets/sprites/asteroid2.png" id="8_330cs"]
-[ext_resource type="PackedScene" path="res://scene/pretty_asteroid.tscn" id="9_61fh4"]
-[ext_resource type="PackedScene" path="res://scene/another_asteroid.tscn" id="10_fv4ta"]
+[ext_resource type="PackedScene" uid="uid://binlpkv1hdrmo" path="res://scene/pretty_asteroid.tscn" id="9_61fh4"]
+[ext_resource type="PackedScene" uid="uid://cbfse1ej0mvgg" path="res://scene/another_asteroid.tscn" id="10_fv4ta"]
 [ext_resource type="Script" path="res://script/EnemyHealthBar.gd" id="11_rwlm8"]
 [ext_resource type="Script" path="res://script/Fighter.gd" id="12_qf4ef"]
 [ext_resource type="PackedScene" uid="uid://djt5ahnmfl7hm" path="res://scene/fighter_bullet.tscn" id="13_0ief1"]
@@ -20,13 +20,19 @@
 [ext_resource type="Script" path="res://script/EngineSoundEffect.gd" id="18_h1nl0"]
 [ext_resource type="AudioStream" uid="uid://btxf36tq6tkuh" path="res://assets/sound_effects/laser.mp3" id="19_rdp5c"]
 [ext_resource type="PackedScene" uid="uid://daeriaav5p78v" path="res://items/coin_item.tscn" id="20_h5q0k"]
-[ext_resource type="PackedScene" path="res://scene/great_asteroid.tscn" id="21_7fylw"]
+[ext_resource type="PackedScene" uid="uid://dj4y5srnrw022" path="res://scene/great_asteroid.tscn" id="21_7fylw"]
 [ext_resource type="Texture2D" uid="uid://1silxs3g2tq5" path="res://assets/sprites/planets/Planet3.png" id="22_owls1"]
 [ext_resource type="Script" path="res://script/Checkpoint.gd" id="23_2sw72"]
-[ext_resource type="PackedScene" uid="uid://dqdvqvkqmp1y1" path="res://items/shrimp_item.tscn" id="24_q2gk3"]
-[ext_resource type="PackedScene" uid="uid://se1oxxdeijkx" path="res://items/plankton_item.tscn" id="25_jg63l"]
-[ext_resource type="PackedScene" uid="uid://bideotd3hwpt4" path="res://items/krill_item.tscn" id="26_anpym"]
-[ext_resource type="PackedScene" path="res://scene/level_transition.tscn" id="27_104u2"]
+[ext_resource type="PackedScene" path="res://items/shrimp_item.tscn" id="24_q2gk3"]
+[ext_resource type="PackedScene" path="res://items/plankton_item.tscn" id="25_jg63l"]
+[ext_resource type="PackedScene" path="res://items/krill_item.tscn" id="26_anpym"]
+[ext_resource type="PackedScene" uid="uid://clx2c4q05hpbs" path="res://scene/level_transition.tscn" id="27_104u2"]
+[ext_resource type="PackedScene" uid="uid://bg2vviwx5epv6" path="res://scene/QuestCat2.tscn" id="28_i362b"]
+[ext_resource type="PackedScene" uid="uid://c5sx8syk8thbt" path="res://scene/scout.tscn" id="29_a8lg0"]
+[ext_resource type="PackedScene" uid="uid://d1o8sphiiq65v" path="res://scene/QuestCat3.tscn" id="30_ehs2o"]
+[ext_resource type="PackedScene" uid="uid://dwa2cnmnl48r8" path="res://scene/FishGuide.tscn" id="31_ghgt2"]
+[ext_resource type="PackedScene" uid="uid://b0ynlhbdwwrgt" path="res://scene/CatKing.tscn" id="32_l60b2"]
+[ext_resource type="PackedScene" uid="uid://d1ay3xkpqv1eg" path="res://items/fish_item.tscn" id="32_nbg5f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t2xdx"]
 radius = 12.0
@@ -232,6 +238,12 @@ radius = 502.036
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1vf84"]
 radius = 689.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpf2x"]
+bg_color = Color(0.745098, 0.227451, 0.176471, 1)
+
+[sub_resource type="Theme" id="Theme_rqnfg"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_lpf2x")
 
 [node name="Main2" type="Node"]
 
@@ -923,7 +935,5708 @@ position = Vector2(8, -557)
 level = "final_cutscene.tscn"
 level_node = "FinalCutscene"
 
+[node name="Area2D" parent="." instance=ExtResource("28_i362b")]
+position = Vector2(-263, 66)
+
+[node name="QuestScout" type="Node2D" parent="."]
+
+[node name="Enemy" parent="QuestScout" groups=["enemy"] instance=ExtResource("29_a8lg0")]
+position = Vector2(-1522, 248)
+
+[node name="EngineAudio" type="AudioStreamPlayer2D" parent="QuestScout/Enemy"]
+stream = ExtResource("17_47wiv")
+attenuation = 8.57418
+script = ExtResource("18_h1nl0")
+
+[node name="Control" type="Control" parent="QuestScout"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("11_rwlm8")
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="QuestScout/Control"]
+layout_mode = 0
+offset_left = -120.0
+offset_top = -80.0
+offset_right = -79.0
+offset_bottom = -53.0
+scale = Vector2(0.8, 0.8)
+theme = SubResource("Theme_rqnfg")
+max_value = 50.0
+step = 1.0
+
+[node name="LifeLabel" type="Label" parent="QuestScout/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(0.6, 0.6)
+text = "Życie"
+
+[node name="Asteroid2_25" type="RigidBody2D" parent="."]
+position = Vector2(1047, -701)
+rotation = 6.06502
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_25"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_25"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_26" type="RigidBody2D" parent="."]
+position = Vector2(794, -612)
+rotation = 1.87797
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_26"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_26"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="PrettyAsteroid7" parent="." instance=ExtResource("9_61fh4")]
+position = Vector2(1025, -419)
+rotation = -0.191986
+
+[node name="Asteroid2_27" type="RigidBody2D" parent="."]
+position = Vector2(-996, -795)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_27"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_27"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid18" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-784, -725)
+rotation = 4.41568
+
+[node name="Asteroid2_28" type="RigidBody2D" parent="."]
+position = Vector2(-921, -977)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_28"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_28"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_29" type="RigidBody2D" parent="."]
+position = Vector2(-746, -922)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_29"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_29"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid19" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-626, -798)
+rotation = 4.41568
+
+[node name="Asteroid19" parent="Asteroid19" groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-626, -798)
+rotation = 4.41568
+
+[node name="Asteroid22" parent="Asteroid19" groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-517, -1171)
+rotation = 4.41568
+
+[node name="Asteroid2_30" type="RigidBody2D" parent="."]
+position = Vector2(-1310, -700)
+rotation = 1.87797
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_30"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_30"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid20" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-1446, -473)
+
+[node name="Asteroid21" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-1405, -858)
+rotation = 4.41568
+
+[node name="Asteroid2_31" type="RigidBody2D" parent="."]
+position = Vector2(-1310, -700)
+rotation = 1.87797
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_31"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_31"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_32" type="RigidBody2D" parent="."]
+position = Vector2(-729, -1241)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_32"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_32"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid22" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-517, -1171)
+rotation = 4.41568
+
+[node name="Asteroid2_33" type="RigidBody2D" parent="."]
+position = Vector2(-654, -1423)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_33"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_33"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_34" type="RigidBody2D" parent="."]
+position = Vector2(-479, -1368)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_34"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_34"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid23" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-359, -1244)
+rotation = 4.41568
+
+[node name="Asteroid24" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-1793, -186)
+rotation = 1.02451
+
+[node name="Asteroid25" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-1684, -559)
+rotation = 1.02451
+
+[node name="Asteroid2_35" type="RigidBody2D" parent="."]
+position = Vector2(-2213, 211)
+rotation = -0.563741
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_35"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_35"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_36" type="RigidBody2D" parent="."]
+position = Vector2(-2138, 29)
+rotation = -0.563741
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_36"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_36"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="AnotherAsteroid2" parent="." instance=ExtResource("10_fv4ta")]
+position = Vector2(-1889, 637)
+mass = 500.0
+gravity_scale = 0.0
+
+[node name="Asteroid2_37" type="RigidBody2D" parent="."]
+position = Vector2(-1757, 1086)
+rotation = 0.925025
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_37"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_37"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid26" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-1543, 935)
+
+[node name="Asteroid2_38" type="RigidBody2D" parent="."]
+position = Vector2(-2521, 640)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_38"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_38"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid27" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-2309, 710)
+rotation = 4.41568
+
+[node name="Asteroid2_39" type="RigidBody2D" parent="."]
+position = Vector2(-2271, 513)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_39"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_39"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid28" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-41, 1160)
+rotation = 4.41568
+
+[node name="Asteroid2_40" type="RigidBody2D" parent="."]
+position = Vector2(-3, 963)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_40"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_40"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="PrettyAsteroid8" parent="." instance=ExtResource("9_61fh4")]
+position = Vector2(-789, 1276)
+rotation = -0.191986
+
+[node name="Asteroid29" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-2424, -356)
+rotation = 4.41568
+
+[node name="Asteroid2_41" type="RigidBody2D" parent="."]
+position = Vector2(-2561, -608)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_41"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_41"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_42" type="RigidBody2D" parent="."]
+position = Vector2(-2386, -553)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_42"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_42"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_43" type="RigidBody2D" parent="."]
+position = Vector2(-2369, -872)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_43"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_43"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid31" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-2157, -802)
+rotation = 4.41568
+
+[node name="Asteroid30" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-784, -725)
+rotation = 4.41568
+
+[node name="Asteroid2_44" type="RigidBody2D" parent="."]
+position = Vector2(-921, -977)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_44"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_44"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_45" type="RigidBody2D" parent="."]
+position = Vector2(-746, -922)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_45"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_45"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid32" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-626, -798)
+rotation = 4.41568
+
+[node name="Asteroid19" parent="Asteroid32" groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-626, -798)
+rotation = 4.41568
+
+[node name="Asteroid22" parent="Asteroid32" groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-517, -1171)
+rotation = 4.41568
+
+[node name="Asteroid2_46" type="RigidBody2D" parent="."]
+position = Vector2(-729, -1241)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_46"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_46"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid33" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-517, -1171)
+rotation = 4.41568
+
+[node name="Asteroid2_47" type="RigidBody2D" parent="."]
+position = Vector2(-912, -1156)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_47"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_47"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid34" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-700, -1086)
+rotation = 4.41568
+
+[node name="Asteroid2_48" type="RigidBody2D" parent="."]
+position = Vector2(1374, 182)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_48"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_48"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid35" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1586, 252)
+rotation = 4.41568
+
+[node name="Asteroid2_49" type="RigidBody2D" parent="."]
+position = Vector2(1449, 0)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_49"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_49"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_50" type="RigidBody2D" parent="."]
+position = Vector2(1624, 55)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_50"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_50"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_51" type="RigidBody2D" parent="."]
+position = Vector2(1672, -277)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_51"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_51"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid37" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1853, -194)
+rotation = 4.41568
+
+[node name="Asteroid2_52" type="RigidBody2D" parent="."]
+position = Vector2(1716, -446)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_52"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_52"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_53" type="RigidBody2D" parent="."]
+position = Vector2(1891, -391)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_53"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_53"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid38" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2011, -267)
+rotation = 4.41568
+
+[node name="Asteroid39" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1586, 252)
+rotation = 4.41568
+
+[node name="Asteroid2_54" type="RigidBody2D" parent="."]
+position = Vector2(1449, 0)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_54"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_54"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_55" type="RigidBody2D" parent="."]
+position = Vector2(1624, 55)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_55"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_55"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_56" type="RigidBody2D" parent="."]
+position = Vector2(1502, -293)
+rotation = -0.219911
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_56"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_56"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid41" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1853, -194)
+rotation = 4.41568
+
+[node name="Asteroid2_57" type="RigidBody2D" parent="."]
+position = Vector2(1458, -179)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_57"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_57"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid42" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1670, -109)
+rotation = 4.41568
+
+[node name="Asteroid2_58" type="RigidBody2D" parent="."]
+position = Vector2(1795, 349)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_58"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_58"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_59" type="RigidBody2D" parent="."]
+position = Vector2(1870, 167)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_59"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_59"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_60" type="RigidBody2D" parent="."]
+position = Vector2(1870, 167)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_60"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_60"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_61" type="RigidBody2D" parent="."]
+position = Vector2(1879, -12)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_61"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_61"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_62" type="RigidBody2D" parent="."]
+position = Vector2(2087, -63)
+rotation = 0.925025
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_62"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_62"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid36" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2301, -214)
+
+[node name="Asteroid2_63" type="RigidBody2D" parent="."]
+position = Vector2(979, 786)
+rotation = 0.349066
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_63"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_63"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_64" type="RigidBody2D" parent="."]
+position = Vector2(996, 467)
+rotation = 0.349066
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_64"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_64"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid40" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1208, 537)
+rotation = 0.349066
+
+[node name="Asteroid2_65" type="RigidBody2D" parent="."]
+position = Vector2(1071, 285)
+rotation = 0.523599
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_65"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_65"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_66" type="RigidBody2D" parent="."]
+position = Vector2(1246, 340)
+rotation = -0.647517
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_66"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_66"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid43" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1366, 464)
+rotation = 0.349066
+
+[node name="Asteroid2_67" type="RigidBody2D" parent="."]
+position = Vector2(979, 786)
+rotation = 0.349066
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_67"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_67"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_68" type="RigidBody2D" parent="."]
+position = Vector2(996, 467)
+rotation = 0.349066
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_68"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_68"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid44" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1208, 537)
+rotation = 0.349066
+
+[node name="Asteroid45" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1025, 622)
+rotation = 0.349066
+
+[node name="Asteroid2_69" type="RigidBody2D" parent="."]
+position = Vector2(1150, 1080)
+rotation = 0.349066
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_69"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_69"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_70" type="RigidBody2D" parent="."]
+position = Vector2(1225, 898)
+rotation = 2.14501
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_70"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_70"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_71" type="RigidBody2D" parent="."]
+position = Vector2(1225, 898)
+rotation = 2.14501
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_71"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_71"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_72" type="RigidBody2D" parent="."]
+position = Vector2(1234, 719)
+rotation = -6.28319
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_72"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_72"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_73" type="RigidBody2D" parent="."]
+position = Vector2(1442, 668)
+rotation = 0.349066
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_73"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_73"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid46" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1656, 517)
+rotation = 0.349066
+
+[node name="Asteroid47" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-1319, 1389)
+rotation = 4.41568
+
+[node name="Asteroid2_74" type="RigidBody2D" parent="."]
+position = Vector2(-1281, 1192)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_74"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_74"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid48" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-1319, 1389)
+rotation = 4.41568
+
+[node name="Asteroid2_75" type="RigidBody2D" parent="."]
+position = Vector2(-1281, 1192)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_75"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_75"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_76" type="RigidBody2D" parent="."]
+position = Vector2(-1110, 1486)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_76"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_76"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_77" type="RigidBody2D" parent="."]
+position = Vector2(-1035, 1304)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_77"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_77"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_78" type="RigidBody2D" parent="."]
+position = Vector2(-1035, 1304)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_78"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_78"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid49" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-1249, 1654)
+rotation = 0.349066
+
+[node name="Asteroid50" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-1818, -1240)
+rotation = 4.41568
+
+[node name="Asteroid2_79" type="RigidBody2D" parent="."]
+position = Vector2(-1780, -1437)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_79"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_79"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid51" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-1818, -1240)
+rotation = 4.41568
+
+[node name="Asteroid2_80" type="RigidBody2D" parent="."]
+position = Vector2(-1780, -1437)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_80"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_80"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_81" type="RigidBody2D" parent="."]
+position = Vector2(-1609, -1143)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_81"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_81"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_82" type="RigidBody2D" parent="."]
+position = Vector2(-1534, -1325)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_82"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_82"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_83" type="RigidBody2D" parent="."]
+position = Vector2(-1534, -1325)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_83"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_83"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_84" type="RigidBody2D" parent="."]
+position = Vector2(-1525, -1504)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_84"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_84"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid52" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-1748, -975)
+rotation = 0.349066
+
+[node name="Asteroid2_85" type="RigidBody2D" parent="."]
+position = Vector2(2064, -1924)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_85"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_85"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_86" type="RigidBody2D" parent="."]
+position = Vector2(2239, -1869)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_86"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_86"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_87" type="RigidBody2D" parent="."]
+position = Vector2(2256, -2188)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_87"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_87"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_88" type="RigidBody2D" parent="."]
+position = Vector2(2331, -2370)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_88"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_88"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_89" type="RigidBody2D" parent="."]
+position = Vector2(2064, -1924)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_89"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_89"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_90" type="RigidBody2D" parent="."]
+position = Vector2(2239, -1869)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_90"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_90"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_91" type="RigidBody2D" parent="."]
+position = Vector2(2256, -2188)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_91"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_91"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_92" type="RigidBody2D" parent="."]
+position = Vector2(2073, -2103)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_92"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_92"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid53" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2285, -2033)
+rotation = 4.41568
+
+[node name="Asteroid2_93" type="RigidBody2D" parent="."]
+position = Vector2(772, -2291)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_93"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_93"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_94" type="RigidBody2D" parent="."]
+position = Vector2(772, -2291)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_94"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_94"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_95" type="RigidBody2D" parent="."]
+position = Vector2(1376, -2090)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_95"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_95"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_96" type="RigidBody2D" parent="."]
+position = Vector2(1451, -2272)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_96"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_96"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_97" type="RigidBody2D" parent="."]
+position = Vector2(1451, -2272)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_97"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_97"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_98" type="RigidBody2D" parent="."]
+position = Vector2(1460, -2451)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_98"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_98"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid54" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1237, -1922)
+rotation = 0.349066
+
+[node name="Asteroid2_99" type="RigidBody2D" parent="."]
+position = Vector2(-470, -2530)
+rotation = 0.925025
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_99"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_99"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid55" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-344, -1684)
+rotation = 4.41568
+
+[node name="Asteroid2_100" type="RigidBody2D" parent="."]
+position = Vector2(-306, -1881)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_100"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_100"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_101" type="RigidBody2D" parent="."]
+position = Vector2(-258, -2213)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_101"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_101"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid56" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-77, -2130)
+rotation = 4.41568
+
+[node name="Asteroid2_102" type="RigidBody2D" parent="."]
+position = Vector2(-214, -2382)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_102"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_102"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_103" type="RigidBody2D" parent="."]
+position = Vector2(-39, -2327)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_103"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_103"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid57" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(81, -2203)
+rotation = 4.41568
+
+[node name="Asteroid58" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-344, -1684)
+rotation = 4.41568
+
+[node name="Asteroid2_104" type="RigidBody2D" parent="."]
+position = Vector2(-306, -1881)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_104"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_104"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_105" type="RigidBody2D" parent="."]
+position = Vector2(-428, -2229)
+rotation = -0.219911
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_105"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_105"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid59" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-77, -2130)
+rotation = 4.41568
+
+[node name="Asteroid2_106" type="RigidBody2D" parent="."]
+position = Vector2(-472, -2115)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_106"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_106"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid60" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-260, -2045)
+rotation = 4.41568
+
+[node name="Asteroid2_107" type="RigidBody2D" parent="."]
+position = Vector2(-60, -1769)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_107"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_107"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_108" type="RigidBody2D" parent="."]
+position = Vector2(-60, -1769)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_108"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_108"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_109" type="RigidBody2D" parent="."]
+position = Vector2(-51, -1948)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_109"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_109"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_110" type="RigidBody2D" parent="."]
+position = Vector2(157, -1999)
+rotation = 0.925025
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_110"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_110"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Area2D2" parent="." instance=ExtResource("30_ehs2o")]
+position = Vector2(1132, -1706)
+
+[node name="FishGuide" parent="." instance=ExtResource("31_ghgt2")]
+position = Vector2(1119, -1900)
+
+[node name="AnimatedSprite2D" parent="FishGuide" index="0"]
+position = Vector2(34, 91)
+animation = &"go"
+
+[node name="FishItem" parent="." instance=ExtResource("32_nbg5f")]
+position = Vector2(1832, -2738)
+
+[node name="LevelTransition2" parent="." instance=ExtResource("27_104u2")]
+position = Vector2(1063, -4951)
+
+[node name="Asteroid2_111" type="RigidBody2D" parent="."]
+position = Vector2(226, -2708)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_111"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_111"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid61" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(407, -2625)
+rotation = 4.41568
+
+[node name="Asteroid2_112" type="RigidBody2D" parent="."]
+position = Vector2(270, -2877)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_112"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_112"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_113" type="RigidBody2D" parent="."]
+position = Vector2(445, -2822)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_113"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_113"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid62" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(565, -2698)
+rotation = 4.41568
+
+[node name="Asteroid63" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(407, -2625)
+rotation = 4.41568
+
+[node name="Asteroid64" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(224, -2540)
+rotation = 4.41568
+
+[node name="Asteroid2_114" type="RigidBody2D" parent="."]
+position = Vector2(433, -2443)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_114"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_114"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_115" type="RigidBody2D" parent="."]
+position = Vector2(641, -2494)
+rotation = 0.925025
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_115"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_115"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_116" type="RigidBody2D" parent="."]
+position = Vector2(1283, -2682)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_116"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_116"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_117" type="RigidBody2D" parent="."]
+position = Vector2(1458, -2627)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_117"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_117"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_118" type="RigidBody2D" parent="."]
+position = Vector2(1475, -2946)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_118"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_118"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_119" type="RigidBody2D" parent="."]
+position = Vector2(1283, -2682)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_119"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_119"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_120" type="RigidBody2D" parent="."]
+position = Vector2(1458, -2627)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_120"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_120"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_121" type="RigidBody2D" parent="."]
+position = Vector2(1475, -2946)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_121"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_121"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_122" type="RigidBody2D" parent="."]
+position = Vector2(1292, -2861)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_122"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_122"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid65" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1504, -2791)
+rotation = 4.41568
+
+[node name="Asteroid2_123" type="RigidBody2D" parent="."]
+position = Vector2(1725, -2348)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_123"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_123"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_124" type="RigidBody2D" parent="."]
+position = Vector2(1900, -2293)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_124"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_124"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_125" type="RigidBody2D" parent="."]
+position = Vector2(1917, -2612)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_125"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_125"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_126" type="RigidBody2D" parent="."]
+position = Vector2(1992, -2794)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_126"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_126"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_127" type="RigidBody2D" parent="."]
+position = Vector2(1725, -2348)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_127"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_127"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_128" type="RigidBody2D" parent="."]
+position = Vector2(1900, -2293)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_128"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_128"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_129" type="RigidBody2D" parent="."]
+position = Vector2(1917, -2612)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_129"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_129"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_130" type="RigidBody2D" parent="."]
+position = Vector2(1734, -2527)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_130"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_130"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid66" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1946, -2457)
+rotation = 4.41568
+
+[node name="Asteroid2_131" type="RigidBody2D" parent="."]
+position = Vector2(930, -2843)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_131"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_131"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_132" type="RigidBody2D" parent="."]
+position = Vector2(930, -2843)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_132"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_132"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid67" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(382, -3092)
+rotation = 4.41568
+
+[node name="Asteroid2_133" type="RigidBody2D" parent="."]
+position = Vector2(591, -2995)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_133"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_133"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_134" type="RigidBody2D" parent="."]
+position = Vector2(799, -3046)
+rotation = 0.925025
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_134"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_134"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_135" type="RigidBody2D" parent="."]
+position = Vector2(825, -2473)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_135"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_135"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_136" type="RigidBody2D" parent="."]
+position = Vector2(900, -2655)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_136"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_136"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_137" type="RigidBody2D" parent="."]
+position = Vector2(950, -2075)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_137"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_137"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_138" type="RigidBody2D" parent="."]
+position = Vector2(950, -2075)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_138"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_138"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_139" type="RigidBody2D" parent="."]
+position = Vector2(959, -2254)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_139"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_139"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="CatKing" parent="." instance=ExtResource("32_l60b2")]
+position = Vector2(2041, 758)
+
+[node name="Asteroid2_140" type="RigidBody2D" parent="."]
+position = Vector2(1556, 1422)
+rotation = 0.349066
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_140"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_140"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_141" type="RigidBody2D" parent="."]
+position = Vector2(1631, 1240)
+rotation = 2.14501
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_141"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_141"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_142" type="RigidBody2D" parent="."]
+position = Vector2(1631, 1240)
+rotation = 2.14501
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_142"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_142"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_143" type="RigidBody2D" parent="."]
+position = Vector2(2415, 336)
+rotation = 0.925025
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_143"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_143"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid68" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2629, 185)
+
+[node name="Asteroid2_144" type="RigidBody2D" parent="."]
+position = Vector2(2269, 1454)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_144"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_144"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_145" type="RigidBody2D" parent="."]
+position = Vector2(2492, 1177)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_145"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_145"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid69" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2673, 1260)
+rotation = 4.41568
+
+[node name="Asteroid2_146" type="RigidBody2D" parent="."]
+position = Vector2(2269, 1454)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_146"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_146"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_147" type="RigidBody2D" parent="."]
+position = Vector2(2322, 1161)
+rotation = -0.219911
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_147"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_147"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid70" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2673, 1260)
+rotation = 4.41568
+
+[node name="Asteroid2_148" type="RigidBody2D" parent="."]
+position = Vector2(2278, 1275)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_148"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_148"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid71" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2490, 1345)
+rotation = 4.41568
+
+[node name="Asteroid2_149" type="RigidBody2D" parent="."]
+position = Vector2(2699, 1442)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_149"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_149"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="PrettyAsteroid9" parent="." instance=ExtResource("9_61fh4")]
+position = Vector2(833, 1880)
+rotation = -0.191986
+
+[node name="Asteroid72" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(303, 1993)
+rotation = 4.41568
+
+[node name="Asteroid2_150" type="RigidBody2D" parent="."]
+position = Vector2(341, 1796)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_150"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_150"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid73" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(303, 1993)
+rotation = 4.41568
+
+[node name="Asteroid2_151" type="RigidBody2D" parent="."]
+position = Vector2(341, 1796)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_151"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_151"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_152" type="RigidBody2D" parent="."]
+position = Vector2(512, 2090)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_152"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_152"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_153" type="RigidBody2D" parent="."]
+position = Vector2(587, 1908)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_153"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_153"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_154" type="RigidBody2D" parent="."]
+position = Vector2(587, 1908)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_154"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_154"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid74" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(373, 2258)
+rotation = 0.349066
+
+[node name="AnotherAsteroid3" parent="." instance=ExtResource("10_fv4ta")]
+position = Vector2(970, 1279)
+mass = 500.0
+gravity_scale = 0.0
+
+[node name="Asteroid75" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(550, 1352)
+rotation = 4.41568
+
+[node name="Asteroid2_155" type="RigidBody2D" parent="."]
+position = Vector2(588, 1155)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_155"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_155"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_156" type="RigidBody2D" parent="."]
+position = Vector2(994, 2613)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_156"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_156"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_157" type="RigidBody2D" parent="."]
+position = Vector2(994, 2613)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_157"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_157"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_158" type="RigidBody2D" parent="."]
+position = Vector2(1003, 2434)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_158"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_158"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_159" type="RigidBody2D" parent="."]
+position = Vector2(1761, 2119)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_159"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_159"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid76" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1942, 2202)
+rotation = 4.41568
+
+[node name="Asteroid77" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1942, 2202)
+rotation = 4.41568
+
+[node name="Asteroid78" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1759, 2287)
+rotation = 4.41568
+
+[node name="Asteroid2_160" type="RigidBody2D" parent="."]
+position = Vector2(1968, 2384)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_160"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_160"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid79" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-1020, 2272)
+rotation = 4.41568
+
+[node name="Asteroid2_161" type="RigidBody2D" parent="."]
+position = Vector2(-982, 2075)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_161"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_161"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid80" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-862, 2199)
+rotation = 4.41568
+
+[node name="Asteroid81" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-1020, 2272)
+rotation = 4.41568
+
+[node name="Asteroid2_162" type="RigidBody2D" parent="."]
+position = Vector2(-1003, 2633)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_162"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_162"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_163" type="RigidBody2D" parent="."]
+position = Vector2(-1003, 2633)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_163"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_163"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_164" type="RigidBody2D" parent="."]
+position = Vector2(-994, 2454)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_164"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_164"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_165" type="RigidBody2D" parent="."]
+position = Vector2(-786, 2403)
+rotation = 0.925025
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_165"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_165"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid82" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-572, 2252)
+
+[node name="Asteroid83" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-244, 2651)
+
+[node name="Asteroid2_166" type="RigidBody2D" parent="."]
+position = Vector2(-2496, 2384)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_166"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_166"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid84" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-2284, 2454)
+rotation = 4.41568
+
+[node name="Asteroid2_167" type="RigidBody2D" parent="."]
+position = Vector2(-2421, 2202)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_167"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_167"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_168" type="RigidBody2D" parent="."]
+position = Vector2(-2246, 2257)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_168"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_168"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid85" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-2126, 2381)
+rotation = 4.41568
+
+[node name="Asteroid19" parent="Asteroid85" groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-626, -798)
+rotation = 4.41568
+
+[node name="Asteroid22" parent="Asteroid85" groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-517, -1171)
+rotation = 4.41568
+
+[node name="Asteroid2_169" type="RigidBody2D" parent="."]
+position = Vector2(-2229, 1938)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_169"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_169"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid86" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-2284, 2454)
+rotation = 4.41568
+
+[node name="Asteroid2_170" type="RigidBody2D" parent="."]
+position = Vector2(-2421, 2202)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_170"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_170"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_171" type="RigidBody2D" parent="."]
+position = Vector2(-2246, 2257)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_171"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_171"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid87" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-2126, 2381)
+rotation = 4.41568
+
+[node name="Asteroid19" parent="Asteroid87" groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-626, -798)
+rotation = 4.41568
+
+[node name="Asteroid22" parent="Asteroid87" groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-517, -1171)
+rotation = 4.41568
+
+[node name="Asteroid2_172" type="RigidBody2D" parent="."]
+position = Vector2(-2229, 1938)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_172"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_172"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_173" type="RigidBody2D" parent="."]
+position = Vector2(-2412, 2023)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_173"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_173"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid88" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-2200, 2093)
+rotation = 4.41568
+
+[node name="Asteroid2_174" type="RigidBody2D" parent="."]
+position = Vector2(-2037, -2039)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_174"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_174"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_175" type="RigidBody2D" parent="."]
+position = Vector2(-2643, -2017)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_175"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_175"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_176" type="RigidBody2D" parent="."]
+position = Vector2(-2468, -1962)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_176"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_176"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_177" type="RigidBody2D" parent="."]
+position = Vector2(-2451, -2281)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_177"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_177"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_178" type="RigidBody2D" parent="."]
+position = Vector2(-2376, -2463)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_178"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_178"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_179" type="RigidBody2D" parent="."]
+position = Vector2(-2643, -2017)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_179"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_179"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_180" type="RigidBody2D" parent="."]
+position = Vector2(-2468, -1962)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_180"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_180"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_181" type="RigidBody2D" parent="."]
+position = Vector2(-2451, -2281)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_181"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_181"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_182" type="RigidBody2D" parent="."]
+position = Vector2(-2634, -2196)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_182"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_182"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid89" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-2422, -2126)
+rotation = 4.41568
+
+[node name="Asteroid2_183" type="RigidBody2D" parent="."]
+position = Vector2(1556, 3551)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_183"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_183"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_184" type="RigidBody2D" parent="."]
+position = Vector2(1731, 3606)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_184"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_184"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_185" type="RigidBody2D" parent="."]
+position = Vector2(1748, 3287)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_185"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_185"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid90" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1960, 3357)
+rotation = 4.41568
+
+[node name="Asteroid2_186" type="RigidBody2D" parent="."]
+position = Vector2(1823, 3105)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_186"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_186"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_187" type="RigidBody2D" parent="."]
+position = Vector2(1998, 3160)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_187"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_187"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_188" type="RigidBody2D" parent="."]
+position = Vector2(1556, 3551)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_188"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_188"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_189" type="RigidBody2D" parent="."]
+position = Vector2(1731, 3606)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_189"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_189"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_190" type="RigidBody2D" parent="."]
+position = Vector2(1748, 3287)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_190"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_190"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid91" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1960, 3357)
+rotation = 4.41568
+
+[node name="Asteroid2_191" type="RigidBody2D" parent="."]
+position = Vector2(1565, 3372)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_191"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_191"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid92" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1777, 3442)
+rotation = 4.41568
+
+[node name="Asteroid2_192" type="RigidBody2D" parent="."]
+position = Vector2(-3135, 1525)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_192"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_192"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_193" type="RigidBody2D" parent="."]
+position = Vector2(-3118, 1206)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_193"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_193"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_194" type="RigidBody2D" parent="."]
+position = Vector2(-3043, 1024)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_194"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_194"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_195" type="RigidBody2D" parent="."]
+position = Vector2(-3135, 1525)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_195"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_195"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_196" type="RigidBody2D" parent="."]
+position = Vector2(-3118, 1206)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_196"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_196"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid93" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-3089, 1361)
+rotation = 4.41568
+
+[node name="Asteroid2_197" type="RigidBody2D" parent="."]
+position = Vector2(3409, -339)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_197"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_197"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_198" type="RigidBody2D" parent="."]
+position = Vector2(2803, -317)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_198"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_198"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_199" type="RigidBody2D" parent="."]
+position = Vector2(2978, -262)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_199"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_199"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_200" type="RigidBody2D" parent="."]
+position = Vector2(2995, -581)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_200"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_200"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_201" type="RigidBody2D" parent="."]
+position = Vector2(3070, -763)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_201"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_201"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_202" type="RigidBody2D" parent="."]
+position = Vector2(2803, -317)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_202"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_202"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_203" type="RigidBody2D" parent="."]
+position = Vector2(2978, -262)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_203"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_203"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_204" type="RigidBody2D" parent="."]
+position = Vector2(2995, -581)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_204"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_204"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_205" type="RigidBody2D" parent="."]
+position = Vector2(2812, -496)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_205"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_205"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid94" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3024, -426)
+rotation = 4.41568
+
+[node name="Asteroid2_206" type="RigidBody2D" parent="."]
+position = Vector2(1929, 1662)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_206"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_206"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid95" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2110, 1745)
+rotation = 4.41568
+
+[node name="Asteroid96" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2110, 1745)
+rotation = 4.41568
+
+[node name="Asteroid97" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1927, 1830)
+rotation = 4.41568
+
+[node name="Asteroid2_207" type="RigidBody2D" parent="."]
+position = Vector2(2136, 1927)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_207"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_207"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_208" type="RigidBody2D" parent="."]
+position = Vector2(3080, 633)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_208"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_208"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid98" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3261, 716)
+rotation = 4.41568
+
+[node name="Asteroid99" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3261, 716)
+rotation = 4.41568
+
+[node name="Asteroid100" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3078, 801)
+rotation = 4.41568
+
+[node name="Asteroid2_209" type="RigidBody2D" parent="."]
+position = Vector2(3287, 898)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_209"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_209"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_210" type="RigidBody2D" parent="."]
+position = Vector2(2269, 1454)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_210"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_210"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_211" type="RigidBody2D" parent="."]
+position = Vector2(2492, 1177)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_211"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_211"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid101" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2673, 1260)
+rotation = 4.41568
+
+[node name="Asteroid2_212" type="RigidBody2D" parent="."]
+position = Vector2(2269, 1454)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_212"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_212"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_213" type="RigidBody2D" parent="."]
+position = Vector2(2322, 1161)
+rotation = -0.219911
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_213"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_213"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid102" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2673, 1260)
+rotation = 4.41568
+
+[node name="Asteroid2_214" type="RigidBody2D" parent="."]
+position = Vector2(2278, 1275)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_214"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_214"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid103" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2490, 1345)
+rotation = 4.41568
+
+[node name="Asteroid2_215" type="RigidBody2D" parent="."]
+position = Vector2(2699, 1442)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_215"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_215"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid104" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3078, 801)
+rotation = 4.41568
+
+[node name="Asteroid2_216" type="RigidBody2D" parent="."]
+position = Vector2(3287, 898)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_216"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_216"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid105" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2715, 2220)
+rotation = 4.41568
+
+[node name="Asteroid106" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2715, 2220)
+rotation = 4.41568
+
+[node name="Asteroid2_217" type="RigidBody2D" parent="."]
+position = Vector2(2741, 2402)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_217"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_217"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid107" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2733, 3375)
+rotation = 4.41568
+
+[node name="Asteroid2_218" type="RigidBody2D" parent="."]
+position = Vector2(2596, 3123)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_218"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_218"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_219" type="RigidBody2D" parent="."]
+position = Vector2(2771, 3178)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_219"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_219"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid108" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2733, 3375)
+rotation = 4.41568
+
+[node name="Asteroid2_220" type="RigidBody2D" parent="."]
+position = Vector2(2947, 1944)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_220"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_220"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid109" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3128, 2027)
+rotation = 4.41568
+
+[node name="Asteroid2_221" type="RigidBody2D" parent="."]
+position = Vector2(2777, 1928)
+rotation = -0.219911
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_221"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_221"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid110" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3128, 2027)
+rotation = 4.41568
+
+[node name="Asteroid111" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2945, 2112)
+rotation = 4.41568
+
+[node name="Asteroid2_222" type="RigidBody2D" parent="."]
+position = Vector2(3154, 2209)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_222"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_222"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid112" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3716, 1483)
+rotation = 4.41568
+
+[node name="Asteroid113" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3716, 1483)
+rotation = 4.41568
+
+[node name="Asteroid114" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3533, 1568)
+rotation = 4.41568
+
+[node name="Asteroid2_223" type="RigidBody2D" parent="."]
+position = Vector2(3742, 1665)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_223"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_223"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_224" type="RigidBody2D" parent="."]
+position = Vector2(2947, 1944)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_224"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_224"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid115" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3128, 2027)
+rotation = 4.41568
+
+[node name="Asteroid2_225" type="RigidBody2D" parent="."]
+position = Vector2(2777, 1928)
+rotation = -0.219911
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_225"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_225"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid116" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3128, 2027)
+rotation = 4.41568
+
+[node name="Asteroid117" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2945, 2112)
+rotation = 4.41568
+
+[node name="Asteroid2_226" type="RigidBody2D" parent="."]
+position = Vector2(3154, 2209)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_226"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_226"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid118" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3533, 1568)
+rotation = 4.41568
+
+[node name="Asteroid2_227" type="RigidBody2D" parent="."]
+position = Vector2(3742, 1665)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_227"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_227"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid119" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3170, 2987)
+rotation = 4.41568
+
+[node name="Asteroid120" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3170, 2987)
+rotation = 4.41568
+
+[node name="Asteroid2_228" type="RigidBody2D" parent="."]
+position = Vector2(3196, 3169)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_228"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_228"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid121" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(4658, 1555)
+rotation = 4.41568
+
+[node name="Asteroid2_229" type="RigidBody2D" parent="."]
+position = Vector2(4696, 1358)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_229"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_229"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid122" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(4816, 1482)
+rotation = 4.41568
+
+[node name="Asteroid123" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(4658, 1555)
+rotation = 4.41568
+
+[node name="Asteroid2_230" type="RigidBody2D" parent="."]
+position = Vector2(4675, 1916)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_230"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_230"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_231" type="RigidBody2D" parent="."]
+position = Vector2(4675, 1916)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_231"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_231"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_232" type="RigidBody2D" parent="."]
+position = Vector2(4684, 1737)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_232"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_232"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_233" type="RigidBody2D" parent="."]
+position = Vector2(4892, 1686)
+rotation = 0.925025
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_233"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_233"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid124" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(5106, 1535)
+
+[node name="Asteroid125" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(5434, 1934)
+
+[node name="Asteroid2_234" type="RigidBody2D" parent="."]
+position = Vector2(3182, 1667)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_234"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_234"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid126" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3394, 1737)
+rotation = 4.41568
+
+[node name="Asteroid2_235" type="RigidBody2D" parent="."]
+position = Vector2(3257, 1485)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_235"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_235"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_236" type="RigidBody2D" parent="."]
+position = Vector2(3432, 1540)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_236"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_236"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_237" type="RigidBody2D" parent="."]
+position = Vector2(3449, 1221)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_237"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_237"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid128" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3394, 1737)
+rotation = 4.41568
+
+[node name="Asteroid2_238" type="RigidBody2D" parent="."]
+position = Vector2(3257, 1485)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_238"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_238"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_239" type="RigidBody2D" parent="."]
+position = Vector2(3432, 1540)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_239"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_239"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_240" type="RigidBody2D" parent="."]
+position = Vector2(3449, 1221)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_240"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_240"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_241" type="RigidBody2D" parent="."]
+position = Vector2(3266, 1306)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_241"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_241"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid130" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3478, 1376)
+rotation = 4.41568
+
+[node name="Asteroid127" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3994, 2597)
+rotation = 4.41568
+
+[node name="Asteroid2_242" type="RigidBody2D" parent="."]
+position = Vector2(4032, 2400)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_242"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_242"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid129" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(4152, 2524)
+rotation = 4.41568
+
+[node name="Asteroid131" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3994, 2597)
+rotation = 4.41568
+
+[node name="Asteroid2_243" type="RigidBody2D" parent="."]
+position = Vector2(4011, 2958)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_243"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_243"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_244" type="RigidBody2D" parent="."]
+position = Vector2(4011, 2958)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_244"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_244"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_245" type="RigidBody2D" parent="."]
+position = Vector2(4020, 2779)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_245"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_245"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_246" type="RigidBody2D" parent="."]
+position = Vector2(4228, 2728)
+rotation = 0.925025
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_246"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_246"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid132" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(4442, 2577)
+
+[node name="Asteroid2_247" type="RigidBody2D" parent="."]
+position = Vector2(4057, -1413)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_247"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_247"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_248" type="RigidBody2D" parent="."]
+position = Vector2(4057, -1413)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_248"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_248"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_249" type="RigidBody2D" parent="."]
+position = Vector2(3924, -102)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_249"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_249"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid133" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(4486, -828)
+rotation = 4.41568
+
+[node name="Asteroid134" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(4486, -828)
+rotation = 4.41568
+
+[node name="Asteroid135" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(4303, -743)
+rotation = 4.41568
+
+[node name="Asteroid2_250" type="RigidBody2D" parent="."]
+position = Vector2(4512, -646)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_250"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_250"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_251" type="RigidBody2D" parent="."]
+position = Vector2(3924, -102)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_251"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_251"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid136" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(4303, -743)
+rotation = 4.41568
+
+[node name="Asteroid2_252" type="RigidBody2D" parent="."]
+position = Vector2(4512, -646)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_252"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_252"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid137" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3940, 676)
+rotation = 4.41568
+
+[node name="Asteroid138" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3940, 676)
+rotation = 4.41568
+
+[node name="Asteroid2_253" type="RigidBody2D" parent="."]
+position = Vector2(3952, -644)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_253"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_253"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid139" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(4164, -574)
+rotation = 4.41568
+
+[node name="Asteroid2_254" type="RigidBody2D" parent="."]
+position = Vector2(4027, -826)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_254"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_254"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_255" type="RigidBody2D" parent="."]
+position = Vector2(4202, -771)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_255"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_255"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_256" type="RigidBody2D" parent="."]
+position = Vector2(4219, -1090)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_256"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_256"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid140" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(4164, -574)
+rotation = 4.41568
+
+[node name="Asteroid2_257" type="RigidBody2D" parent="."]
+position = Vector2(4027, -826)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_257"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_257"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_258" type="RigidBody2D" parent="."]
+position = Vector2(4202, -771)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_258"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_258"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_259" type="RigidBody2D" parent="."]
+position = Vector2(4219, -1090)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_259"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_259"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_260" type="RigidBody2D" parent="."]
+position = Vector2(4036, -1005)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_260"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_260"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid141" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(4248, -935)
+rotation = 4.41568
+
+[node name="Asteroid142" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(4764, 286)
+rotation = 4.41568
+
+[node name="Asteroid2_261" type="RigidBody2D" parent="."]
+position = Vector2(4802, 89)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_261"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_261"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid143" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(4922, 213)
+rotation = 4.41568
+
+[node name="Asteroid144" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(4764, 286)
+rotation = 4.41568
+
+[node name="Asteroid2_262" type="RigidBody2D" parent="."]
+position = Vector2(4781, 647)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_262"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_262"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_263" type="RigidBody2D" parent="."]
+position = Vector2(4781, 647)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_263"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_263"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_264" type="RigidBody2D" parent="."]
+position = Vector2(4790, 468)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_264"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_264"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_265" type="RigidBody2D" parent="."]
+position = Vector2(4998, 417)
+rotation = 0.925025
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_265"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_265"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_266" type="RigidBody2D" parent="."]
+position = Vector2(2834, -1495)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_266"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_266"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_267" type="RigidBody2D" parent="."]
+position = Vector2(2909, -1677)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_267"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_267"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_268" type="RigidBody2D" parent="."]
+position = Vector2(3084, -1622)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_268"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_268"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid145" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3204, -1498)
+rotation = 4.41568
+
+[node name="Asteroid2_269" type="RigidBody2D" parent="."]
+position = Vector2(3104, -1972)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_269"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_269"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_270" type="RigidBody2D" parent="."]
+position = Vector2(3279, -1917)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_270"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_270"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_271" type="RigidBody2D" parent="."]
+position = Vector2(3296, -2236)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_271"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_271"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_272" type="RigidBody2D" parent="."]
+position = Vector2(3371, -2418)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_272"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_272"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_273" type="RigidBody2D" parent="."]
+position = Vector2(3104, -1972)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_273"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_273"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_274" type="RigidBody2D" parent="."]
+position = Vector2(3279, -1917)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_274"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_274"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_275" type="RigidBody2D" parent="."]
+position = Vector2(3296, -2236)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_275"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_275"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_276" type="RigidBody2D" parent="."]
+position = Vector2(3113, -2151)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_276"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_276"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid146" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(3325, -2081)
+rotation = 4.41568
+
+[node name="Asteroid2_277" type="RigidBody2D" parent="."]
+position = Vector2(2940, -2341)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_277"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_277"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_278" type="RigidBody2D" parent="."]
+position = Vector2(2940, -2341)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_278"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_278"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_279" type="RigidBody2D" parent="."]
+position = Vector2(-4521, 351)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_279"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_279"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_280" type="RigidBody2D" parent="."]
+position = Vector2(-4446, 169)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_280"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_280"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_281" type="RigidBody2D" parent="."]
+position = Vector2(-4521, 351)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_281"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_281"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid147" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-4492, 506)
+rotation = 4.41568
+
+[node name="Asteroid2_282" type="RigidBody2D" parent="."]
+position = Vector2(-3459, -481)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_282"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_282"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_283" type="RigidBody2D" parent="."]
+position = Vector2(-3459, -481)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_283"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_283"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid148" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-3030, 104)
+rotation = 4.41568
+
+[node name="Asteroid149" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-3030, 104)
+rotation = 4.41568
+
+[node name="Asteroid150" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-3213, 189)
+rotation = 4.41568
+
+[node name="Asteroid2_284" type="RigidBody2D" parent="."]
+position = Vector2(-3004, 286)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_284"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_284"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid151" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-3213, 189)
+rotation = 4.41568
+
+[node name="Asteroid2_285" type="RigidBody2D" parent="."]
+position = Vector2(-3004, 286)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_285"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_285"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_286" type="RigidBody2D" parent="."]
+position = Vector2(-3564, 288)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_286"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_286"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid152" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-3352, 358)
+rotation = 4.41568
+
+[node name="Asteroid2_287" type="RigidBody2D" parent="."]
+position = Vector2(-3489, 106)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_287"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_287"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_288" type="RigidBody2D" parent="."]
+position = Vector2(-3314, 161)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_288"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_288"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_289" type="RigidBody2D" parent="."]
+position = Vector2(-3297, -158)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_289"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_289"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid153" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-3352, 358)
+rotation = 4.41568
+
+[node name="Asteroid2_290" type="RigidBody2D" parent="."]
+position = Vector2(-3489, 106)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_290"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_290"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_291" type="RigidBody2D" parent="."]
+position = Vector2(-3314, 161)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_291"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_291"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_292" type="RigidBody2D" parent="."]
+position = Vector2(-3297, -158)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_292"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_292"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_293" type="RigidBody2D" parent="."]
+position = Vector2(-3480, -73)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_293"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_293"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid154" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-3268, -3)
+rotation = 4.41568
+
+[node name="Asteroid2_294" type="RigidBody2D" parent="."]
+position = Vector2(-4607, -745)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_294"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_294"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_295" type="RigidBody2D" parent="."]
+position = Vector2(-4432, -690)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_295"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_295"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid155" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-4312, -566)
+rotation = 4.41568
+
+[node name="Asteroid2_296" type="RigidBody2D" parent="."]
+position = Vector2(-4412, -1040)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_296"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_296"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_297" type="RigidBody2D" parent="."]
+position = Vector2(-4237, -985)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_297"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_297"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_298" type="RigidBody2D" parent="."]
+position = Vector2(-4412, -1040)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_298"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_298"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_299" type="RigidBody2D" parent="."]
+position = Vector2(-4237, -985)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_299"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_299"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_300" type="RigidBody2D" parent="."]
+position = Vector2(230, 4535)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_300"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_300"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_301" type="RigidBody2D" parent="."]
+position = Vector2(247, 4216)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_301"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_301"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_302" type="RigidBody2D" parent="."]
+position = Vector2(322, 4034)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_302"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_302"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_303" type="RigidBody2D" parent="."]
+position = Vector2(230, 4535)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_303"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_303"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_304" type="RigidBody2D" parent="."]
+position = Vector2(247, 4216)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_304"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_304"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid156" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(276, 4371)
+rotation = 4.41568
+
+[node name="Asteroid2_305" type="RigidBody2D" parent="."]
+position = Vector2(-1156, 3361)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_305"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_305"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_306" type="RigidBody2D" parent="."]
+position = Vector2(-1081, 3179)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_306"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_306"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_307" type="RigidBody2D" parent="."]
+position = Vector2(-1156, 3361)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_307"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_307"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid157" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-1127, 3516)
+rotation = 4.41568
+
+[node name="Asteroid158" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(152, 3199)
+rotation = 4.41568
+
+[node name="Asteroid2_308" type="RigidBody2D" parent="."]
+position = Vector2(361, 3296)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_308"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_308"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid159" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(152, 3199)
+rotation = 4.41568
+
+[node name="Asteroid2_309" type="RigidBody2D" parent="."]
+position = Vector2(361, 3296)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_309"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_309"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_310" type="RigidBody2D" parent="."]
+position = Vector2(-199, 3298)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_310"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_310"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid160" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(13, 3368)
+rotation = 4.41568
+
+[node name="Asteroid2_311" type="RigidBody2D" parent="."]
+position = Vector2(51, 3171)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_311"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_311"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid161" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(13, 3368)
+rotation = 4.41568
+
+[node name="Asteroid2_312" type="RigidBody2D" parent="."]
+position = Vector2(51, 3171)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_312"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_312"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid162" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-1719, -3028)
+rotation = 4.41568
+
+[node name="Asteroid163" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-1719, -3028)
+rotation = 4.41568
+
+[node name="Asteroid2_313" type="RigidBody2D" parent="."]
+position = Vector2(-1693, -2846)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_313"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_313"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid164" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-895, -3418)
+rotation = 4.41568
+
+[node name="Asteroid2_314" type="RigidBody2D" parent="."]
+position = Vector2(-857, -3615)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_314"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_314"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid165" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-737, -3491)
+rotation = 4.41568
+
+[node name="Asteroid166" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-895, -3418)
+rotation = 4.41568
+
+[node name="Asteroid2_315" type="RigidBody2D" parent="."]
+position = Vector2(-878, -3057)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_315"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_315"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_316" type="RigidBody2D" parent="."]
+position = Vector2(-878, -3057)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_316"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_316"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_317" type="RigidBody2D" parent="."]
+position = Vector2(-869, -3236)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_317"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_317"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_318" type="RigidBody2D" parent="."]
+position = Vector2(-661, -3287)
+rotation = 0.925025
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_318"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_318"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid167" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(-447, -3438)
+
+[node name="Asteroid2_319" type="RigidBody2D" parent="."]
+position = Vector2(2254, -3992)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_319"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_319"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_320" type="RigidBody2D" parent="."]
+position = Vector2(1648, -3970)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_320"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_320"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_321" type="RigidBody2D" parent="."]
+position = Vector2(1823, -3915)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_321"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_321"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_322" type="RigidBody2D" parent="."]
+position = Vector2(1840, -4234)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_322"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_322"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_323" type="RigidBody2D" parent="."]
+position = Vector2(1915, -4416)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_323"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_323"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_324" type="RigidBody2D" parent="."]
+position = Vector2(1648, -3970)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_324"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_324"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_325" type="RigidBody2D" parent="."]
+position = Vector2(1823, -3915)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_325"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_325"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_326" type="RigidBody2D" parent="."]
+position = Vector2(1840, -4234)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_326"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_326"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_327" type="RigidBody2D" parent="."]
+position = Vector2(1657, -4149)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_327"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_327"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid168" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1869, -4079)
+rotation = 4.41568
+
+[node name="Asteroid169" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2572, -4981)
+rotation = 4.41568
+
+[node name="Asteroid170" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(2572, -4981)
+rotation = 4.41568
+
+[node name="Asteroid2_328" type="RigidBody2D" parent="."]
+position = Vector2(2598, -4799)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_328"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_328"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_329" type="RigidBody2D" parent="."]
+position = Vector2(460, -3827)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_329"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_329"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_330" type="RigidBody2D" parent="."]
+position = Vector2(535, -4009)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_330"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_330"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_331" type="RigidBody2D" parent="."]
+position = Vector2(460, -3827)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_331"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_331"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_332" type="RigidBody2D" parent="."]
+position = Vector2(104, -3932)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_332"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_332"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_333" type="RigidBody2D" parent="."]
+position = Vector2(121, -4251)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_333"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_333"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_334" type="RigidBody2D" parent="."]
+position = Vector2(196, -4433)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_334"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_334"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_335" type="RigidBody2D" parent="."]
+position = Vector2(104, -3932)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_335"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_335"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_336" type="RigidBody2D" parent="."]
+position = Vector2(121, -4251)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_336"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_336"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_337" type="RigidBody2D" parent="."]
+position = Vector2(-62, -4166)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_337"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_337"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid171" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(150, -4096)
+rotation = 4.41568
+
+[node name="Asteroid172" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(652, -4848)
+rotation = 4.41568
+
+[node name="Asteroid2_338" type="RigidBody2D" parent="."]
+position = Vector2(727, -5267)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_338"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_338"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_339" type="RigidBody2D" parent="."]
+position = Vector2(744, -5586)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_339"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_339"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_340" type="RigidBody2D" parent="."]
+position = Vector2(819, -5768)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_340"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_340"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_341" type="RigidBody2D" parent="."]
+position = Vector2(727, -5267)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_341"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_341"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_342" type="RigidBody2D" parent="."]
+position = Vector2(744, -5586)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_342"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_342"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid173" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(773, -5431)
+rotation = 4.41568
+
+[node name="Asteroid2_343" type="RigidBody2D" parent="."]
+position = Vector2(1462, -5737)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_343"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_343"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_344" type="RigidBody2D" parent="."]
+position = Vector2(1637, -5682)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_344"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_344"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_345" type="RigidBody2D" parent="."]
+position = Vector2(1654, -6001)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_345"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_345"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_346" type="RigidBody2D" parent="."]
+position = Vector2(1729, -6183)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_346"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_346"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_347" type="RigidBody2D" parent="."]
+position = Vector2(1462, -5737)
+rotation = 2.89201
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_347"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_347"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_348" type="RigidBody2D" parent="."]
+position = Vector2(1637, -5682)
+rotation = -1.16937
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_348"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_348"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_349" type="RigidBody2D" parent="."]
+position = Vector2(1654, -6001)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_349"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_349"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid2_350" type="RigidBody2D" parent="."]
+position = Vector2(1471, -5916)
+rotation = -1.54985
+mass = 20.0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid2_350"]
+texture = ExtResource("8_330cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid2_350"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2xdx")
+
+[node name="Asteroid174" parent="." groups=["Asteroid"] instance=ExtResource("6_tajre")]
+position = Vector2(1683, -5846)
+rotation = 4.41568
+
+[node name="FishItem2" parent="." instance=ExtResource("32_nbg5f")]
+position = Vector2(2246, -1696)
+
+[node name="FishItem3" parent="." instance=ExtResource("32_nbg5f")]
+position = Vector2(1404, -635)
+
+[node name="FishItem4" parent="." instance=ExtResource("32_nbg5f")]
+position = Vector2(738, 2011)
+
+[node name="FishItem5" parent="." instance=ExtResource("32_nbg5f")]
+position = Vector2(2878, 2013)
+
+[node name="FighterWrapper3" type="Node2D" parent="."]
+
+[node name="Enemy" type="RigidBody2D" parent="FighterWrapper3" groups=["enemy"]]
+position = Vector2(2660, 1917)
+rotation = -1.64934
+gravity_scale = 0.0
+script = ExtResource("12_qf4ef")
+projectile = ExtResource("13_0ief1")
+coin = ExtResource("20_h5q0k")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="FighterWrapper3/Enemy"]
+texture = ExtResource("14_xt2xj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FighterWrapper3/Enemy"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_g8vuk")
+
+[node name="EngineAnimatedSprite2D" type="AnimatedSprite2D" parent="FighterWrapper3/Enemy"]
+position = Vector2(0, 2)
+sprite_frames = SubResource("SpriteFrames_h11ir")
+animation = &"none"
+
+[node name="GunMarker" type="Marker2D" parent="FighterWrapper3/Enemy"]
+position = Vector2(0, -11)
+
+[node name="DestructionAnimatedSprite2D" type="AnimatedSprite2D" parent="FighterWrapper3/Enemy"]
+sprite_frames = SubResource("SpriteFrames_ewfqi")
+animation = &"destruction"
+
+[node name="EngineAudio" type="AudioStreamPlayer2D" parent="FighterWrapper3/Enemy"]
+stream = ExtResource("17_47wiv")
+volume_db = 5.0
+attenuation = 8.28212
+script = ExtResource("18_h1nl0")
+
+[node name="LaserSound" type="AudioStreamPlayer2D" parent="FighterWrapper3/Enemy"]
+stream = ExtResource("19_rdp5c")
+volume_db = -10.0
+attenuation = 4.92458
+
+[node name="Control" type="Control" parent="FighterWrapper3"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("11_rwlm8")
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="FighterWrapper3/Control"]
+layout_mode = 0
+offset_left = -660.0
+offset_top = 319.0
+offset_right = -619.0
+offset_bottom = 346.0
+scale = Vector2(0.8, 0.8)
+theme = SubResource("Theme_w4luh")
+max_value = 60.0
+step = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="LifeLabel" type="Label" parent="FighterWrapper3/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(0.6, 0.6)
+
 [connection signal="animation_finished" from="FighterWrapper/Enemy/DestructionAnimatedSprite2D" to="FighterWrapper/Enemy" method="_on_destruction_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="FighterWrapper2/Enemy/DestructionAnimatedSprite2D" to="FighterWrapper2/Enemy" method="_on_destruction_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_entered"]
 [connection signal="body_exited" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_exited"]
+[connection signal="animation_finished" from="FighterWrapper3/Enemy/DestructionAnimatedSprite2D" to="FighterWrapper3/Enemy" method="_on_destruction_animated_sprite_2d_animation_finished"]
+
+[editable path="QuestScout/Enemy"]
+[editable path="FishGuide"]

@@ -7,6 +7,10 @@ var acceleration_time = 1.0 # Time to reach the target speed
 var v0
 var state = "idle"
 var currentAnimation = ""
+var isRepulsed = false
+var last_repulsed = 0
+var time = 0
+const REPULSION_COOLDOWN = 100
 
 @export var coin: PackedScene
 var target: RigidBody2D
@@ -25,9 +29,24 @@ func _physics_process(delta):
 		_process_state()
 		if state == "hostile":
 			_process_acc()
-		
+		if isRepulsed:
+			_process_repulsion(delta)
 	_process_animation(delta)
-	
+
+func _process_repulsion(delta):
+	print("process repulsion")
+	if time - last_repulsed < REPULSION_COOLDOWN:
+		return
+	last_repulsed = time
+	var direction = _direction_to_target()
+	var relative_velocity = linear_velocity - target.linear_velocity
+	var velocity_adjustment_factor = max(100, min(abs(relative_velocity.dot(direction)) * abs(relative_velocity.length()) / 50, 300))
+	print("Repulsion = " + str(velocity_adjustment_factor))
+	apply_central_impulse(-direction * velocity_adjustment_factor)
+
+func _direction_to_target():
+	return position.direction_to(target.position)
+
 func _process_animation(delta):
 	if health <= 0:
 		$Sprite2D.visible = false
@@ -105,3 +124,6 @@ func drop_coin():
 	newCoin.transform = self.global_transform
 	newCoin.position.x = newCoin.position.x + randX
 	newCoin.position.y = newCoin.position.y + randY
+
+func set_repulsed(value):
+	isRepulsed = value

@@ -1,0 +1,109 @@
+[gd_scene load_steps=17 format=3 uid="uid://dwa2cnmnl48r8"]
+
+[ext_resource type="Script" path="res://script/FishGuide.gd" id="1_kxrsf"]
+[ext_resource type="Texture2D" uid="uid://di30vl5uq6wso" path="res://assets/sprites/quest_cat_3/Octopus.png" id="2_njn87"]
+[ext_resource type="Texture2D" uid="uid://cuxwwx8yggqqu" path="res://assets/sprites/quest_cat_3/Idle.png" id="3_21jxo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4svfx"]
+atlas = ExtResource("2_njn87")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2301t"]
+atlas = ExtResource("2_njn87")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii5y8"]
+atlas = ExtResource("2_njn87")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbq2e"]
+atlas = ExtResource("2_njn87")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snynb"]
+atlas = ExtResource("2_njn87")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rp8ff"]
+atlas = ExtResource("2_njn87")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b12sb"]
+atlas = ExtResource("3_21jxo")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mikk"]
+atlas = ExtResource("3_21jxo")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjm8v"]
+atlas = ExtResource("3_21jxo")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxcrq"]
+atlas = ExtResource("3_21jxo")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tnhh"]
+atlas = ExtResource("3_21jxo")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6wya"]
+atlas = ExtResource("3_21jxo")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_32o8b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4svfx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2301t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii5y8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbq2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snynb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rp8ff")
+}],
+"loop": true,
+"name": &"go",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b12sb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mikk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjm8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxcrq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tnhh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6wya")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="FishGuide" type="Area2D"]
+script = ExtResource("1_kxrsf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_32o8b")
+animation = &"idle"

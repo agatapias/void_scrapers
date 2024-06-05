@@ -192,7 +192,7 @@ func spawnGravitySpiral():
 	setTimerRandom()
 	
 func setTimerRandom():
-	var randomTime = rng.randf_range(10.0, 30.0)
+	var randomTime = rng.randf_range(100.0, 300.0)
 	$Timer.connect("timeout", spawnGravitySpiral)
 	$Timer.set_wait_time(randomTime)
 	$Timer.start()
