@@ -1,0 +1,175 @@
+[gd_scene load_steps=22 format=3 uid="uid://csx1e8k8fs8n2"]
+
+[ext_resource type="Script" path="res://final-cutscene/final_cutscene.gd" id="1_3fh65"]
+[ext_resource type="Texture2D" uid="uid://bkfcmfofqcddg" path="res://assets/background/Space Background (4).png" id="1_30dqt"]
+[ext_resource type="Texture2D" uid="uid://s4nd8ma6uhla" path="res://assets/sprites/ship/ship-idle.png" id="3_utuco"]
+[ext_resource type="Texture2D" uid="uid://diq3tsk7cf5jj" path="res://assets/sprites/ship/ship-small-fire.png" id="4_k5liw"]
+[ext_resource type="Texture2D" uid="uid://vbprl7sodqjh" path="res://assets/sprites/ship/ship-medium-fire.png" id="5_ovf4m"]
+[ext_resource type="AudioStream" uid="uid://bi0oyq0et1bxc" path="res://assets/sound_effects/thrusters_loopwav-14699.mp3" id="6_r5ft2"]
+[ext_resource type="Script" path="res://script/EngineSoundEffect.gd" id="7_q8fu1"]
+[ext_resource type="Texture2D" uid="uid://1def2vij1y1b" path="res://assets/sprites/weapon/gun1.png" id="8_vbwsd"]
+[ext_resource type="Texture2D" uid="uid://usc4sbqtym10" path="res://assets/sprites/weapon/gun2.png" id="9_wgtei"]
+[ext_resource type="Texture2D" uid="uid://bveu7auh6i2yj" path="res://assets/sprites/weapon/gun3.png" id="10_fgtbq"]
+[ext_resource type="Texture2D" uid="uid://rlnenhm5hmkm" path="res://assets/sprites/weapon/gun4.png" id="11_0jcf0"]
+[ext_resource type="Texture2D" uid="uid://bqk7ss3y87oga" path="res://assets/sprites/weapon/gun5.png" id="12_xc662"]
+[ext_resource type="AudioStream" uid="uid://cnom1akg2dpg3" path="res://assets/music/02 Space Riddle.mp3" id="13_bd6h2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_noiho"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_utuco")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_k5liw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ovf4m")
+}],
+"loop": true,
+"name": &"go",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ep7cd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_vbwsd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_wgtei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_fgtbq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_0jcf0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_xc662")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hgn6t"]
+radius = 14.0
+height = 34.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7tnam"]
+
+[sub_resource type="Theme" id="Theme_8cjhh"]
+Label/font_sizes/font_size = 46
+Label/styles/normal = SubResource("StyleBoxTexture_7tnam")
+
+[sub_resource type="Animation" id="Animation_sgeyc"]
+resource_name = "new_animation"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpaceshipStatic:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(610, 809), Vector2(635, -157)]
+}
+
+[sub_resource type="Animation" id="Animation_muy3g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpaceshipStatic:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(610, 809)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n6o5v"]
+_data = {
+"RESET": SubResource("Animation_muy3g"),
+"new_animation": SubResource("Animation_sgeyc")
+}
+
+[node name="FinalCutscene" type="Node2D"]
+script = ExtResource("1_3fh65")
+
+[node name="SpaceshipStatic" type="Area2D" parent="."]
+position = Vector2(610, 809)
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpaceshipStatic"]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_noiho")
+animation = &"go"
+
+[node name="EngineSoundEffect" type="AudioStreamPlayer2D" parent="SpaceshipStatic"]
+stream = ExtResource("6_r5ft2")
+script = ExtResource("7_q8fu1")
+
+[node name="WeaponSprite" type="AnimatedSprite2D" parent="SpaceshipStatic"]
+position = Vector2(0, -4)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_ep7cd")
+animation = &"shoot"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpaceshipStatic"]
+shape = SubResource("CapsuleShape2D_hgn6t")
+
+[node name="SpaceBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="SpaceBackground"]
+motion_scale = Vector2(0.2, 0.2)
+motion_offset = Vector2(500, 500)
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/ParallaxLayer"]
+position = Vector2(479, 623)
+scale = Vector2(1.46083, 1.46083)
+texture = ExtResource("1_30dqt")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 276.0
+offset_top = 312.0
+offset_right = 923.0
+offset_bottom = 376.0
+theme = SubResource("Theme_8cjhh")
+text = "Udało Ci się uciec z galaktyki!"
+
+[node name="Restart" type="Button" parent="."]
+offset_left = 511.0
+offset_top = 409.0
+offset_right = 663.0
+offset_bottom = 453.0
+scale = Vector2(1.2, 1.2)
+text = "Wróć do menu"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_n6o5v")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_bd6h2")
+autoplay = true
+
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]

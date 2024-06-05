@@ -25,13 +25,22 @@ func callback():
 	var scene = scenes[data.level_node].instantiate()
 	add_child(scene)
 	var spaceship = scene.get_node('Spaceship')
-	if data.health != null:
-		spaceship._health = data.health
-	if data.items != null:
-		spaceship.inventory.items = data.items
+	if spaceship != null:
+		if data.health != null:
+			spaceship._health = data.health
+		if data.items != null:
+			spaceship.inventory.items = data.items
 	var node = scene.get_node("LevelTransition")
 	if node != null:
 		node.transition.connect(callbackForScene)
+	
+	var finalCutscene = self.get_node("FinalCutscene")
+	if finalCutscene != null:
+		finalCutscene.transition.connect(callbackForScene)
+	
+	var startMenu = self.get_node("StartMenu")
+	if startMenu != null:
+		startMenu.transition.connect(callbackForScene)
 
 
 

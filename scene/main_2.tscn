@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://di0xlol6ep6vt"]
+[gd_scene load_steps=59 format=3 uid="uid://di0xlol6ep6vt"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://scene/player_ship.tscn" id="1_dlvmg"]
 [ext_resource type="PackedScene" uid="uid://sskn7og6uw6y" path="res://scene/ui_layer.tscn" id="2_g14c0"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://dqdvqvkqmp1y1" path="res://items/shrimp_item.tscn" id="24_q2gk3"]
 [ext_resource type="PackedScene" uid="uid://se1oxxdeijkx" path="res://items/plankton_item.tscn" id="25_jg63l"]
 [ext_resource type="PackedScene" uid="uid://bideotd3hwpt4" path="res://items/krill_item.tscn" id="26_anpym"]
+[ext_resource type="PackedScene" path="res://scene/level_transition.tscn" id="27_104u2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t2xdx"]
 radius = 12.0
@@ -916,6 +917,11 @@ position = Vector2(-117, -201)
 
 [node name="KrillItem" parent="." instance=ExtResource("26_anpym")]
 position = Vector2(-95, 77)
+
+[node name="LevelTransition" parent="." instance=ExtResource("27_104u2")]
+position = Vector2(8, -557)
+level = "final_cutscene.tscn"
+level_node = "FinalCutscene"
 
 [connection signal="animation_finished" from="FighterWrapper/Enemy/DestructionAnimatedSprite2D" to="FighterWrapper/Enemy" method="_on_destruction_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="FighterWrapper2/Enemy/DestructionAnimatedSprite2D" to="FighterWrapper2/Enemy" method="_on_destruction_animated_sprite_2d_animation_finished"]
