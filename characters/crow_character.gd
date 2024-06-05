@@ -11,11 +11,11 @@ var changed = false
 var status = 'new'
 
 const quest_name = 'Wprowadzenie'
-const quest_dialog = "...Skąd się tu jeszcze wziąłeś? Ta galaktyka zostanie odłączona już od reszty wrzechświata już za kilka chwil. Reszta dawno uciekła. \n\n[Naciśnij K, aby kontynuować]"
-const quest_dialog_2 = "No nic. Kieruj się na koniec galaktyki, może jeszcze zdążysz. Do tego co Tobą steruje, używaj strzałek aby poruszać się do przodu i obracać. \n Jeśli masz czym, klikając [Spacja] możesz strzelać. \n\n[Naciśnij K, żeby kontynuować]"
-const quest_dialog_3 = "Uważaj, żeby nie w nic wlatywać. Wszystko może Cię zranić. \n\n... ... \n\n Spróbuj też nie napotkać robotów niszczących ten świat. Myślę, że nie odróżnią Cię od swoich celów. \n\n[Naciśnij K, żeby kontynuować]"
+const quest_dialog = "...Skąd się tu jeszcze wziąłeś? Ta galaktyka zostanie odłączona od reszty wrzechświata już za kilka chwil. Reszta dawno uciekła. \n\nNikt nie mógł znieść narastających zakłóceń pola grawitacyjnego czarnej dziury, która wchłania nasz świat kawałek po kawałku. \n\n[Naciśnij K, aby kontynuować]"
+const quest_dialog_2 = "No nic. Kieruj się na koniec galaktyki, może jeszcze zdążysz. Do tego co Tobą steruje, używaj strzałek aby poruszać się do przodu i obracać. \n\nJeśli masz czym, spróbuj strzelać klikając [Spacja]. \n\n[Naciśnij K, żeby kontynuować]"
+const quest_dialog_3 = "Uważaj, żeby nie w nic wlatywać. Wszystko może Cię zranić. \n\n... ... \n\nSpróbuj też nie napotkać robotów niszczących ten świat. Myślę, że nie odróżnią Cię od swoich celów. \n\n[Naciśnij K, żeby kontynuować]"
 const quest_dialog_4 = "Powodzenia. \n\n[Naciśnij K, aby zamknąć]"
-const quest_ongoing = "Jeszcze nie lecisz? Dobrze jest się nie spieszyć. \n Lec najpierw w górę. \n\n[Naciśnij K, żeby wyjść]"
+const quest_ongoing = "Jeszcze nie lecisz? Dobrze jest się nie spieszyć. \nLeć najpierw w górę. \n\n[Naciśnij K, żeby wyjść]"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
