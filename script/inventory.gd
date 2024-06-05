@@ -71,9 +71,19 @@ func removeByName(name):
 	var index = items.find(item[0])
 	removeItem(index)
 	return item
+	
+func findByName(name):
+	var item = items.filter(func(item): return item != null and item.name == name)
+	if item == []:
+		return -1
+	var index = items.find(item[0])
+	return index
 
 func useItem(index):
 	var item = items[index]
+	print("use item called")
+	print("item name: " + str(item.name))
+	print("item count: " + str(item.count))
 	itemUsed.emit(item)
 	if item.count <= 1:
 		self.removeItem(index)

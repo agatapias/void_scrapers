@@ -7,7 +7,7 @@
 script = ExtResource("1_t3w2k")
 name = "Bomba"
 idName = "Bomb"
-description = "paczka 10 wybuchających pocisków. Wciśnij [V} aby zostawić bombę."
+description = "paczka 10 wybuchających pocisków. Wciśnij [V] aby zostawić bombę."
 texture = ExtResource("2_212m4")
 amount = 1
 buyingCost = 1

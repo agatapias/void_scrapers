@@ -161,5 +161,19 @@ scale = Vector2(0.25, 0.25)
 text = "Wyrzuć"
 script = ExtResource("4_g453i")
 
+[node name="Description" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -73.5
+offset_top = 30.0
+offset_right = 50.5
+offset_bottom = 157.0
+grow_horizontal = 2
+scale = Vector2(0.2, 0.2)
+text = "Złota ryba - usprawnia statek i pozwala pływać szybciej!"
+autowrap_mode = 2
+
 [connection signal="pressed" from="NinePatchRect/UseButton" to="NinePatchRect/UseButton" method="_on_pressed"]
 [connection signal="pressed" from="NinePatchRect/DropButton" to="NinePatchRect/DropButton" method="_on_pressed"]

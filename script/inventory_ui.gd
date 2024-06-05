@@ -4,6 +4,7 @@ extends Control
 @onready var slots: Array = $NinePatchRect/GridContainer.get_children()
 @onready var coinsLabel: Label = $NinePatchRect/CoinAmount
 @onready var itemNameLabel: Label = $NinePatchRect/ItemName
+@onready var itemDescription: Label = $NinePatchRect/Description
 @onready var dropButton: Button = $NinePatchRect/DropButton
 @onready var useButton: Button = $NinePatchRect/UseButton
 
@@ -31,6 +32,17 @@ func _process(delta):
 		else: open()
 	if Input.is_action_just_pressed("escape"):
 		close()
+	if Input.is_action_just_pressed("use_bomb"):
+		updateSlots()
+		var index_of_bomb = inventory.findByName("Bomba")
+		print("index of bomb: " + str(index_of_bomb))
+		# Check if the index is valid
+		if index_of_bomb != -1:
+			selectedSlotIndex = index_of_bomb
+			onUseButtonClicked()
+		else:
+			print("Object 'Bomb' not found")
+		
 	
 func connectSlots():
 	for slot in slots:
@@ -64,8 +76,9 @@ func onSlotClicked(item, index):
 		unselect()
 	else:
 		selectedSlotIndex = index
-		itemNameLabel.text = item.name + " - " + str(item.amount) + " coins"
+		itemNameLabel.text = item.name + " - " + str(item.amount) + " złota"
 		itemNameLabel.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		itemDescription.text = item.description
 	updateSlots()
 	
 func onDropButtonClicked():
@@ -81,3 +94,4 @@ func onUseButtonClicked():
 func unselect():
 	selectedSlotIndex = null
 	itemNameLabel.text = ""
+	itemDescription.text = ""
