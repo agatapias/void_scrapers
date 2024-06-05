@@ -167,9 +167,12 @@ func use_bomb():
 func itemUsed(item):
 	match item.idName:
 		"LaserGun": equipGun(item.idName)
-		"Fish": restore_health(10)
+		"Fish": restore_health(30)
 		"Shield": use_shield()
 		"Bomb": use_bomb()
+		"Shrimp": restore_health(50)
+		"Plankton": restore_health(20)
+		"Krill": restore_health(10)
 
 func beSucked(gravity):
 	suckingGravities.append(gravity)

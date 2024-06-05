@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://pjrrixvttltl"]
+
+[ext_resource type="Script" path="res://script/inventory_item.gd" id="1_ptnkw"]
+[ext_resource type="Texture2D" uid="uid://dlvebs15nw1hu" path="res://assets/sprites/items/zoo-plankton.png" id="2_3s73b"]
+
+[resource]
+script = ExtResource("1_ptnkw")
+name = "Planktoner"
+idName = "Plankton"
+description = "dziwne stworzenie, znajdujące się w zakamarkach galaktyki, nie wygląda apetycznie ale przywraca zdrowie."
+texture = ExtResource("2_3s73b")
+amount = 40
+buyingCost = 45
+count = 1
+rarity = "Common"

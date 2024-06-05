@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1ay3xkpqv1eg"]
+[gd_scene load_steps=8 format=3 uid="uid://d1ay3xkpqv1eg"]
 
 [ext_resource type="Script" path="res://items/fish_item.gd" id="1_yb45v"]
 [ext_resource type="Resource" uid="uid://bceag5vec0e6i" path="res://items/fish_item.tres" id="2_3ejkq"]
 [ext_resource type="Texture2D" uid="uid://d4htrs7ae43fn" path="res://assets/sprites/items/fish1/16bit-fish-angelfish-flame1.png" id="3_hvtat"]
 [ext_resource type="Texture2D" uid="uid://cabvjgk7v2d4w" path="res://assets/sprites/items/fish1/16bit-fish-angelfish-flame2.png" id="4_pfwds"]
+[ext_resource type="AudioStream" uid="uid://c2pxep5w4k4rn" path="res://assets/sound_effects/pick-up-item.mp3" id="5_20h5j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xhter"]
 animations = [{
@@ -34,5 +35,9 @@ sprite_frames = SubResource("SpriteFrames_xhter")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_5l0ck")
 
+[node name="PickUpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_20h5j")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="finished" from="PickUpSound" to="." method="_on_pick_up_sound_finished"]

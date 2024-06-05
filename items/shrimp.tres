@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://bs0h374nw07f3"]
+
+[ext_resource type="Script" path="res://script/inventory_item.gd" id="1_yvmc1"]
+[ext_resource type="Texture2D" uid="uid://d352t1viwef1v" path="res://assets/sprites/items/shrimp-northern-prawn.png" id="2_lhe73"]
+
+[resource]
+script = ExtResource("1_yvmc1")
+name = "Szrymper"
+idName = "Shrimp"
+description = "grube stworzonko, ma silne właściwości lecznicze, lubiane w całej galaktyce."
+texture = ExtResource("2_lhe73")
+amount = 20
+buyingCost = 25
+count = 1
+rarity = "Common"
