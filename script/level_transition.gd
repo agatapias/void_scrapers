@@ -12,6 +12,8 @@ signal transition
 func _ready():
 	alert = get_node('../UILayer/TransitionAlert')
 	spaceship = get_node('../Spaceship')
+	#$AnimatedSprite2D.play()
+	$LightAnimation.play()
 
 
 func _process(delta):

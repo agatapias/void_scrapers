@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dxbb1xjpse0p7"]
+[gd_scene load_steps=29 format=3 uid="uid://dxbb1xjpse0p7"]
 
 [ext_resource type="PackedScene" uid="uid://c1fi0qspec801" path="res://scene/player_ship.tscn" id="1_s1wep"]
 [ext_resource type="PackedScene" uid="uid://bmmhib0afegw2" path="res://scene/asteroid.tscn" id="2_i6m1y"]
@@ -14,13 +14,14 @@
 [ext_resource type="Script" path="res://script/Checkpoint.gd" id="19_tsv00"]
 [ext_resource type="Texture2D" uid="uid://c0uje4lrjei3w" path="res://assets/sprites/planets/planet1.png" id="20_752u3"]
 [ext_resource type="Texture2D" uid="uid://bltfgoo4dk0ng" path="res://assets/sprites/asteroid2.png" id="21_eixka"]
+[ext_resource type="PackedScene" uid="uid://bh800hcbu42xv" path="res://characters/crow_character.tscn" id="22_r1xgw"]
 [ext_resource type="PackedScene" uid="uid://sskn7og6uw6y" path="res://scene/ui_layer.tscn" id="23_roe1x"]
 [ext_resource type="PackedScene" uid="uid://bfkwmdcjkl434" path="res://scene/cat_quest_1.tscn" id="23_ur1ow"]
 [ext_resource type="PackedScene" path="res://scene/pretty_asteroid.tscn" id="24_vrgh4"]
 [ext_resource type="PackedScene" path="res://scene/another_asteroid.tscn" id="25_2t6bf"]
 [ext_resource type="PackedScene" path="res://scene/great_asteroid.tscn" id="26_gm2wa"]
 [ext_resource type="PackedScene" path="res://scene/diff_asteroid.tscn" id="27_j2p4a"]
-[ext_resource type="PackedScene" path="res://scene/level_transition.tscn" id="28_56pm6"]
+[ext_resource type="PackedScene" uid="uid://cpr13xumyqu8n" path="res://scene/level_transition.tscn" id="28_56pm6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpf2x"]
 bg_color = Color(0.745098, 0.227451, 0.176471, 1)
@@ -520,6 +521,9 @@ position = Vector2(76, -38)
 
 [node name="QuestCat" parent="." instance=ExtResource("23_ur1ow")]
 position = Vector2(-150, -279)
+
+[node name="CrowCharacter" parent="." instance=ExtResource("22_r1xgw")]
+position = Vector2(-296, 19)
 
 [connection signal="body_entered" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_entered"]
 [connection signal="body_exited" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_exited"]

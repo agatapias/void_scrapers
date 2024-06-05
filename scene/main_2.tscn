@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://dqdvqvkqmp1y1" path="res://items/shrimp_item.tscn" id="24_q2gk3"]
 [ext_resource type="PackedScene" uid="uid://se1oxxdeijkx" path="res://items/plankton_item.tscn" id="25_jg63l"]
 [ext_resource type="PackedScene" uid="uid://bideotd3hwpt4" path="res://items/krill_item.tscn" id="26_anpym"]
-[ext_resource type="PackedScene" path="res://scene/level_transition.tscn" id="27_104u2"]
+[ext_resource type="PackedScene" uid="uid://cpr13xumyqu8n" path="res://scene/level_transition.tscn" id="27_104u2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t2xdx"]
 radius = 12.0
