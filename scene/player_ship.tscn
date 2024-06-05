@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://script/player_ship.gd" id="1_co6cj"]
 [ext_resource type="PackedScene" uid="uid://v8rkx8a4n5et" path="res://scene/bullet.tscn" id="2_0llbk"]
 [ext_resource type="Resource" uid="uid://18wgg4ivdufu" path="res://inventory/player_inventory.tres" id="3_rdp3g"]
-[ext_resource type="PackedScene" path="res://items/bomb.tscn" id="3_snweo"]
+[ext_resource type="PackedScene" uid="uid://csvn7024sday7" path="res://items/bomb.tscn" id="3_snweo"]
 [ext_resource type="Texture2D" uid="uid://s4nd8ma6uhla" path="res://assets/sprites/ship/ship-idle.png" id="3_uyw8m"]
 [ext_resource type="PackedScene" uid="uid://dkcd211ltg7ut" path="res://enemy/gravityspiral/GravitySpiral.tscn" id="3_wpmyd"]
 [ext_resource type="Texture2D" uid="uid://diq3tsk7cf5jj" path="res://assets/sprites/ship/ship-small-fire.png" id="4_fwwna"]

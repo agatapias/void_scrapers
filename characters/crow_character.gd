@@ -53,6 +53,7 @@ func _process(delta):
 			_set_dialog(quest_dialog_4)
 		elif status == '4':
 			status = 'ongoing'
+		elif status == 'ongoing':
 			_leave_interaction()
 	elif interacting and status == 'ongoing' and Input.is_action_just_pressed("accept"):
 		_leave_interaction()
