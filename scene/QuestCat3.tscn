@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1o8sphiiq65v"]
+
+[ext_resource type="Texture2D" uid="uid://cb3eyr7iaoc4k" path="res://assets/sprites/quest_cat_3/dog.png" id="1_73862"]
+[ext_resource type="Script" path="res://script/QuestCat3.gd" id="1_ucafg"]
+[ext_resource type="Texture2D" uid="uid://droeih72pf7d7" path="res://assets/sprites/quest_cat_3/A2__00005.png" id="2_fytdk"]
+[ext_resource type="Texture2D" uid="uid://bw8rbgavvsg4c" path="res://assets/sprites/quest_cat_2/cat.png" id="2_g5dwy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4kewk"]
+radius = 163.441
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_ucafg")
+
+[node name="Asteroid" type="Sprite2D" parent="."]
+position = Vector2(7, 20)
+scale = Vector2(0.544286, 0.522857)
+texture = ExtResource("2_fytdk")
+
+[node name="CatSprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, -15)
+scale = Vector2(2.65625, 2.5)
+texture = ExtResource("2_g5dwy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4kewk")
+metadata/_edit_lock_ = true
+
+[node name="DogSprite2D" type="Sprite2D" parent="."]
+position = Vector2(30.0943, -21.5557)
+scale = Vector2(1.86911, 1.90277)
+texture = ExtResource("1_73862")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

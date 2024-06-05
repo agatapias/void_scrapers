@@ -50,8 +50,10 @@ func removeItem(index):
 	update.emit()
 	
 func contains(name):
-	print(items)
 	return items.filter(func(item): return item != null and item.name == name).size() > 0
+	
+func containsN(name, N):
+	return items.filter(func(item): return item != null and item.name == name).size() >= N
 
 func sellItem(index, cost):
 	var item = items[index]

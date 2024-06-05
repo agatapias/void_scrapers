@@ -125,3 +125,6 @@ func _process_shooting(delta, angle_diff):
 		$LaserBeam.visible = false
 		is_shooting = false
 		rotation_speed = 250
+
+func set_repulsed():
+	pass
