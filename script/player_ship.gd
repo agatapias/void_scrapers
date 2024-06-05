@@ -25,6 +25,7 @@ var checkpoint = {
 var rng = RandomNumberGenerator.new()
 
 @export var projectile: PackedScene
+@export var bomb: PackedScene
 @export var gravitySpiral: PackedScene
 @export var inventory: Inventory
 
@@ -99,6 +100,7 @@ func _integrate_forces(state):
 		shoot()
 
 func _on_body_entered(body):
+	print("on spaceship body entered")
 	get_damage(10)
 	
 	
@@ -114,7 +116,6 @@ func get_damage(damage):
 func restore_health(health_points):
 	set_health(_health + health_points)
 	
-
 # Actions
 func shoot():
 	var bullet = projectile.instantiate()
@@ -154,12 +155,24 @@ func use_shield():
 func drop_shield():
 	$Shield/ShieldAnimated.visible = false
 	$Shield/ShieldCollisionShape.set_deferred("disabled", true)
-
+	
+func use_bomb():
+	print("bomb used")
+	var bullet = bomb.instantiate()
+	owner.add_child(bullet)
+	bullet.transform = self.global_transform
+	$LaserSound.playing = true
+	
+	
 func itemUsed(item):
 	match item.idName:
 		"LaserGun": equipGun(item.idName)
-		"Fish": restore_health(10)
+		"Fish": restore_health(30)
 		"Shield": use_shield()
+		"Bomb": use_bomb()
+		"Shrimp": restore_health(50)
+		"Plankton": restore_health(20)
+		"Krill": restore_health(10)
 
 func beSucked(gravity):
 	suckingGravities.append(gravity)
@@ -188,9 +201,11 @@ func _on_shield_body_entered(body):
 	if body.is_in_group("enemy"):
 		body.set_repulsed(true)
 		body.get_damage(10)
-	elif body.is_in_group("bullet"):
-		body.queue_free()
 
 func _on_shield_body_exited(body):
 	if body.is_in_group("enemy"):
 		body.set_repulsed(false)
+
+func _on_shield_area_entered(area):
+	if area.is_in_group("bullet"):
+		area.queue_free()

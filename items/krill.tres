@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://eadco7gr3wxk"]
+
+[ext_resource type="Script" path="res://script/inventory_item.gd" id="1_h3vp4"]
+[ext_resource type="Texture2D" uid="uid://dlmfnqh88jvbo" path="res://assets/sprites/items/krill-3.png" id="2_dqmjo"]
+
+[resource]
+script = ExtResource("1_h3vp4")
+name = "Kryler"
+idName = "Krill"
+description = "powszechne stworzenie, mało użyteczne ale przywraca trochę zdrowia."
+texture = ExtResource("2_dqmjo")
+amount = 5
+buyingCost = 1
+count = 1
+rarity = "Common"

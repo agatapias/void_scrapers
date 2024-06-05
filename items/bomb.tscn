@@ -1,0 +1,183 @@
+[gd_scene load_steps=31 format=3 uid="uid://csvn7024sday7"]
+
+[ext_resource type="Script" path="res://items/bomb.gd" id="1_cwyc0"]
+[ext_resource type="Texture2D" uid="uid://bmkb7xyci011d" path="res://assets/sprites/bomb/48x48 - Explosive Assets, Red-Sheet.png" id="2_rmo6y"]
+[ext_resource type="AudioStream" uid="uid://b8aeik3rk6fto" path="res://assets/sound_effects/ticking_timer.mp3" id="3_16010"]
+[ext_resource type="AudioStream" uid="uid://b1qca1y7b3t4e" path="res://assets/sound_effects/bomb_explosion.wav" id="4_et2j8"]
+[ext_resource type="Texture2D" uid="uid://c7lujc6h7utpr" path="res://assets/sprites/bomb/explosion/1.png" id="5_s7hc7"]
+[ext_resource type="Texture2D" uid="uid://dmrkukxnp2thc" path="res://assets/sprites/bomb/explosion/2.png" id="6_ism7g"]
+[ext_resource type="Texture2D" uid="uid://c6x5rrprfdji2" path="res://assets/sprites/bomb/explosion/3.png" id="7_6phiw"]
+[ext_resource type="Texture2D" uid="uid://c62fn6k2m5qx4" path="res://assets/sprites/bomb/explosion/4.png" id="8_wohlt"]
+[ext_resource type="Texture2D" uid="uid://e815waobwr4k" path="res://assets/sprites/bomb/explosion/5.png" id="9_gf775"]
+[ext_resource type="Texture2D" uid="uid://ds32o1ee0giwn" path="res://assets/sprites/bomb/explosion/6.png" id="10_s5hdc"]
+[ext_resource type="Texture2D" uid="uid://0osgx7y63wti" path="res://assets/sprites/bomb/explosion/7.png" id="11_4k00t"]
+[ext_resource type="Texture2D" uid="uid://bghrn5itsnqkt" path="res://assets/sprites/bomb/explosion/8.png" id="12_tck7m"]
+[ext_resource type="Texture2D" uid="uid://c06c60kl0ddjx" path="res://assets/sprites/bomb/explosion/9.png" id="13_wcxtk"]
+[ext_resource type="Texture2D" uid="uid://b3op1585cayry" path="res://assets/sprites/bomb/explosion/10.png" id="14_i4tjb"]
+[ext_resource type="Texture2D" uid="uid://d1nkk2yusx314" path="res://assets/sprites/bomb/explosion/11.png" id="15_cc3ll"]
+[ext_resource type="Texture2D" uid="uid://o84rplvk1gvw" path="res://assets/sprites/bomb/explosion/12.png" id="16_xo3wp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ns6y"]
+atlas = ExtResource("2_rmo6y")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlv4s"]
+atlas = ExtResource("2_rmo6y")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ktjn"]
+atlas = ExtResource("2_rmo6y")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xppv4"]
+atlas = ExtResource("2_rmo6y")
+region = Rect2(144, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mu7o"]
+atlas = ExtResource("2_rmo6y")
+region = Rect2(192, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_koh6t"]
+atlas = ExtResource("2_rmo6y")
+region = Rect2(240, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1c2w5"]
+atlas = ExtResource("2_rmo6y")
+region = Rect2(288, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qo08k"]
+atlas = ExtResource("2_rmo6y")
+region = Rect2(336, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5u35"]
+atlas = ExtResource("2_rmo6y")
+region = Rect2(384, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fx04b"]
+atlas = ExtResource("2_rmo6y")
+region = Rect2(432, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lr3nq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ns6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlv4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ktjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xppv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mu7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_koh6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1c2w5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qo08k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5u35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fx04b")
+}],
+"loop": false,
+"name": &"exploding",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7h6gt"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7s2hk"]
+radius = 141.198
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y1owe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_s7hc7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ism7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6phiw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wohlt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_gf775")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_s5hdc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_4k00t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_tck7m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_wcxtk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_i4tjb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_cc3ll")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_xo3wp")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bomb" type="Area2D"]
+script = ExtResource("1_cwyc0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lr3nq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7h6gt")
+
+[node name="TickingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_16010")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Explosion" type="Area2D" parent="."]
+
+[node name="ExplosionShape" type="CollisionShape2D" parent="Explosion"]
+shape = SubResource("CircleShape2D_7s2hk")
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="Explosion"]
+stream = ExtResource("4_et2j8")
+
+[node name="ExplosionAnimation" type="AnimatedSprite2D" parent="Explosion"]
+position = Vector2(-1, 2)
+scale = Vector2(0.30957, 0.30957)
+sprite_frames = SubResource("SpriteFrames_y1owe")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Explosion" to="." method="_on_explosion_body_entered"]
+[connection signal="body_exited" from="Explosion" to="." method="_on_explosion_body_exited"]
+[connection signal="animation_finished" from="Explosion/ExplosionAnimation" to="." method="_on_explosion_animation_animation_finished"]

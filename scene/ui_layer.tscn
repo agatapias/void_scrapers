@@ -86,35 +86,6 @@ offset_right = 955.0
 offset_bottom = 796.0
 scroll_active = false
 
-[node name="GameOverScreen" type="CanvasLayer" parent="." groups=["GameOverScreen"]]
-visible = false
-
-[node name="GameOver" type="ColorRect" parent="GameOverScreen"]
-top_level = true
-offset_left = -5.0
-offset_top = -5.0
-offset_right = 1188.0
-offset_bottom = 784.0
-color = Color(0, 0, 0, 1)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="GameOverScreen/GameOver"]
-layout_mode = 0
-offset_left = 53.0
-offset_top = 297.0
-offset_right = 1195.0
-offset_bottom = 533.0
-theme_override_font_sizes/normal_font_size = 180
-text = "KONIEC GRY"
-
-[node name="Restart" type="Button" parent="GameOverScreen/GameOver"]
-layout_mode = 0
-offset_left = 503.0
-offset_top = 585.0
-offset_right = 708.0
-offset_bottom = 645.0
-text = "Wznów grę"
-script = ExtResource("3_hnx6s")
-
 [node name="CheckpointAlert" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -198,3 +169,32 @@ offset_bottom = -59.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
+
+[node name="GameOverScreen" type="CanvasLayer" parent="." groups=["GameOverScreen"]]
+visible = false
+
+[node name="GameOver" type="ColorRect" parent="GameOverScreen"]
+top_level = true
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 1188.0
+offset_bottom = 784.0
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GameOverScreen/GameOver"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 297.0
+offset_right = 1195.0
+offset_bottom = 533.0
+theme_override_font_sizes/normal_font_size = 180
+text = "KONIEC GRY"
+
+[node name="Restart" type="Button" parent="GameOverScreen/GameOver"]
+layout_mode = 0
+offset_left = 503.0
+offset_top = 585.0
+offset_right = 708.0
+offset_bottom = 645.0
+text = "Wznów grę"
+script = ExtResource("3_hnx6s")

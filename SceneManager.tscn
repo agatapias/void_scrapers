@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1d6h357fuots"]
+[gd_scene load_steps=7 format=3 uid="uid://c1d6h357fuots"]
 
 [ext_resource type="PackedScene" uid="uid://dxbb1xjpse0p7" path="res://scene/main.tscn" id="1_8utpg"]
 [ext_resource type="Script" path="res://SceneManager.gd" id="1_kmj10"]
 [ext_resource type="PackedScene" uid="uid://di0xlol6ep6vt" path="res://scene/main_2.tscn" id="3_ptr57"]
 [ext_resource type="PackedScene" uid="uid://dh5f3mk18fcuq" path="res://transition_layer.tscn" id="4_ex0i8"]
 [ext_resource type="PackedScene" uid="uid://cqd7kyecaiv1m" path="res://start-menu/start_menu.tscn" id="4_m27pt"]
+[ext_resource type="PackedScene" uid="uid://csx1e8k8fs8n2" path="res://final-cutscene/final_cutscene.tscn" id="5_desor"]
 
 [node name="SceneManager" type="Node"]
 script = ExtResource("1_kmj10")
 scenes = {
+"FinalCutscene": ExtResource("5_desor"),
 "Main": ExtResource("1_8utpg"),
 "Main2": ExtResource("3_ptr57"),
 "Menu": ExtResource("4_m27pt")

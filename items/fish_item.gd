@@ -8,8 +8,13 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.is_in_group("Spaceship"):
+		$PickUpSound.play()
+		self.visible = false
 		body.collect(item)
-		queue_free()
 
 func use(player):
 	player.equipGun(10)
+
+func _on_pick_up_sound_finished():
+	print("item queue free")
+	queue_free()
