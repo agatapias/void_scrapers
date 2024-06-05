@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://g1ma1ae62u6o"]
+
+[ext_resource type="Script" path="res://script/inventory_item.gd" id="1_t3w2k"]
+[ext_resource type="Texture2D" uid="uid://cus0824g3yqhj" path="res://assets/sprites/bomb/48x48 - LargeBombDetonateFrame1.png" id="2_212m4"]
+
+[resource]
+script = ExtResource("1_t3w2k")
+name = "Bomba"
+idName = "Bomb"
+description = "paczka 10 wybuchających pocisków. Wciśnij [V} aby zostawić bombę."
+texture = ExtResource("2_212m4")
+amount = 1
+buyingCost = 1
+count = 10
+rarity = "Common"

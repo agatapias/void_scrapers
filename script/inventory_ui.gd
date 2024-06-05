@@ -75,7 +75,6 @@ func onDropButtonClicked():
 	
 func onUseButtonClicked():
 	inventory.useItem(selectedSlotIndex)
-	inventory.removeItem(selectedSlotIndex)
 	unselect()
 	updateSlots()
 	

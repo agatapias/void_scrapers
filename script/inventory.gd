@@ -73,4 +73,11 @@ func removeByName(name):
 	return item
 
 func useItem(index):
-	itemUsed.emit(items[index])
+	var item = items[index]
+	itemUsed.emit(item)
+	if item.count <= 1:
+		self.removeItem(index)
+	else:
+		item.count = item.count - 1
+		items[index] = item
+		
