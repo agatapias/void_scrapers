@@ -17,17 +17,11 @@
 [ext_resource type="PackedScene" uid="uid://bh800hcbu42xv" path="res://characters/crow_character.tscn" id="22_r1xgw"]
 [ext_resource type="PackedScene" uid="uid://sskn7og6uw6y" path="res://scene/ui_layer.tscn" id="23_roe1x"]
 [ext_resource type="PackedScene" uid="uid://bfkwmdcjkl434" path="res://scene/cat_quest_1.tscn" id="23_ur1ow"]
-[ext_resource type="PackedScene" path="res://scene/pretty_asteroid.tscn" id="24_vrgh4"]
-[ext_resource type="PackedScene" path="res://scene/another_asteroid.tscn" id="25_2t6bf"]
-[ext_resource type="PackedScene" path="res://scene/great_asteroid.tscn" id="26_gm2wa"]
-[ext_resource type="PackedScene" path="res://scene/diff_asteroid.tscn" id="27_j2p4a"]
+[ext_resource type="PackedScene" uid="uid://binlpkv1hdrmo" path="res://scene/pretty_asteroid.tscn" id="24_vrgh4"]
+[ext_resource type="PackedScene" uid="uid://cbfse1ej0mvgg" path="res://scene/another_asteroid.tscn" id="25_2t6bf"]
+[ext_resource type="PackedScene" uid="uid://dj4y5srnrw022" path="res://scene/great_asteroid.tscn" id="26_gm2wa"]
+[ext_resource type="PackedScene" uid="uid://do2q3ueyu1fx6" path="res://scene/diff_asteroid.tscn" id="27_j2p4a"]
 [ext_resource type="PackedScene" uid="uid://cpr13xumyqu8n" path="res://scene/level_transition.tscn" id="28_56pm6"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2eta"]
-bg_color = Color(0.745098, 0.227451, 0.176471, 1)
-
-[sub_resource type="Theme" id="Theme_ksk6o"]
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_w2eta")
 
 [sub_resource type="GDScript" id="GDScript_noh7b"]
 
@@ -40,6 +34,12 @@ radius = 689.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4igrx"]
 radius = 12.0
 height = 58.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2eta"]
+bg_color = Color(0.745098, 0.227451, 0.176471, 1)
+
+[sub_resource type="Theme" id="Theme_ksk6o"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_w2eta")
 
 [node name="Main" type="Node"]
 
@@ -70,43 +70,6 @@ script = ExtResource("7_2py8p")
 
 [node name="Asteroid2" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
 position = Vector2(-271, -576)
-
-[node name="ScoutWrapper" type="Node2D" parent="."]
-
-[node name="Enemy" parent="ScoutWrapper" groups=["enemy"] instance=ExtResource("8_eg7m5")]
-position = Vector2(-1210, -604)
-
-[node name="EngineAudio" type="AudioStreamPlayer2D" parent="ScoutWrapper/Enemy"]
-stream = ExtResource("14_mxkqo")
-attenuation = 8.57418
-script = ExtResource("15_3235v")
-
-[node name="Control" type="Control" parent="ScoutWrapper"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -1210.0
-offset_top = -604.0
-offset_right = -1170.0
-offset_bottom = -564.0
-script = ExtResource("7_yd4hr")
-
-[node name="EnemyHealthBar" type="ProgressBar" parent="ScoutWrapper/Control"]
-layout_mode = 0
-offset_left = -120.0
-offset_top = -80.0
-offset_right = -79.0
-offset_bottom = -53.0
-scale = Vector2(0.8, 0.8)
-theme = SubResource("Theme_ksk6o")
-max_value = 50.0
-step = 1.0
-
-[node name="LifeLabel" type="Label" parent="ScoutWrapper/Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-scale = Vector2(0.6, 0.6)
-text = "Życie"
 
 [node name="Asteroid4" parent="." groups=["Asteroid"] instance=ExtResource("2_i6m1y")]
 position = Vector2(-88, -531)
@@ -572,9 +535,44 @@ position = Vector2(598, 1256)
 rotation = -2.51327
 scale = Vector2(0.7, 0.7)
 
+[node name="ScoutWrapper3" type="Node2D" parent="."]
+
+[node name="Enemy" parent="ScoutWrapper3" groups=["enemy"] instance=ExtResource("8_eg7m5")]
+position = Vector2(-988, -323)
+
+[node name="EngineAudio" type="AudioStreamPlayer2D" parent="ScoutWrapper3/Enemy"]
+stream = ExtResource("14_mxkqo")
+attenuation = 8.57418
+script = ExtResource("15_3235v")
+
+[node name="Control" type="Control" parent="ScoutWrapper3"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_yd4hr")
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="ScoutWrapper3/Control"]
+layout_mode = 0
+offset_left = -120.0
+offset_top = -80.0
+offset_right = -79.0
+offset_bottom = -53.0
+scale = Vector2(0.8, 0.8)
+theme = SubResource("Theme_ksk6o")
+max_value = 50.0
+step = 1.0
+
+[node name="LifeLabel" type="Label" parent="ScoutWrapper3/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(0.6, 0.6)
+text = "Życie"
+
 [connection signal="body_entered" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_entered"]
 [connection signal="body_exited" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_exited"]
 
 [editable path="Spaceship"]
-[editable path="ScoutWrapper/Enemy"]
 [editable path="ScoutWrapper2/Enemy"]
+[editable path="ScoutWrapper3/Enemy"]
