@@ -46,7 +46,7 @@ func _target_vector(delta) -> Vector2:
 	
 func _on_body_entered(body: Node):
 	get_damage(10)
-	emit_and_die()
+	#emit_and_die()
 	
 func rotate_to_target(delta):
 	var target_direction = _target_vector(delta)
@@ -94,7 +94,7 @@ func _process_destruction():
 		$DestructionAnimatedSprite2D.visible = true
 		$DestructionAnimatedSprite2D.play()
 		$DestructionAnimatedSprite2D.animation = "destruction"
-		defeated.emit(true)
+		emit_and_die()
 
 func _on_engine_animated_sprite_2d_animation_finished():
 	if currentAnimation == "destruction":
