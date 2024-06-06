@@ -6650,6 +6650,45 @@ position = Vector2(2496, -412)
 [node name="ShrimpItem4" parent="." instance=ExtResource("24_q2gk3")]
 position = Vector2(1815, -1883)
 
+[node name="CoinItem18" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(372, 25)
+
+[node name="CoinItem19" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(650, 58)
+
+[node name="CoinItem20" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(945, 177)
+
+[node name="CoinItem21" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(998, 384)
+
+[node name="CoinItem22" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(1145, 470)
+
+[node name="CoinItem23" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(1335, 574)
+
+[node name="CoinItem24" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(1561, 641)
+
+[node name="CoinItem25" parent="." instance=ExtResource("20_h5q0k")]
+position = Vector2(1752, 765)
+
+[node name="FishItem6" parent="." instance=ExtResource("32_nbg5f")]
+position = Vector2(2410, 1309)
+
+[node name="FishItem7" parent="." instance=ExtResource("32_nbg5f")]
+position = Vector2(2384, 1383)
+
+[node name="FishItem8" parent="." instance=ExtResource("32_nbg5f")]
+position = Vector2(2424, 1434)
+
+[node name="FishItem9" parent="." instance=ExtResource("32_nbg5f")]
+position = Vector2(2500, 1447)
+
+[node name="FishItem10" parent="." instance=ExtResource("32_nbg5f")]
+position = Vector2(2601, 1419)
+
 [connection signal="animation_finished" from="FighterWrapper/Enemy/DestructionAnimatedSprite2D" to="FighterWrapper/Enemy" method="_on_destruction_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="FighterWrapper2/Enemy/DestructionAnimatedSprite2D" to="FighterWrapper2/Enemy" method="_on_destruction_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Planet1/Checkpoint" to="Planet1/Checkpoint" method="_on_body_entered"]
