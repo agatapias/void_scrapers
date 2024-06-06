@@ -10,7 +10,7 @@ var currentAnimation = ""
 var isRepulsed = false
 var last_repulsed = 0
 var time = 0
-const REPULSION_COOLDOWN = 100
+const REPULSION_COOLDOWN = 0
 
 @export var coin: PackedScene
 var target: RigidBody2D
@@ -40,7 +40,7 @@ func _process_repulsion(delta):
 	last_repulsed = time
 	var direction = _direction_to_target()
 	var relative_velocity = linear_velocity - target.linear_velocity
-	var velocity_adjustment_factor = max(100, min(abs(relative_velocity.dot(direction)) * abs(relative_velocity.length()) / 50, 300))
+	var velocity_adjustment_factor = max(5, min(abs(relative_velocity.dot(direction)) * abs(relative_velocity.length()) / 50, 20))
 	print("Repulsion = " + str(velocity_adjustment_factor))
 	apply_central_impulse(-direction * velocity_adjustment_factor)
 
