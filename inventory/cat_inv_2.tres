@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Inventory" load_steps=7 format=3 uid="uid://bwen81jwd08ws"]
+
+[ext_resource type="Resource" uid="uid://d31eqal8alek0" path="res://items/shield.tres" id="1_axw56"]
+[ext_resource type="Resource" uid="uid://bceag5vec0e6i" path="res://items/fish_item.tres" id="2_ipo1e"]
+[ext_resource type="Resource" uid="uid://g1ma1ae62u6o" path="res://items/bomb.tres" id="3_543qf"]
+[ext_resource type="Resource" uid="uid://pjrrixvttltl" path="res://items/plankton.tres" id="4_icg3k"]
+[ext_resource type="Resource" uid="uid://deby2g447tevh" path="res://items/speed.tres" id="5_bw7yy"]
+[ext_resource type="Script" path="res://script/inventory.gd" id="6_0xla4"]
+
+[resource]
+script = ExtResource("6_0xla4")
+items = Array[Resource("res://script/inventory_item.gd")]([ExtResource("1_axw56"), ExtResource("1_axw56"), ExtResource("1_axw56"), ExtResource("2_ipo1e"), ExtResource("3_543qf"), ExtResource("3_543qf"), ExtResource("3_543qf"), ExtResource("4_icg3k"), ExtResource("4_icg3k"), ExtResource("5_bw7yy"), ExtResource("5_bw7yy"), ExtResource("5_bw7yy")])
+money = 800

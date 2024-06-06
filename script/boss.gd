@@ -23,6 +23,8 @@ var rng = RandomNumberGenerator.new()
 var last_started_shooting = 0
 var is_shooting = false
 
+signal defeated
+
 func max_health():
 	return MAX_HEALTH
 
@@ -44,6 +46,7 @@ func _target_vector(delta) -> Vector2:
 	
 func _on_body_entered(body: Node):
 	get_damage(10)
+	emit_and_die()
 	
 func rotate_to_target(delta):
 	var target_direction = _target_vector(delta)
@@ -62,6 +65,10 @@ func _process_state():
 	else:
 		state = "hostile"
 		
+func emit_and_die():
+	print("pretend to die, open portal")
+	defeated.emit(true)
+	
 func _process_movement(delta):
 	var angle_diff = rotate_to_target(delta)
 	_process_shooting(delta, angle_diff)
@@ -87,6 +94,7 @@ func _process_destruction():
 		$DestructionAnimatedSprite2D.visible = true
 		$DestructionAnimatedSprite2D.play()
 		$DestructionAnimatedSprite2D.animation = "destruction"
+		defeated.emit(true)
 
 func _on_engine_animated_sprite_2d_animation_finished():
 	if currentAnimation == "destruction":

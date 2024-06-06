@@ -207,7 +207,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_thxp6"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_taomd"]
 bg_color = Color(0.745098, 0.227451, 0.176471, 1)
 
 [sub_resource type="Theme" id="Theme_a6jo4"]
@@ -217,9 +217,9 @@ ProgressBar/constants/outline_size = 0
 ProgressBar/font_sizes/font_size = 16
 ProgressBar/fonts/font = null
 ProgressBar/styles/background = null
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_thxp6")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_taomd")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_upmi6"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vubj"]
 bg_color = Color(0.745098, 0.227451, 0.176471, 1)
 
 [sub_resource type="Theme" id="Theme_w4luh"]
@@ -229,7 +229,7 @@ ProgressBar/constants/outline_size = 0
 ProgressBar/font_sizes/font_size = 16
 ProgressBar/fonts/font = null
 ProgressBar/styles/background = null
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_upmi6")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_3vubj")
 
 [sub_resource type="GDScript" id="GDScript_rajc4"]
 
@@ -269,7 +269,7 @@ metadata/_edit_lock_ = true
 position = Vector2(1505, -886)
 
 [node name="Cat" parent="." instance=ExtResource("7_07das")]
-position = Vector2(75, -162)
+position = Vector2(208, -182)
 
 [node name="Asteroid2_1" type="RigidBody2D" parent="."]
 position = Vector2(-209, -372)
@@ -292,6 +292,9 @@ position = Vector2(-257, -617)
 position = Vector2(1324, -729)
 mass = 500.0
 gravity_scale = 0.0
+
+[node name="KrillItem" parent="AnotherAsteroid" instance=ExtResource("26_anpym")]
+position = Vector2(-400, -480)
 
 [node name="FighterWrapper" type="Node2D" parent="."]
 
@@ -922,18 +925,13 @@ shape = SubResource("CircleShape2D_1vf84")
 [node name="UILayer" parent="." instance=ExtResource("2_g14c0")]
 
 [node name="ShrimpItem" parent="." instance=ExtResource("24_q2gk3")]
-position = Vector2(-147, -72)
+position = Vector2(1797, 1700)
 
 [node name="PlanktonItem" parent="." instance=ExtResource("25_jg63l")]
-position = Vector2(-117, -201)
+position = Vector2(459, -681)
 
 [node name="KrillItem" parent="." instance=ExtResource("26_anpym")]
-position = Vector2(-95, 77)
-
-[node name="LevelTransition" parent="." instance=ExtResource("27_104u2")]
-position = Vector2(8, -557)
-level = "final_cutscene.tscn"
-level_node = "FinalCutscene"
+position = Vector2(-400, -480)
 
 [node name="Area2D" parent="." instance=ExtResource("28_i362b")]
 position = Vector2(-263, 66)
@@ -2474,8 +2472,10 @@ animation = &"go"
 [node name="FishItem" parent="." instance=ExtResource("32_nbg5f")]
 position = Vector2(1832, -2738)
 
-[node name="LevelTransition2" parent="." instance=ExtResource("27_104u2")]
+[node name="LevelTransition" parent="." instance=ExtResource("27_104u2")]
 position = Vector2(1063, -4951)
+level = "main_3.tscn"
+level_node = "Main3"
 
 [node name="Asteroid2_111" type="RigidBody2D" parent="."]
 position = Vector2(226, -2708)
@@ -6631,6 +6631,24 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 scale = Vector2(0.6, 0.6)
+
+[node name="PlanktonItem2" parent="." instance=ExtResource("25_jg63l")]
+position = Vector2(2252, 2273)
+
+[node name="PlanktonItem3" parent="." instance=ExtResource("25_jg63l")]
+position = Vector2(2771, 1821)
+
+[node name="KrillItem2" parent="." instance=ExtResource("26_anpym")]
+position = Vector2(299, -1155)
+
+[node name="ShrimpItem2" parent="." instance=ExtResource("24_q2gk3")]
+position = Vector2(-1362, -1083)
+
+[node name="ShrimpItem3" parent="." instance=ExtResource("24_q2gk3")]
+position = Vector2(2496, -412)
+
+[node name="ShrimpItem4" parent="." instance=ExtResource("24_q2gk3")]
+position = Vector2(1815, -1883)
 
 [connection signal="animation_finished" from="FighterWrapper/Enemy/DestructionAnimatedSprite2D" to="FighterWrapper/Enemy" method="_on_destruction_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="FighterWrapper2/Enemy/DestructionAnimatedSprite2D" to="FighterWrapper2/Enemy" method="_on_destruction_animated_sprite_2d_animation_finished"]

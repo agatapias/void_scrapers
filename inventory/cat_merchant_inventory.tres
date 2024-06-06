@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=7 format=3 uid="uid://d4l2f2666rhq3"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=8 format=3 uid="uid://d4l2f2666rhq3"]
 
 [ext_resource type="Script" path="res://script/inventory.gd" id="1_7komr"]
 [ext_resource type="Resource" uid="uid://jbjntmrtrd1l" path="res://items/laser-gun-item.tres" id="1_trg0u"]
 [ext_resource type="Resource" uid="uid://bceag5vec0e6i" path="res://items/fish_item.tres" id="2_3tnsa"]
 [ext_resource type="Resource" uid="uid://d31eqal8alek0" path="res://items/shield.tres" id="3_lc6u6"]
 [ext_resource type="Resource" uid="uid://g1ma1ae62u6o" path="res://items/bomb.tres" id="4_pbbw3"]
+[ext_resource type="Resource" uid="uid://eadco7gr3wxk" path="res://items/krill.tres" id="4_vy8xd"]
 [ext_resource type="Resource" uid="uid://deby2g447tevh" path="res://items/speed.tres" id="5_0tl0l"]
 
 [resource]
 script = ExtResource("1_7komr")
-items = Array[Resource("res://script/inventory_item.gd")]([ExtResource("1_trg0u"), ExtResource("2_3tnsa"), ExtResource("3_lc6u6"), ExtResource("3_lc6u6"), ExtResource("3_lc6u6"), ExtResource("3_lc6u6"), ExtResource("3_lc6u6"), ExtResource("4_pbbw3"), ExtResource("5_0tl0l"), null, null, null])
+items = Array[Resource("res://script/inventory_item.gd")]([ExtResource("1_trg0u"), ExtResource("2_3tnsa"), ExtResource("3_lc6u6"), ExtResource("3_lc6u6"), ExtResource("3_lc6u6"), ExtResource("4_pbbw3"), ExtResource("5_0tl0l"), ExtResource("4_vy8xd"), ExtResource("5_0tl0l"), ExtResource("4_pbbw3"), null, null])
 money = 1000

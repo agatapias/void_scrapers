@@ -6,6 +6,7 @@ var wasSpaceshipNear = false
 var isSpaceshipNear = false
 var alert
 var spaceship
+var isEnabled = true
 
 signal transition
 
@@ -17,6 +18,8 @@ func _ready():
 
 
 func _process(delta):
+	if !isEnabled:
+		return
 	if isSpaceshipNear and not alert.visible:
 		alert.visible = true
 	if not isSpaceshipNear and alert.visible:
@@ -33,3 +36,9 @@ func _on_body_entered(body):
 func _on_body_exited(body):
 	if body.is_in_group("Spaceship"):
 		isSpaceshipNear = false
+
+func disable():
+	isEnabled = false
+	
+func enable():
+	isEnabled = true
