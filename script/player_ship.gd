@@ -51,6 +51,9 @@ func _ready():
 	setTimerRandom()
 	
 	$WeaponSprite.visible = false
+	
+	if get_parent().name == 'Main3':
+		equipGun("gun")
 
 func _input(event):
 	if event is InputEventKey:
