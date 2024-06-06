@@ -1,7 +1,8 @@
-[gd_scene load_steps=47 format=3 uid="uid://c2ix0i24f26u0"]
+[gd_scene load_steps=48 format=3 uid="uid://c2ix0i24f26u0"]
 
 [ext_resource type="Script" path="res://script/boss.gd" id="1_b4emg"]
 [ext_resource type="Texture2D" uid="uid://da16c0k6fud33" path="res://assets/sprites/enemies/boss/boss.png" id="2_2twdw"]
+[ext_resource type="PackedScene" uid="uid://daeriaav5p78v" path="res://items/coin_item.tscn" id="2_yk15g"]
 [ext_resource type="Texture2D" uid="uid://0ki5f168oyut" path="res://assets/sprites/enemies/boss/boss_engine.png" id="3_40mw0"]
 [ext_resource type="Script" path="res://script/LaserBeam.gd" id="4_m3ae7"]
 [ext_resource type="Texture2D" uid="uid://bqeur7qi0vn78" path="res://assets/sprites/enemies/boss/ray.png" id="4_qutat"]
@@ -217,7 +218,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_d0ohi")
 }],
-"loop": true,
+"loop": false,
 "name": &"on",
 "speed": 5.0
 }]
@@ -268,18 +269,20 @@ bg_color = Color(0.745098, 0.227451, 0.176471, 1)
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_rmn6t")
 
 [node name="BossWrapper" type="Node2D"]
+z_index = 2
 
-[node name="Enemy" type="RigidBody2D" parent="."]
+[node name="Enemy" type="RigidBody2D" parent="." groups=["enemy"]]
 mass = 50.0
 gravity_scale = 0.0
 script = ExtResource("1_b4emg")
+coin = ExtResource("2_yk15g")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy"]
 texture = ExtResource("2_2twdw")
 
 [node name="EngineAnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
 sprite_frames = SubResource("SpriteFrames_8fyqa")
-animation = &"none"
+animation = &"on"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 shape = SubResource("CapsuleShape2D_mjghr")
@@ -291,7 +294,7 @@ volume_db = 15.0
 [node name="DestructionSprite2D" type="AnimatedSprite2D" parent="Enemy"]
 visible = false
 sprite_frames = SubResource("SpriteFrames_oth4t")
-animation = &"none"
+animation = &"on"
 
 [node name="LaserBeam" type="Area2D" parent="Enemy"]
 visible = false
@@ -340,6 +343,7 @@ text = "Życie"
 metadata/_edit_use_anchors_ = true
 
 [connection signal="animation_finished" from="Enemy/EngineAnimatedSprite2D" to="Enemy" method="_on_engine_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="Enemy/DestructionSprite2D" to="Enemy" method="_on_destruction_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Enemy/LaserBeam" to="Enemy/LaserBeam" method="_on_body_entered"]
 [connection signal="body_exited" from="Enemy/LaserBeam" to="Enemy/LaserBeam" method="_on_body_exited"]
 [connection signal="finished" from="Enemy/LaserBeam/LaserSound" to="Enemy/LaserBeam" method="_on_laser_sound_finished"]

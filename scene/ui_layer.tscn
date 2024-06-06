@@ -175,6 +175,7 @@ visible = false
 
 [node name="GameOver" type="ColorRect" parent="GameOverScreen"]
 top_level = true
+z_index = 10
 offset_left = -5.0
 offset_top = -5.0
 offset_right = 1188.0

@@ -16,7 +16,6 @@ var laser: Area2D
 
 var last_shot = 0
 var current_time = 0
-var currentAnimation = ""
 
 var rng = RandomNumberGenerator.new()
 
@@ -46,7 +45,6 @@ func _target_vector(delta) -> Vector2:
 	
 func _on_body_entered(body: Node):
 	get_damage(10)
-	#emit_and_die()
 	
 func rotate_to_target(delta):
 	var target_direction = _target_vector(delta)
@@ -65,7 +63,7 @@ func _process_state():
 	else:
 		state = "hostile"
 		
-func emit_and_die():
+func show_level_transition():
 	print("pretend to die, open portal")
 	defeated.emit(true)
 	
@@ -90,15 +88,8 @@ func _process_movement(delta):
 func _process_destruction():
 	if health <= 0:
 		$Sprite2D.visible = false  
-		currentAnimation = "destruction"
-		$DestructionAnimatedSprite2D.visible = true
-		$DestructionAnimatedSprite2D.play()
-		$DestructionAnimatedSprite2D.animation = "destruction"
-		emit_and_die()
-
-func _on_engine_animated_sprite_2d_animation_finished():
-	if currentAnimation == "destruction":
-		die()
+		$DestructionSprite2D.visible = true
+		$DestructionSprite2D.play("on")
 
 func die():
 	self.visible = false
@@ -136,3 +127,8 @@ func _process_shooting(delta, angle_diff):
 
 func set_repulsed():
 	pass
+
+
+func _on_destruction_sprite_2d_animation_finished():
+	show_level_transition()
+	die()
