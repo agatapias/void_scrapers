@@ -61,24 +61,14 @@ func _process_animation(delta):
 		v0 = linear_velocity
 		
 		if acc and acc.abs() != Vector2.ZERO:
-			if health < 70:
-				$AnimatedSprite2D.animation = "damaged1"
-			elif health < 50:
-				$AnimatedSprite2D.animation = "damaged2"
-			else: 
-				$AnimatedSprite2D.play()
-				$AnimatedSprite2D.animation = "go"
-				if not $EngineAudio.playing:
-					$EngineAudio.playing = true
+			$AnimatedSprite2D.play()
+			$AnimatedSprite2D.animation = "go"
+			if not $EngineAudio.playing:
+				$EngineAudio.playing = true
 		else:
 			$AnimatedSprite2D.stop()
-			if health < 70:
-				$AnimatedSprite2D.animation = "damaged1"
-			elif health < 50:
-				$AnimatedSprite2D.animation = "damaged2"
-			else:
-				$AnimatedSprite2D.animation = "default"
-				$EngineAudio.playing = false
+			$AnimatedSprite2D.animation = "default"
+			$EngineAudio.playing = false
 
 func _process_acc():
 	var targetVector = _target_vector()

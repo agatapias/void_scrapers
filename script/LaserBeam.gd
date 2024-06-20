@@ -16,7 +16,7 @@ func _process(delta):
 		
 	if target == null:
 		target = get_tree().get_nodes_in_group("Spaceship")[0]
-	if body_inside:
+	if body_inside and self.visible:
 		target.get_damage(20*delta)
 		
 func _on_body_entered(body: Node):

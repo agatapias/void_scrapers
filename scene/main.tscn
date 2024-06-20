@@ -17,10 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://bh800hcbu42xv" path="res://characters/crow_character.tscn" id="22_r1xgw"]
 [ext_resource type="PackedScene" uid="uid://sskn7og6uw6y" path="res://scene/ui_layer.tscn" id="23_roe1x"]
 [ext_resource type="PackedScene" uid="uid://bfkwmdcjkl434" path="res://scene/cat_quest_1.tscn" id="23_ur1ow"]
-[ext_resource type="PackedScene" path="res://scene/pretty_asteroid.tscn" id="24_vrgh4"]
-[ext_resource type="PackedScene" path="res://scene/another_asteroid.tscn" id="25_2t6bf"]
-[ext_resource type="PackedScene" path="res://scene/great_asteroid.tscn" id="26_gm2wa"]
-[ext_resource type="PackedScene" path="res://scene/diff_asteroid.tscn" id="27_j2p4a"]
+[ext_resource type="PackedScene" uid="uid://binlpkv1hdrmo" path="res://scene/pretty_asteroid.tscn" id="24_vrgh4"]
+[ext_resource type="PackedScene" uid="uid://cbfse1ej0mvgg" path="res://scene/another_asteroid.tscn" id="25_2t6bf"]
+[ext_resource type="PackedScene" uid="uid://dj4y5srnrw022" path="res://scene/great_asteroid.tscn" id="26_gm2wa"]
+[ext_resource type="PackedScene" uid="uid://do2q3ueyu1fx6" path="res://scene/diff_asteroid.tscn" id="27_j2p4a"]
 [ext_resource type="PackedScene" uid="uid://cpr13xumyqu8n" path="res://scene/level_transition.tscn" id="28_56pm6"]
 
 [sub_resource type="GDScript" id="GDScript_noh7b"]
@@ -539,6 +539,9 @@ scale = Vector2(0.7, 0.7)
 
 [node name="Enemy" parent="ScoutWrapper3" groups=["enemy"] instance=ExtResource("8_eg7m5")]
 position = Vector2(-988, -323)
+
+[node name="AnimatedSprite2D" parent="ScoutWrapper3/Enemy" index="2"]
+animation = &"go"
 
 [node name="EngineAudio" type="AudioStreamPlayer2D" parent="ScoutWrapper3/Enemy"]
 stream = ExtResource("14_mxkqo")
