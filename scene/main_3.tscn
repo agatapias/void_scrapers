@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://cuqr1r8j1m0ce"]
+[gd_scene load_steps=108 format=3 uid="uid://4neuq8e8hd5s"]
 
 [ext_resource type="Script" path="res://scene/main_3.gd" id="1_e65eq"]
 [ext_resource type="Texture2D" uid="uid://cv00q6v45cy37" path="res://assets/background/Space Background (13).png" id="2_nhicg"]
@@ -9,11 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://bh800hcbu42xv" path="res://characters/crow_character.tscn" id="6_kp8oh"]
 [ext_resource type="Script" path="res://crow_character_2.gd" id="7_g8r8f"]
 [ext_resource type="PackedScene" uid="uid://bcvaxcx3ca3eq" path="res://shop/cat_character.tscn" id="8_muovj"]
-[ext_resource type="Resource" uid="uid://bwen81jwd08ws" path="res://inventory/cat_inv_2.tres" id="9_0uhd3"]
+[ext_resource type="Resource" path="res://inventory/cat_inv_2.tres" id="9_0uhd3"]
 [ext_resource type="PackedScene" uid="uid://daeriaav5p78v" path="res://items/coin_item.tscn" id="9_jw4fg"]
-[ext_resource type="PackedScene" path="res://scene/pretty_asteroid.tscn" id="10_07bi3"]
+[ext_resource type="PackedScene" uid="uid://binlpkv1hdrmo" path="res://scene/pretty_asteroid.tscn" id="10_07bi3"]
 [ext_resource type="Texture2D" uid="uid://bltfgoo4dk0ng" path="res://assets/sprites/asteroid2.png" id="11_fbj1i"]
-[ext_resource type="PackedScene" path="res://scene/another_asteroid.tscn" id="12_jl4eb"]
+[ext_resource type="PackedScene" uid="uid://cbfse1ej0mvgg" path="res://scene/another_asteroid.tscn" id="12_jl4eb"]
 [ext_resource type="Script" path="res://script/Fighter.gd" id="13_rxvaw"]
 [ext_resource type="PackedScene" uid="uid://djt5ahnmfl7hm" path="res://scene/fighter_bullet.tscn" id="14_18tj6"]
 [ext_resource type="Texture2D" uid="uid://odm3s1085tpb" path="res://assets/sprites/enemies/fighter/fighter_base.png" id="15_gt8kr"]
@@ -27,10 +27,10 @@
 [ext_resource type="PackedScene" uid="uid://bmmhib0afegw2" path="res://scene/asteroid.tscn" id="24_io162"]
 [ext_resource type="PackedScene" uid="uid://c5sx8syk8thbt" path="res://scene/scout.tscn" id="25_x2rqv"]
 [ext_resource type="PackedScene" uid="uid://d1ay3xkpqv1eg" path="res://items/fish_item.tscn" id="26_ugp1h"]
-[ext_resource type="PackedScene" uid="uid://se1oxxdeijkx" path="res://items/plankton_item.tscn" id="27_llk1p"]
-[ext_resource type="PackedScene" uid="uid://bideotd3hwpt4" path="res://items/krill_item.tscn" id="28_a85d0"]
-[ext_resource type="PackedScene" uid="uid://dqdvqvkqmp1y1" path="res://items/shrimp_item.tscn" id="29_rqcja"]
-[ext_resource type="PackedScene" path="res://scene/diff_asteroid.tscn" id="30_uegqt"]
+[ext_resource type="PackedScene" path="res://items/plankton_item.tscn" id="27_llk1p"]
+[ext_resource type="PackedScene" path="res://items/krill_item.tscn" id="28_a85d0"]
+[ext_resource type="PackedScene" path="res://items/shrimp_item.tscn" id="29_rqcja"]
+[ext_resource type="PackedScene" uid="uid://do2q3ueyu1fx6" path="res://scene/diff_asteroid.tscn" id="30_uegqt"]
 [ext_resource type="PackedScene" uid="uid://cpr13xumyqu8n" path="res://scene/level_transition.tscn" id="32_sg1ig"]
 [ext_resource type="Script" path="res://scene/planet.gd" id="33_f8u2d"]
 [ext_resource type="Script" path="res://script/Checkpoint.gd" id="34_tpohe"]
@@ -1993,7 +1993,6 @@ text = "Życie"
 metadata/_edit_use_anchors_ = true
 
 [node name="FighterWrapper4" type="Node2D" parent="."]
-position = Vector2(-175, -2234)
 
 [node name="Enemy" type="RigidBody2D" parent="FighterWrapper4" groups=["enemy"]]
 position = Vector2(1007, -1829)
@@ -2062,10 +2061,9 @@ scale = Vector2(0.6, 0.6)
 metadata/_edit_use_anchors_ = true
 
 [node name="FighterWrapper5" type="Node2D" parent="."]
-position = Vector2(998, -1226)
 
 [node name="Enemy" type="RigidBody2D" parent="FighterWrapper5" groups=["enemy"]]
-position = Vector2(-240, -1046)
+position = Vector2(728, -2175)
 rotation = -1.64934
 gravity_scale = 0.0
 script = ExtResource("13_rxvaw")
@@ -2383,10 +2381,9 @@ rotation = 0.359538
 scale = Vector2(1.5, 1.5)
 
 [node name="FighterWrapper" type="Node2D" parent="."]
-position = Vector2(8, -664)
 
 [node name="Enemy" type="RigidBody2D" parent="FighterWrapper" groups=["enemy"]]
-position = Vector2(1113, -1399)
+position = Vector2(546, -1928)
 rotation = -2.28464
 gravity_scale = 0.0
 script = ExtResource("13_rxvaw")
@@ -2451,10 +2448,9 @@ step = 1.0
 metadata/_edit_use_anchors_ = true
 
 [node name="FighterWrapper6" type="Node2D" parent="."]
-position = Vector2(1026, -2010)
 
 [node name="Enemy" type="RigidBody2D" parent="FighterWrapper6" groups=["enemy"]]
-position = Vector2(1113, -1399)
+position = Vector2(1580, -3470)
 rotation = -2.28464
 gravity_scale = 0.0
 script = ExtResource("13_rxvaw")
@@ -2519,10 +2515,9 @@ step = 1.0
 metadata/_edit_use_anchors_ = true
 
 [node name="FighterWrapper7" type="Node2D" parent="."]
-position = Vector2(-1466, -619)
 
 [node name="Enemy" type="RigidBody2D" parent="FighterWrapper7" groups=["enemy"]]
-position = Vector2(1113, -1399)
+position = Vector2(-510, -1762)
 rotation = -2.28464
 gravity_scale = 0.0
 script = ExtResource("13_rxvaw")
@@ -2587,10 +2582,9 @@ step = 1.0
 metadata/_edit_use_anchors_ = true
 
 [node name="FighterWrapper8" type="Node2D" parent="."]
-position = Vector2(-309, 246)
 
 [node name="Enemy" type="RigidBody2D" parent="FighterWrapper8" groups=["enemy"]]
-position = Vector2(1113, -1399)
+position = Vector2(732, -1074)
 rotation = -2.28464
 gravity_scale = 0.0
 script = ExtResource("13_rxvaw")

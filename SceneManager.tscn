@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dh5f3mk18fcuq" path="res://transition_layer.tscn" id="4_ex0i8"]
 [ext_resource type="PackedScene" uid="uid://cqd7kyecaiv1m" path="res://start-menu/start_menu.tscn" id="4_m27pt"]
 [ext_resource type="PackedScene" uid="uid://csx1e8k8fs8n2" path="res://final-cutscene/final_cutscene.tscn" id="5_desor"]
-[ext_resource type="PackedScene" uid="uid://cuqr1r8j1m0ce" path="res://scene/main_3.tscn" id="6_uibtg"]
+[ext_resource type="PackedScene" uid="uid://4neuq8e8hd5s" path="res://scene/main_3.tscn" id="6_uibtg"]
 
 [node name="SceneManager" type="Node"]
 script = ExtResource("1_kmj10")
