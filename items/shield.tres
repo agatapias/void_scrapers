@@ -10,6 +10,6 @@ idName = "Shield"
 description = "Super tarcza! Przez 5 sekund będzie chronić Cię przed każdym przeciwnikiem!"
 texture = ExtResource("2_dl0os")
 amount = 20
-buyingCost = 30
+buyingCost = 25
 count = 1
 rarity = "Common"

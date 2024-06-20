@@ -22,7 +22,11 @@ func _ready():
 	dropButton.buttonPressed.connect(onDropButtonClicked)
 	useButton.buttonPressed.connect(onUseButtonClicked)
 	unselect()
+	inventory.prepare()
 	prepareSlots()
+	
+	print(inventory.items)
+	print(inventory.item_counts)
 	updateSlots()
 	close()
 	
@@ -55,7 +59,7 @@ func updateSlots():
 	print("updateSlots called")
 	for i in range(slots.size()):   # min(inventory.items.size(), slots.size())
 		var isSelected = selectedSlotIndex != null && i == selectedSlotIndex
-		slots[i].update(inventory.items[i], isSelected)
+		slots[i].update(inventory.items[i], inventory.item_counts[i], isSelected, false)
 	coinsLabel.text = str(inventory.money)
 	
 func close():

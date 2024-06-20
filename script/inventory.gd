@@ -10,10 +10,16 @@ signal cannotBuy
 signal itemUsed
 
 @export var items: Array[InventoryItem]
+var item_counts = Array()
 @export var money: int
 
 var isSelling = false
 
+func prepare():
+	var size = items.size()
+	item_counts.resize(size)
+	#item_counts = items.map(func(value): return value.count)
+	
 
 func openView():
 	open.emit()
@@ -27,6 +33,7 @@ func insert(item: InventoryItem):
 		print("Too much stuff in inventory!")
 	else:
 		items[index_of_null] = item
+		item_counts[index_of_null] = item.count
 		update.emit()
 
 func addCoins(amount: int):
@@ -47,6 +54,7 @@ func canSubtractCoins(amount: int):
 	
 func removeItem(index):
 	items[index] = null
+	item_counts[index] = null
 	update.emit()
 	
 func contains(name):
@@ -84,9 +92,11 @@ func findByName(name):
 func useItem(index):
 	var item = items[index]
 	itemUsed.emit(item)
-	if item.count <= 1:
+	var count = item_counts[index]
+	if count != null && count <= 1:
 		self.removeItem(index)
 	else:
-		item.count = item.count - 1
+		item_counts[index] = item_counts[index] - 1
+		#item.count = item.count - 1
 		items[index] = item
 		

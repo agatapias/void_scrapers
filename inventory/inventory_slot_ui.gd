@@ -16,7 +16,7 @@ signal slotSelected
 func prepare(pos):
 	index = pos
 
-func update(newItem: InventoryItem, isSelected: bool):
+func update(newItem: InventoryItem, count, isSelected: bool, showTotalCount: bool):
 	item = newItem
 	if !newItem:
 		itemVisual.visible = false
@@ -27,7 +27,11 @@ func update(newItem: InventoryItem, isSelected: bool):
 		itemVisual.visible = true
 		itemVisual.texture = newItem.texture
 		itemCount.visible = true
-		itemCount.text = str(newItem.count)
+		if showTotalCount:
+			itemCount.text = str(item.count)
+		elif count != null:
+			itemCount.text = str(count)
+			
 		if isSelected:
 			$Sprite2D.texture = SELECTED_SLOT
 		else:

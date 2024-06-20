@@ -15,6 +15,7 @@ func _ready():
 	interactionAlert = get_node('../UILayer/InteractionAlert')
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	$CatAnimation.play()
+	inventory.prepare()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

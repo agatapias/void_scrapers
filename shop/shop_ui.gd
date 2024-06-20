@@ -35,7 +35,6 @@ func _ready():
 	shop.open.connect(open)
 	
 	unselect()
-	
 	prepareSlots()
 	close()
 	
@@ -76,7 +75,7 @@ func updateSlots(inv):
 	print(inv)
 	for i in range(slots.size()):
 		var isSelected = selectedSlotIndex != null && i == selectedSlotIndex
-		slots[i].update(inv.items[i], isSelected)
+		slots[i].update(inv.items[i], inv.item_counts[i], isSelected, true)
 	coinsLabel.text = str(inv.money)
 	
 func close():
