@@ -232,7 +232,7 @@ script = ExtResource("8_tn5x8")
 
 [node name="LaserSound" type="AudioStreamPlayer2D" parent="FighterWrapper/Enemy"]
 stream = ExtResource("9_jsf1t")
-volume_db = -10.0
+volume_db = -12.0
 attenuation = 4.92458
 
 [node name="DetectPlayer" type="Area2D" parent="FighterWrapper/Enemy"]

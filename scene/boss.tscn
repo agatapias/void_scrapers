@@ -289,7 +289,7 @@ shape = SubResource("CapsuleShape2D_mjghr")
 
 [node name="EngineAudio" type="AudioStreamPlayer2D" parent="Enemy"]
 stream = ExtResource("7_2riwl")
-volume_db = 15.0
+volume_db = 12.0
 
 [node name="DestructionSprite2D" type="AnimatedSprite2D" parent="Enemy"]
 visible = false
@@ -302,7 +302,7 @@ script = ExtResource("4_m3ae7")
 
 [node name="LaserSound" type="AudioStreamPlayer2D" parent="Enemy/LaserBeam"]
 stream = ExtResource("6_ldndc")
-volume_db = 10.0
+volume_db = 5.0
 
 [node name="LaserAnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy/LaserBeam"]
 position = Vector2(0, -788)

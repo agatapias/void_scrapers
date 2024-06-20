@@ -37,6 +37,7 @@ shape = SubResource("CapsuleShape2D_5l0ck")
 
 [node name="PickUpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_20h5j")
+volume_db = -2.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

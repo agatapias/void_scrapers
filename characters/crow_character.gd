@@ -34,9 +34,18 @@ func _process(delta):
 
 	wasSpaceshipNear = isSpaceshipNear
 	
+	if Input.is_action_just_pressed("escape"):
+		_leave_interaction()
+	
 	if interacting and not changed:
 		if status == 'new':
 			_set_dialog(quest_dialog)
+		elif status == '2':
+			_set_dialog(quest_dialog_2)
+		elif status == '3':
+			_set_dialog(quest_dialog_3)
+		elif status == '4':
+			_set_dialog(quest_dialog_4)
 		elif status == 'ongoing':
 			_set_dialog(quest_ongoing)
 		changed = true
