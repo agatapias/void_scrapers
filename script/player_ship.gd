@@ -224,12 +224,12 @@ func setTimerRandom():
 	$Timer.start()
 
 func _on_shield_body_entered(body):
-	if body.is_in_group("enemy"):
+	if body.is_in_group("enemy") && !body.is_in_group("boss"):
 		body.set_repulsed(true)
 		body.get_damage(10)
 
 func _on_shield_body_exited(body):
-	if body.is_in_group("enemy"):
+	if body.is_in_group("enemy") && !body.is_in_group("boss"):
 		body.set_repulsed(false)
 
 func _on_shield_area_entered(area):

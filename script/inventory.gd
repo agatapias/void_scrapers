@@ -90,7 +90,9 @@ func findByName(name):
 	return index
 
 func useItem(index):
+	if index == null: return
 	var item = items[index]
+	if item == null: return
 	itemUsed.emit(item)
 	var count = item_counts[index]
 	if count != null && count <= 1:
