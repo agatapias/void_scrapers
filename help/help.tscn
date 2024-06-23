@@ -14,8 +14,8 @@ script = ExtResource("1_8pi2l")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
-offset_right = 222.0
-offset_bottom = 165.0
+offset_right = 257.0
+offset_bottom = 191.0
 texture = ExtResource("1_yhft5")
 patch_margin_left = 1
 patch_margin_top = 1
@@ -39,16 +39,16 @@ vertical_alignment = 1
 
 [node name="ExitButton" type="Button" parent="NinePatchRect"]
 layout_mode = 0
-offset_left = 92.0
-offset_top = 142.0
-offset_right = 205.0
-offset_bottom = 173.0
+offset_left = 110.0
+offset_top = 170.0
+offset_right = 223.0
+offset_bottom = 201.0
 scale = Vector2(0.35, 0.35)
 text = "Zamknij"
 script = ExtResource("2_31ubc")
 
 [node name="CatImage" type="Sprite2D" parent="NinePatchRect"]
-position = Vector2(17, 17)
+position = Vector2(237, 170)
 scale = Vector2(1.45703, 1.45703)
 texture = ExtResource("3_g3ntr")
 
@@ -57,25 +57,29 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -92.0
-offset_top = 30.0
-offset_right = 652.0
-offset_bottom = 462.0
+offset_left = -106.5
+offset_top = 24.0
+offset_right = 637.5
+offset_bottom = 515.0
 grow_horizontal = 2
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.3, 0.3)
 text = "Witaj w grze Void Scrapers!
 Twoim celem jest wydostanie się z galatyki, którą pożera czarna dziura.
 
 Poruszaj się do przodu przy użyciu strzałki w górę, obracaj się strzałkami w lewo i prawo.
 Jeżeli posiadasz broń, możesz strzelać przy użyciu spacji.
-Klikając P włączysz ekran pauzy i zatrzymasz na moment grę.
+[P] - ekran pauzy i pomoc
+[I] - ekwipunek
+[E] - interakcje
+[Spacja] - strzelanie
+[V] - bomby
+[O] - zapis gry
+Pamiętaj, że przy planetach możesz zapisać aktualny stan gry klikając [O].
 
-Szukaj kotów, które mają dla Ciebie zadania i handlują przedmiotami! Wejdź z nimi w interakcje klikając E.
+Szukaj kotów, które mają dla Ciebie zadania i handlują przedmiotami! 
 Szukaj kosmicznych ryb i złotych monet, aby móc handlować i ulepszać swój statek!
 
-Pamiętaj, że przy planetach możesz zapisać aktualny stan gry klikając O.
-
-Odkrywaj nowe obszary, szukaj ukrytych obiektów i ucieknij na czas od zagrożenia!
+Odkrywaj nowe obszary, szukaj ukrytych obiektów i ucieknij na czas od zagrożenia.
 Uważaj na przeciwników, którzy mogą atakować Cię po drodze."
 autowrap_mode = 2
 
